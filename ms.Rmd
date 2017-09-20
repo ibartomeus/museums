@@ -12,6 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##Anstract
 
+
+Building on previous studies showing the use of historical museum specimens to compare historical bee occurrences in northeast USA, Central Europe, and South Africa with current occurrence patterns, we show the potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations. Interestingly, we will add data from New Zealand and Spain increasing the geographical coverage and including bee diversity hotspots like Spain, for which bee declines have never been assessed.
+
+
 ## Intro
 
 What we know, geographical bias, ...
