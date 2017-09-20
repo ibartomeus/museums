@@ -1,0 +1,26 @@
+---
+title: "Museum specimens as baseline for assessing a potential global pollinator crisis"
+author: "I. Bartomeus & J. Stavert"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#req: 6000 words max. 3 figures
+#deadline: 1st April
+```
+
+##Anstract
+
+## Intro
+
+What we know, geographical bias, ...
+
+
+## Case study one: Spain
+
+## Case study two: NZ
+
+## Joint efforts needed at the global scale
+
+highlight digitalyzing initiatives including AMNH, LondonMNH, ¿? Highlight gaps that will never be filled probably.
