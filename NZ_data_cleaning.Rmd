@@ -1,0 +1,19 @@
+---
+title: "NZ"
+author: "I. Bartomeus"
+date: "05/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Notes:
+
+- Need to fetch most reacent data from Darren and compare to us (Jamie)
+- Need to add recent data: Romina + Jamie + Jason + Carine Emer + ??
+- We have some primary exploration code that can be useful.
+- Splitting by island if records allow.
+- Identifying exotics.
+
