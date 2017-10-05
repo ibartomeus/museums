@@ -1,30 +1,49 @@
 ---
 title: "Museum specimens as baseline for assessing a potential global pollinator crisis"
-author: "I. Bartomeus & J. Stavert"
+author: "I. Bartomeus, J. Stavert, D. Ward, O. Aguado"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-#req: 6000 words max. 3 figures
+#req: 6000 words max. inc ref's 3 figures
 #deadline: 1st April
 ```
 
-##Anstract
+##Abstract
 
 
-Building on previous studies showing the use of historical museum specimens to compare historical bee occurrences in northeast USA, Central Europe, and South Africa with current occurrence patterns, we show the potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations. Interestingly, we will add data from New Zealand and Spain increasing the geographical coverage and including bee diversity hotspots like Spain, for which bee declines have never been assessed.
+Building on previous studies showing the use of historical museum specimens to compare historical bee occurrences in northeast USA, Central Europe, and South Africa with current occurrence patterns, we show the potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations. Highlight knowledge gaps and oportunities (e.g. London museum, zooniverse...). Interestingly, we will add data from New Zealand and Spain increasing the geographical coverage and including bee diversity hotspots like Spain, for which bee declines have never been assessed.
 
 
 ## Intro
 
-What we know, geographical bias, ...
+Paragraph on pollinator importance and claims of a crisis. initial claims driving to NAS 2007.  Goulson Science, Gonzalez -varo TREE, Potts TREE. BUT highlight not global assessment and doubts (Gazoul "buzzines as usual", Forrest or Rafferty Oikos paper on geograpfical bias). Taxonomic bias?
+
+Define trends: Decline, turnover (changes in evennes winners loosers), exotics... Review current methods to assess 1) space for time (recent reviews rae, ...), 2) monitoring schemes /citicen science (iNatralis) (UK) and 3) museums type data. Highlight its importance (cite Primak). Pros and cons with an enphasis on Museums. 
+
+##Current evidence:
+- US: Bartomeus 2013 and Burkle 201?, ... NAS book Critizize Burkle dessign and compare to mine.
+- EU: Beijsmier, Carvalho, Schepper, ... UK? Peter Keil flies? Moths? Buterflies!
+- South Africa: Pauw, maybe with plants...
+- Specific examples e.g. Bombus dalbhomi (Aizen), ... Thomson ecology letters
+
+##Other uses of museums in pollinators. Identifying mechanisms of decline
+- Oliveira plos one 
+- Osorio Ecol Lettres
+- Phenoloy (Bartomeus)
+
+## Future needs /knowledge gaps:
+- Digitalization of MORE museums (coordinated)
+- Integration of DATA and analysis:
+- Communication Museums- Sci (biderictional. Importance of voucering specimens fused for science).
+- Compare global differences geographically (Eu Z US, for example)
 
 
 ## Case study one: Spain
 
 ## Case study two: NZ
 
-## Joint efforts needed at the global scale
+## Conclusions: Joint efforts needed at the global scale, scit science, ...
 
-highlight digitalyzing initiatives including AMNH, LondonMNH, ¿? Highlight gaps that will never be filled probably.
+highlight digitalyzing initiatives including AMNH, LondonMNH, ¿? Highlight gaps that will never be filled probably (central africa).
