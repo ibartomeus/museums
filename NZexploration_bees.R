@@ -1,11 +1,11 @@
 #load data
 
-d <- read.csv("data/NZbees_raw.csv", header = TRUE, sep = ",")
+d <- read.csv("data/bee_data_PhilB.csv", header = TRUE, sep = ",")
 str(d)
 
 levels(d$Species) #need to correct space
 #d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
-d$Gen_sp <- d$Species
+d$Gen_sp <- d$species
 
 sort(table(d$Gen_sp))
 sum(table(d$Gen_sp))
@@ -19,7 +19,7 @@ d$month <- date2$mon + 1
 head(d$month)
 
 #select fields to be independent
-uni <- as.data.frame(cbind(d$Gen_sp, d$Locality, d$Region, d$Date))
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$region, d$year))
 str(uni)
 dup <- duplicated(uni)
 
@@ -40,7 +40,8 @@ sort(table(d2$Gen_sp)) #14 species with more than 30 datapoints
 #create time periods
 d4 <- d2
 #for now
-d4$year <- d4$year+1900
+d4$year <- d4$year+1900#skip this?
+d4$year <- d4$year
 d4$time_period50  <- cut(d4$year, breaks = seq(1875,2025,50), labels = c("1875-1925","1925-1975","1975-2011"))
 
 d4$time_period25  <- cut(d4$year, breaks = seq(1875,2025,25), labels = c("1875-1900","1900-1925","1925-1950","1950-1975","1975-2000","2000-2011"))
@@ -184,7 +185,7 @@ for (i in 1:length(y)){wei[i] <- sum(frq[,i])/max(effort)}
 
 sort(table(All$Gen_sp))
 rownames(bin)
-i=1
+i=10
 par(mfrow = c(1,2))
 
 summary(m <- glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei)) #ok
@@ -214,7 +215,7 @@ box()
 
 m <- glm(cbind(frq[i,], effort-frq[i,]) ~y, family = binomial(link=logit), na.action=na.omit)
 p2 <- predict(m, list(y=y), type="response", se = TRUE)
-plot(y, p2$fit, type = "l", ylim = c(0,0.5), xlab = "Year", ylab = "Proportion in collection", main = as.character(rownames(frq)[i]))
+plot(y, p2$fit, type = "l", ylim = c(0,1), xlab = "Year", ylab = "Proportion in collection", main = as.character(rownames(frq)[i]))
 lines(y, p2$fit+1.96*p2$se.fit, lty = 2)
 lines(y, p2$fit-1.96*p2$se.fit , lty = 2)
 points(y, (frq[i,]/effort))
@@ -233,7 +234,7 @@ p.val <- pchisq(summary(g.over)$dispersion * g$df.residual, m$df.residual, lower
 #mB <- frq[,c(1:11)]
 #colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
 mB <- frq[,c(1:10)]
-colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE")
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
 try(for (i in 1:length(frq[,1])){
     mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
     mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
@@ -242,22 +243,26 @@ try(for (i in 1:length(frq[,1])){
         mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
         mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
         mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
-        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[1]
-        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[2]
-        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[1]
-        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[2]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
     }
     #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
     else {
         mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
         mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
         mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
-        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[1]
-        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[2]
-        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[1]
-        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[2]    	
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
     }
 })
+
+
+newdata = data.frame(y = rep(seq(from = 1901, to = 2010, length.out = 110)))
+
 
 #Plot
 pdf("Decline/Models_appendix/Bombus_models.pdf")
@@ -283,4 +288,65 @@ try(for (i in 1:length(frq[,1])){
 dev.off()
 
 #######UNTIL HERE#######
+
+
+try(for (i in 1:length(frq[,1])){
+    if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
+        m <- glm(cbind(frq[i,], effort-frq[i,]) ~y, family = quasibinomial(link=logit), na.action=na.omit)
+        p2 <- predict(m, list(y=y), type="response", se = TRUE)
+    }
+    else{
+        m <- glm(cbind(frq[i,], effort-frq[i,]) ~y, family = binomial(link=logit), na.action=na.omit)
+        p2 <- predict(m, list(y=y), type="response", se = TRUE)
+    }
+})
+
+#plot with ggplot as facet 
+
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+
+xx <- as.data.frame(mB)
+
+levs <- c("pred1880",
+          "pred 2015",
+          "pred1880SE",
+          "pred 2015SE")
+
+decline <- filter(xx, Var2 %in% levs)
+
+#add dompol/dompla status to metric d1 dataframe
+decline <- decline %>%
+    mutate(type = ifelse(Var2 %in% c("pred1880",  "pred 2015"),
+                         "estimate", "SE"))
+
+decline <- decline %>%
+    mutate(year = ifelse(Var2 %in% c("pred1880",  "pred1880SE"),
+                         "1880", "2015"))
+
+decline.cast <- dcast(decline, Var1+year~ type, value.var="Freq")
+
+p <- ggplot(decline.cast, aes(year, estimate, group=Var1))
+p <- p + xlab(NULL) + ylab("Frequency")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=year), size = 3)
+p <- p + geom_line(linetype="dashed", size = 0.75)
+p <- p + geom_errorbar(aes(ymin=estimate-SE, ymax=estimate+SE, colour=year), width = 0)
+p <- p + facet_wrap(~Var1, scale="free")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(legend.position="none")
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
 

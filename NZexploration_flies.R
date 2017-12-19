@@ -1,6 +1,6 @@
 #load data
 
-d <- read.csv(file = "NZ_fly_pollinators.csv", header = TRUE, sep = ",")
+d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",")
 str(d)
 
 
