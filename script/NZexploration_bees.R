@@ -1,33 +1,70 @@
-#load data
+########################################
+#read in data
+########################################
 
-d <- read.csv("data/bee_data_PhilB.csv", header = TRUE, sep = ",")
-str(d)
+#my dataset from Barry Donovan
+dx <- read.csv("data/bee_data_PhilB.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
-levels(d$Species) #need to correct space
+#remove NZAC records
+dx <- dx[ ! dx$collection %in% c("NZAC"), ]#remove NZAC records from my collection data
+
+#NZAC dataset
+nzac <- read.csv("data/NZbees_NZAC.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+########################################
+#merge and clean datasets
+########################################
+
+#bind both datasets together
+d <- bind_rows(dx, nzac)
+
+#select required variables
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method")))
+d <- na.omit(d) #remove NAs
+
+#remove honeybees
+d$species <- as.factor(d$species)
+d <- d[ ! d$species %in% c("Apis mellifera"), ]
+d$species <- droplevels(d$species)
+
+#need to correct space between genus and species
+levels(d$species)
 #d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
 d$Gen_sp <- d$species
-
 sort(table(d$Gen_sp))
 sum(table(d$Gen_sp))
 head(d)
 
 #date
-date2 <- strptime(d$Date, "%d/%m/%Y") #several formats mixed in... will be painfull
+date2 <- strptime(d$date, "%d/%m/%Y") #several formats mixed in... will be painfull
 d$jday <- date2$yday
 d$year <- 1900 + date2$year
 d$month <- date2$mon + 1
 head(d$month)
 
 #select fields to be independent
-uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$region, d$year))
+#completeFun <- function(data, desiredCols) {
+  #  completeVec <- complete.cases(data[, desiredCols])
+  #  return(data[completeVec, ])
+#}
+
+#d <- completeFun(d, c("day", "month", "year"))
+
+
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
 str(uni)
 dup <- duplicated(uni)
 
 # remove duplicates
 d2 <- d[-which(dup == TRUE),]
 str(d2)
-sort(table(d2$Gen_sp)) #14 species with more than 30 datapoints
 
+#retain only sweep netting and no data
+keep <- c("sweep", "no_data")#method is missing for a number of records
+d2 <- d2[d2$method %in% keep, ]
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+str(d2)
 #visualize the data: #not with bees
 #plot(d2$Long, d2$Lat)
 #library(maps)
@@ -40,7 +77,7 @@ sort(table(d2$Gen_sp)) #14 species with more than 30 datapoints
 #create time periods
 d4 <- d2
 #for now
-d4$year <- d4$year+1900#skip this?
+#d4$year <- d4$year+1900 #skip this
 d4$year <- d4$year
 d4$time_period50  <- cut(d4$year, breaks = seq(1875,2025,50), labels = c("1875-1925","1925-1975","1975-2011"))
 
@@ -77,7 +114,7 @@ com <- table(d4$year,d4$Gen_sp)
 
 x <- specaccum(com, method = "collector", permutations = 100, conditioned =TRUE, gamma = "jack1")
 plot(x, add = FALSE, ci = 2, ci.type = "line", col = par("fg"), ci.col = col, ci.lty = 1, xlab = "Years",ylab = "Species", xaxt="n")
-axis(side = 1, at= c(5,30,55,80,105,130), labels= c("1880","1905","1930","1955","1980","2010")) #check are the right ones.
+axis(side = 1, at= c(5,30,55,80,105,130), labels= c("1905","1930","1955","1975", "1980","2010")) #check are the right ones.
 
 temp <- as.numeric(row.names(com))
 com_innverse <- com[order(-temp),]
@@ -93,7 +130,7 @@ plot(x3, add = FALSE, xlab = "Random number of years subsampled", ylab = "Specie
 
 
 #######################################
-Resampling Analysis
+#Resampling Analysis
 #######################################
 par(mfrow = c(2,5), mar = c(4,3,1,1))
 
@@ -260,10 +297,6 @@ try(for (i in 1:length(frq[,1])){
     }
 })
 
-
-newdata = data.frame(y = rep(seq(from = 1901, to = 2010, length.out = 110)))
-
-
 #Plot
 pdf("Decline/Models_appendix/Bombus_models.pdf")
 try(for (i in 1:length(frq[,1])){
@@ -301,32 +334,103 @@ try(for (i in 1:length(frq[,1])){
     }
 })
 
-#plot with ggplot as facet 
+############################################
+#plot model estimates and predictions
+############################################
 
 library(dplyr)
 library(reshape2)
 library(ggplot2)
 
+#prepare dataframe
 xx <- as.data.frame(mB)
+xx.cast <- dcast(xx, Var1 ~ Var2, value.var="Freq")
+xx.cast <- xx.cast[!(xx.cast$Var1 %in% species.remove$Var1),]
 
+#add direction change based on estimate and p-value
+xx.cast$frq_direction <- with(xx.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'negative', ifelse(
+        p_frq >= 0.05, 'stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'positive'))))
+
+####################################################
+#plot frequency estimates
+####################################################
+
+p <- ggplot(xx.cast, aes(Var1, estimate_frq, group=Var1))
+p <- p + xlab(NULL) + ylab("Frequency estimate")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=frq_direction), size = 3)
+p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=frq_direction), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+#plot bin estimates
+####################################################
+
+#add direction change based on estimate and p-value
+xx.cast$bin_direction <- with(xx.cast, ifelse(
+    estimate_bin < 0 & p_bin < 0.05, 'negative', ifelse(
+        p_bin >= 0.05, 'stable', ifelse(
+            estimate_bin > 0 & p_bin >= 0.05, 'whoops', 'positive'))))
+
+p <- ggplot(xx.cast, aes(Var1, estimate_bin, group=Var1))
+p <- p + xlab(NULL) + ylab("Bin estimate")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=bin_direction), size = 3)
+p <- p + geom_errorbar(aes(ymin=estimate_bin-SE_bin, ymax=estimate_bin+SE_bin, colour=bin_direction), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+#plot predictions 
+####################################################
+
+#prepare dataframe
 levs <- c("pred1880",
           "pred 2015",
           "pred1880SE",
           "pred 2015SE")
-
 decline <- filter(xx, Var2 %in% levs)
 
 #add dompol/dompla status to metric d1 dataframe
 decline <- decline %>%
     mutate(type = ifelse(Var2 %in% c("pred1880",  "pred 2015"),
                          "estimate", "SE"))
-
 decline <- decline %>%
     mutate(year = ifelse(Var2 %in% c("pred1880",  "pred1880SE"),
                          "1880", "2015"))
-
 decline.cast <- dcast(decline, Var1+year~ type, value.var="Freq")
+decline.cast <- decline.cast[!(decline.cast$Var1 %in% species.remove$Var1),]
 
+#plot
 p <- ggplot(decline.cast, aes(year, estimate, group=Var1))
 p <- p + xlab(NULL) + ylab("Frequency")
 p <- p + theme(text = element_text(size=18))
@@ -350,3 +454,6 @@ p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
 p <- p + scale_colour_brewer(palette = "Dark2")
 p
 
+####################################################
+#END
+####################################################
