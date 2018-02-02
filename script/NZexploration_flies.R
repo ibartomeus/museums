@@ -1,6 +1,6 @@
 #load data
 
-d <- read.csv(file = "NZ_fly_pollinators.csv", header = TRUE, sep = ",")
+d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 str(d)
 
 
@@ -11,19 +11,22 @@ sum(table(d$Gen_sp))
 head(d)
 
 #date
-date2<- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
+date2 <- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
 d$jday <- date2$yday
 d$year <- 1900 + date2$year
 d$month <- date2$mon + 1
-head(month)
+head(d$month)
 
 #select fields to be independent
 #two approaches lat = 0 and others
-lat <- subset(d, Lat != 0 & is.na(year) == F)
+lat <- subset(d, Lat != 0 & is.na(year) == F)#remove all records with no latitude recording
 str(lat)
+#unique fields by lata, long, day of the year and year
 uni <- as.data.frame(cbind(lat$Gen_sp, lat$Lat, lat$Long, lat$jday, lat$year))
 str(uni)
 dup <- duplicated(uni)
+#d2 <- d[-which(dup == TRUE),]
+str(d2)
 # lat/long = 0
 #lat0 <- subset(d, Dlat == 0 & is.na(year) == F)
 #str(lat0)
@@ -37,7 +40,9 @@ lat <- lat[-which(dup == TRUE),]
 #d2 <- rbind(lat,lat0)
 d2 <- lat
 str(d2)
-sort(table(d2$Gen_sp)) #14 species with more than 30 datapoints
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+
 
 #visualize the data:
 plot(d2$Long, d2$Lat)
@@ -242,7 +247,7 @@ p.val <- pchisq(summary(g.over)$dispersion * g$df.residual, m$df.residual, lower
 #mB <- frq[,c(1:11)]
 #colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
 mB <- frq[,c(1:10)]
-colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE")
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
 try(for (i in 1:length(frq[,1])){
     mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
     mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
@@ -251,25 +256,25 @@ try(for (i in 1:length(frq[,1])){
         mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
         mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
         mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
-        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[1]
-        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[2]
-        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[1]
-        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[2]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
     }
     #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
     else {
         mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
         mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
         mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
-        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[1]
-        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$fit[2]
-        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[1]
-        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2010)), type = "response", se.fit = TRUE)$se.fit[2]    	
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
     }
 })
 
 #Plot
-¢pdf("Decline/Models_appendix/Bombus_models.pdf")
+#¢pdf("Decline/Models_appendix/Bombus_models.pdf")
 try(for (i in 1:length(frq[,1])){
     if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
         m <- glm(cbind(frq[i,], effort-frq[i,]) ~y, family = quasibinomial(link=logit), na.action=na.omit)
@@ -296,3 +301,127 @@ dev.off()
 et <- subset(All, Gen_sp == "Melanostoma_fasciatum" | Gen_sp == "Eristalis tenax")
 boxplot(et$jday)
 summary(et$jday)
+
+############################################
+#plot model estimates and predictions
+############################################
+
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+
+#prepare dataframe
+xx <- as.data.frame(mB)
+xx.cast <- dcast(xx, Var1 ~ Var2, value.var="Freq")
+xx.cast <- xx.cast[!(xx.cast$Var1 %in% species.remove$Var1),]
+
+#add direction change based on estimate and p-value
+xx.cast$frq_direction <- with(xx.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'negative', ifelse(
+        p_frq >= 0.05, 'stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'positive'))))
+
+####################################################
+#plot frequency estimates
+####################################################
+
+p <- ggplot(xx.cast, aes(Var1, estimate_frq, group=Var1))
+p <- p + xlab(NULL) + ylab("Frequency estimate")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=frq_direction), size = 3)
+p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=frq_direction), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+#plot bin estimates
+####################################################
+
+#add direction change based on estimate and p-value
+xx.cast$bin_direction <- with(xx.cast, ifelse(
+    estimate_bin < 0 & p_bin < 0.05, 'negative', ifelse(
+        p_bin >= 0.05, 'stable', ifelse(
+            estimate_bin > 0 & p_bin >= 0.05, 'whoops', 'positive'))))
+
+p <- ggplot(xx.cast, aes(Var1, estimate_bin, group=Var1))
+p <- p + xlab(NULL) + ylab("Bin estimate")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=bin_direction), size = 3)
+p <- p + geom_errorbar(aes(ymin=estimate_bin-SE_bin, ymax=estimate_bin+SE_bin, colour=bin_direction), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+#plot predictions 
+####################################################
+
+#prepare dataframe
+levs <- c("pred1880",
+          "pred 2015",
+          "pred1880SE",
+          "pred 2015SE")
+decline <- filter(xx, Var2 %in% levs)
+
+#add dompol/dompla status to metric d1 dataframe
+decline <- decline %>%
+    mutate(type = ifelse(Var2 %in% c("pred1880",  "pred 2015"),
+                         "estimate", "SE"))
+decline <- decline %>%
+    mutate(year = ifelse(Var2 %in% c("pred1880",  "pred1880SE"),
+                         "1880", "2015"))
+decline.cast <- dcast(decline, Var1+year~ type, value.var="Freq")
+decline.cast <- decline.cast[!(decline.cast$Var1 %in% species.remove$Var1),]
+
+#plot
+p <- ggplot(decline.cast, aes(year, estimate, group=Var1))
+p <- p + xlab(NULL) + ylab("Frequency")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=year), size = 3)
+p <- p + geom_line(linetype="dashed", size = 0.75)
+p <- p + geom_errorbar(aes(ymin=estimate-SE, ymax=estimate+SE, colour=year), width = 0)
+p <- p + facet_wrap(~Var1, scale="free")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(legend.position="none")
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+#END
+####################################################

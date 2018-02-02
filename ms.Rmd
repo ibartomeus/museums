@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##Abstract
 
-
+Statements about pollinator crisis, or bee declines are widespread, but information is currenti limiting....
 Building on previous studies showing the use of historical museum specimens to compare historical bee occurrences in northeast USA, Central Europe, and South Africa with current occurrence patterns, we show the potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations. Highlight knowledge gaps and oportunities (e.g. London museum, zooniverse...). Interestingly, we will add data from New Zealand and Spain increasing the geographical coverage and including bee diversity hotspots like Spain, for which bee declines have never been assessed.
 
 
@@ -27,6 +27,7 @@ Define trends: Decline, turnover (changes in evennes winners loosers), exotics..
 - EU: Beijsmier, Carvalho, Schepper, ... UK? Peter Keil flies? Moths? Buterflies!
 - South Africa: Pauw, maybe with plants...
 - Specific examples e.g. Bombus dalbhomi (Aizen), ... Thomson ecology letters
+ Fig 1: a global map showing evidence (% decline in richness) and Data deficient areas would be great.
 
 ##Other uses of museums in pollinators. Identifying mechanisms of decline
 - Oliveira plos one 
@@ -34,11 +35,10 @@ Define trends: Decline, turnover (changes in evennes winners loosers), exotics..
 - Phenoloy (Bartomeus)
 
 ## Future needs /knowledge gaps:
-- Digitalization of MORE museums (coordinated)
+- Digitalization of MORE museums (coordinated) Just common protocols? RopenSci? What about an interactive bee decline map? Predicts?
 - Integration of DATA and analysis:
 - Communication Museums- Sci (biderictional. Importance of voucering specimens fused for science).
 - Compare global differences geographically (Eu Z US, for example)
-
 
 ## Case study one: Spain
 
@@ -47,3 +47,8 @@ Define trends: Decline, turnover (changes in evennes winners loosers), exotics..
 ## Conclusions: Joint efforts needed at the global scale, scit science, ...
 
 highlight digitalyzing initiatives including AMNH, LondonMNH, ¿? Highlight gaps that will never be filled probably (central africa).
+
+
+#Acknowledgements
+
+E. Asensio (or maybe coauthor?). Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL.

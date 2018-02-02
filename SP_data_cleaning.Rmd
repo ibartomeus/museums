@@ -14,7 +14,7 @@ Notas:
 - 'Localidades?': Info per species. Recorded only at the first record of each species. Refers to geograpfic known records. Usefull for abejassilvestres.es ?
 - 'obrera' needs to be merged with 'sex'
 - ID and 'cuaderno' need to remove duplicates, which are not in cuaderno!!
-- IF several IT's Oscar Aguade duplicated the netry as many times as need. Those sp are in red in original excel.
+- IF several IT's Oscar Aguado duplicated the enetry as many times as need. Those sp are in red in original excel.
 
 
 Old data:
