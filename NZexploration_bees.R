@@ -1,6 +1,7 @@
 #load data
 
 d <- read.csv("data/NZbees_raw.csv", header = TRUE, sep = ",")
+NZAC <- read.csv("data/NZbees_NZAC.csv", header = TRUE, sep = ",")
 str(d)
 
 levels(d$Species) #need to correct space
