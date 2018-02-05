@@ -20,19 +20,99 @@ Building on previous studies showing the use of historical museum specimens to c
 
 Paragraph on pollinator importance and claims of a crisis. initial claims driving to NAS 2007.  Goulson Science, Gonzalez -varo TREE, Potts TREE. BUT highlight not global assessment and doubts (Gazoul "buzzines as usual", Forrest or Rafferty Oikos paper on geograpfical bias). Taxonomic bias?
 
-Define trends: Decline, turnover (changes in evennes winners loosers), exotics... Review current methods to assess 1) space for time (recent reviews rae, ...), 2) monitoring schemes /citicen science (iNatralis) (UK) and 3) museums type data. Highlight its importance (cite Primak). Pros and cons with an enphasis on Museums. 
+Define trends: Decline, turnover (changes in evennes winners loosers), exotics... Review current methods to assess 1) space for time (recent reviews rae, ...), 2) monitoring schemes /citicen science (iNaturalis) (UK) and 3) museums type data. Highlight its importance (cite Primak). Pros and cons with an enphasis on Museums. 
 
 ##Current evidence:
 - US: Bartomeus 2013 and Burkle 201?, ... NAS book Critizize Burkle dessign and compare to mine.
 - EU: Beijsmier, Carvalho, Schepper, ... UK? Peter Keil flies? Moths? Buterflies!
 - South Africa: Pauw, maybe with plants...
 - Specific examples e.g. Bombus dalbhomi (Aizen), ... Thomson ecology letters
- Fig 1: a global map showing evidence (% decline in richness) and Data deficient areas would be great.
 
-##Other uses of museums in pollinators. Identifying mechanisms of decline
+We compiled current evidence worldwide and show that ... (short methods included in text)
+
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(rworldmap)
+map <- data.frame(iso2 = c("ES", "NZ"), richness = c(88, 75))
+#FAKE data, we need to compile a bbdd with the data at hand.
+map2 <- joinCountryData2Map(map, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
+mapCountryData(mapToPlot = map2, numCats = 2, nameColumnToPlot = "richness"
+               , mapTitle = "Bee richness decline", addLegend = FALSE)
+
+```
+
+Fig 1: a global map showing evidence (% decline in richness) and Data deficient areas would be great.
+
+
+## Beyond species occurrences
+Other uses of museums in pollinators. Identifying mechanisms of decline
 - Oliveira plos one 
 - Osorio Ecol Lettres
 - Phenoloy (Bartomeus)
+
+
+## Prioritizing the low hanging fruit.
+
+Analyze trade off between number of records in Gbif for > 1980 and pre <1980. Each quadrant needs an analysis. 
++ we provide code to run it, and maybe add it to the repo per country? distributed database style?
+We do it for two regions:
+
+
+```{r low hanging fruits, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(rgbif)
+#spain_code <- isocodes[grep("Spain", isocodes$name), "code"]
+#portugal_code <- isocodes[grep("Portugal", isocodes$name), "code"]
+apidae_key <- name_backbone(name="Apidae", rank = "family")$usageKey
+andrenidae_key <- name_backbone(name="Andrenidae", rank = "family")$usageKey
+halictidae_key <- name_backbone(name="Halictidae", rank = "family")$usageKey
+colletidae_key <- name_backbone(name="Colletidae", rank = "family")$usageKey
+megachilidae_key <- name_backbone(name="Megachilidae", rank = "family")$usageKey
+stenotritidae_key <- name_backbone(name="Stenotritidae", rank = "family")$usageKey
+melittidae_key <- name_backbone(name="Melittidae", rank = "family")$usageKey
+
+keys <- c(apidae_key, andrenidae_key, halictidae_key, halictidae_key, colletidae_key,
+          megachilidae_key, stenotritidae_key, melittidae_key)
+#loop through all families, through all countries and store in datarame
+country_codes <- c("ES", "NZ", "PT", "GE") #need to fetch them all EASY using rgbif
+lhf <- matrix(ncol = 1+(7*2), nrow = length(country_codes))
+lhf <- as.data.frame(lhf)
+colnames(lhf) <- c("country", "apidaepre1980", "andrenidaepre1980", "halictidaepre1980", "colletidaepre1980", 
+                    "megachilidaepre1980", "stenotritidaepre1980", "melittidaepre1980",
+                   "apidaepost1980", "andrenidaepost1980", "halictidaepost1980", "colletidaepost1980", 
+                    "megachilidaepost1980", "stenotritidaepost1980", "melittidaepost1980")
+for(i in 1:length(country_codes)){
+    for(j in 1:length(keys)){
+        lhf[i,1] <- country_codes[i]
+        lhf[i,1+j] <- as.numeric(occ_count(taxonKey= keys[j],
+                            from = 1980, to = 2018,
+                            georeferenced=TRUE,
+                            country = country_codes[i]))
+        lhf[i,1+j+7] <- as.numeric(occ_count(taxonKey= keys[j],
+                            from = 1850, to = 1980,
+                            georeferenced=TRUE,
+                            country = country_codes[i]))
+    }
+}
+#lhf
+plot(rowSums(lhf[,2:8]), rowSums(lhf[,9:15]), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
+abline(h = 3000, v = 5000)
+#plot needs legend by country, and to be ggplotted
+
+```
+
+Fig 2: number of bee occurrences pre 1980 and post 1980 in gbif. Upper rigth cuadrat are well covered countries, upper left cuadrat are countries that need resurvey of old sites. Lower right are sites which needs to digg museum records and lower left are countries hard to get data.
+
+We ilustrate how this can be done using two countries and providing code to reproduce our analysis, so that more countries can contribute.
+
+## Case study one: Spain
+
+- Describe data and analysis.
+- Present main results
+
+## Case study two: NZ
+
+- Describe data and analysis.
+- Present main results
+
 
 ## Future needs /knowledge gaps:
 - Digitalization of MORE museums (coordinated) Just common protocols? RopenSci? What about an interactive bee decline map? Predicts?
@@ -40,9 +120,6 @@ Define trends: Decline, turnover (changes in evennes winners loosers), exotics..
 - Communication Museums- Sci (biderictional. Importance of voucering specimens fused for science).
 - Compare global differences geographically (Eu Z US, for example)
 
-## Case study one: Spain
-
-## Case study two: NZ
 
 ## Conclusions: Joint efforts needed at the global scale, scit science, ...
 
