@@ -32,11 +32,20 @@ We compiled current evidence worldwide and show that ... (short methods included
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(rworldmap)
-map <- data.frame(iso2 = c("ES", "NZ"), richness = c(88, 75))
-#FAKE data, we need to compile a bbdd with the data at hand.
-map2 <- joinCountryData2Map(map, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
-mapCountryData(mapToPlot = map2, numCats = 2, nameColumnToPlot = "richness"
-               , mapTitle = "Bee richness decline", addLegend = FALSE)
+map <- read.csv("data/bee_declines.csv", sep = ";")
+#Jamie, if you want, we could complete this data set based on the papers.
+# If two estimates available for the same country, I will use two rows. 
+# We can compute the mean or the max using reshape here.
+# For studies reporting large regions within country this is ok, I think, but
+# for studies reporting locations (like Burkle Science paper) the % richness loss would be inflated when scaling up... not sure how to add those up. Add a column maybe saying coverage
+# country, region, individual sites.
+#Bee richness can be gathered from Discover life webpage
+#head(map)
+map2 <- joinCountryData2Map(map, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution")
+#need to use ISO's to make sure we don't carry over NA's due to country misspellings
+mapCountryData(mapToPlot = map2, nameColumnToPlot = "bee_richness"
+               , mapTitle = "Bee richness", addLegend = FALSE) 
 
 ```
 
@@ -57,10 +66,8 @@ Analyze trade off between number of records in Gbif for > 1980 and pre <1980. Ea
 We do it for two regions:
 
 
-```{r low hanging fruits, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r low hanging fruits, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(rgbif)
-#spain_code <- isocodes[grep("Spain", isocodes$name), "code"]
-#portugal_code <- isocodes[grep("Portugal", isocodes$name), "code"]
 apidae_key <- name_backbone(name="Apidae", rank = "family")$usageKey
 andrenidae_key <- name_backbone(name="Andrenidae", rank = "family")$usageKey
 halictidae_key <- name_backbone(name="Halictidae", rank = "family")$usageKey
@@ -72,7 +79,7 @@ melittidae_key <- name_backbone(name="Melittidae", rank = "family")$usageKey
 keys <- c(apidae_key, andrenidae_key, halictidae_key, halictidae_key, colletidae_key,
           megachilidae_key, stenotritidae_key, melittidae_key)
 #loop through all families, through all countries and store in datarame
-country_codes <- c("ES", "NZ", "PT", "GE") #need to fetch them all EASY using rgbif
+country_codes <- isocodes$code 
 lhf <- matrix(ncol = 1+(7*2), nrow = length(country_codes))
 lhf <- as.data.frame(lhf)
 colnames(lhf) <- c("country", "apidaepre1980", "andrenidaepre1980", "halictidaepre1980", "colletidaepre1980", 
@@ -92,14 +99,37 @@ for(i in 1:length(country_codes)){
                             country = country_codes[i]))
     }
 }
+#very slow, we should save the data and load here when needed.
+lhf$post1980 <- rowSums(lhf[,2:8])
+lhf$pre1980 <- rowSums(lhf[,9:15])
+write.csv(lhf, "data/rgbif_output.csv")
+```
+
+```{r plot rgbif, echo=FALSE, message=FALSE, warning=FALSE}
+lhf <- read.csv("data/rgbif_output.csv", row.names = 1 )
 #lhf
-plot(rowSums(lhf[,2:8]), rowSums(lhf[,9:15]), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
-abline(h = 3000, v = 5000)
-#plot needs legend by country, and to be ggplotted
+#head(lhf)
+#str(lhf)
+lhf[order(lhf$pre1980),c(1,17,18)]
+plot(lhf$post1980, lhf$pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,300000), ylim = c(0, 300000))
+abline(h = 150000, v = 150000)
+#plot needs legend by country, and to be ggplotted. Add some labels will be good, at least for ES and NZ, which we explore below.
 
 ```
 
 Fig 2: number of bee occurrences pre 1980 and post 1980 in gbif. Upper rigth cuadrat are well covered countries, upper left cuadrat are countries that need resurvey of old sites. Lower right are sites which needs to digg museum records and lower left are countries hard to get data.
+
+I am not sure the 1980 cut is apropiate. Looks like it is too correlated. Maybe we should correct per country size? Or per total records? % post vs % pre.
+
+```{r alternative plot (bad), echo=FALSE, message=FALSE, warning=FALSE}
+lhf$percent_post1980 <- lhf$post1980 / (lhf$pre1980+lhf$post1980)
+lhf$percent_pre1980 <- lhf$pre1980 / (lhf$pre1980+lhf$post1980)
+
+plot(lhf$percent_post1980, lhf$percent_pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,1), ylim = c(0, 1))
+abline(h = 0.50, v = 0.50)
+```
+This is even worst... correcting for size would be the best BUT I don't think richness and size have a linear relationship, so we should account for that then??
+
 
 We ilustrate how this can be done using two countries and providing code to reproduce our analysis, so that more countries can contribute.
 
