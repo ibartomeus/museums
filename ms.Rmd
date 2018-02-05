@@ -127,8 +127,13 @@ lhf$percent_pre1980 <- lhf$pre1980 / (lhf$pre1980+lhf$post1980)
 
 plot(lhf$percent_post1980, lhf$percent_pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,1), ylim = c(0, 1))
 abline(h = 0.50, v = 0.50)
+
+plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
+abline(h = 8, v = 8)
+
 ```
 This is even worst... correcting for size would be the best BUT I don't think richness and size have a linear relationship, so we should account for that then??
+Simply logging the data may work, we can point out % of countries with > 1000 records in either axes, for example, etc...
 
 
 We ilustrate how this can be done using two countries and providing code to reproduce our analysis, so that more countries can contribute.
