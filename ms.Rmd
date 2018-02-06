@@ -10,25 +10,38 @@ knitr::opts_chunk$set(echo = TRUE)
 #deadline: 1st April
 ```
 
-##Abstract
+##Abstract  
 
-Statements about pollinator crisis, or bee declines are widespread, but information is currenti limiting....
-Building on previous studies showing the use of historical museum specimens to compare historical bee occurrences in northeast USA, Central Europe, and South Africa with current occurrence patterns, we show the potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations. Highlight knowledge gaps and oportunities (e.g. London museum, zooniverse...). Interestingly, we will add data from New Zealand and Spain increasing the geographical coverage and including bee diversity hotspots like Spain, for which bee declines have never been assessed.
+There is an ever-increasing concern about the current decline of pollinators, specifically bees. Despite pollinator decline reports are widespread, the information available is scarce and biased geographically and taxonomically, limiting the inference about the a potential pollination crisis. The most direct form for understanding species decline patterns is to analyze historical time series, however, those are rare or often non-existing for most pollinator groups. However, museum collections can provide the only source of historical data serving as a baseline to understand the reach of pollinator declines. Specimens historically collected by naturalists and preserved in museums can provide information on when and where species were collected, as well as other ecological information like historical species interactions, or morphological traits. We show here how researchers have used historical museum specimens to compare historical occurrences with current occurrence patterns to show changes over time in biodiversity levels, species relative abundances, body size and even pollination services delivery. Despite this advances, we show that we still miss information for the status and trends of most pollinators and that often a bottle neck is digitizing the historical data. We analyze the opportunities and limitations to do so worldwide and provide two worked examples on how to analyze this type of data for two distinct regions for which historical bee declines have never been assessed, New Zealand and Spain. 
+There is a great potential for Museum specimens to play a key role in elucidating the extent of the pollinator crisis and compare the responses obtained along different environmental situations if we succeed in unleashing the power of historical data.  
 
+## Introduction  
 
-## Intro
+Pollinators are of paramount importance given its prominent role in plant reproduction (@ollerton2012) and food security (@kleinetal2007). As many other taxa, pollinators are also exposed to a plethora of human induced rapid environmental changes potentially threatening its populations. This conundrum was realized early on by researchers, and was popularized by the influential book "the forgotten pollinators" (1996). However, at that time there was almost no data on the trends and status of pollinators and this initial claims trigger the first efforts to elucidate the problem, including a commission of a US National Academy of Science (NAS) panel to assess the reach of pollinators declines (2006). The NAS report concluded that "For most pollinator species [...] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult". Since then, the studies on pollinator responses to global change has multiplied and we reached a strong consensus that pressures like habitat destruction, land use change, chemical exposure, exotic species and global warming are the leading causes of pollinator declines and act sinergistically (@goulson2016, @potts2010). However, the status and trends of most pollinator species remains unknown. For example, for a well studied region like Europe, 60% [check number]() of the bee species assessed by a recent IUCN report fall into the category "Data Deficient" (@Nieto2014).  
 
-Paragraph on pollinator importance and claims of a crisis. initial claims driving to NAS 2007.  Goulson Science, Gonzalez -varo TREE, Potts TREE. BUT highlight not global assessment and doubts (Gazoul "buzzines as usual", Forrest or Rafferty Oikos paper on geograpfical bias). Taxonomic bias?
+One of the main barriers to profile pollinator population trends is that pollinators conform an heterogeneous group including insects such as bees, flies, butterflies and beetles, but also birds, bats and even lizards (@Winfreeetal2011). In particular bees, usually regarded as the more important in terms of abundance, efficiency and widespread distribution (@ollerton2018), are a diverse group with more than 20 000 species worldwide (@PickeringAscher) and most of them require expert taxonomic expertise for its identification. This has led not only to a biased geographic patterns due to the uneven distribution of researchers (@Martinetal2012), but also a taxonomic bias to species easier to identify, like bumblebees (@ArcherOikos).  
 
-Define trends: Decline, turnover (changes in evennes winners loosers), exotics... Review current methods to assess 1) space for time (recent reviews rae, ...), 2) monitoring schemes /citicen science (iNaturalis) (UK) and 3) museums type data. Highlight its importance (cite Primak). Pros and cons with an enphasis on Museums. 
+The second barrier is methodological and involves how to assess population trends for highly mobile organisms, which in addition are often  short-lived and small. A practical approach has been to use space for time substitutions, where the researchers compares natural areas with areas affected by different environmental conditions. Despite the critiques on the robustness of this approach (@ref), this is the best source of information, specially for Europe, where recent joint efforts had estimated bee richness declines at the country level using the predictions from such models (@DePalma). A second promising method is pollinator monitoring programs. Inspired in the successful butterfly monitoring programs (@ref), this protocols, often carried by citizen scientists, are being implemented on other taxa (@ref). The main limitation is that those programs need time to build up long term data series and do not reveal anything about the original conditions. Finally, the best source of historical data can be found in museums. The core aim of Museums is precisely to conserve and curate this kind of collections, and serve not only of a precious voucher of specimens, but often also assures its taxonomic identification quality (@primak). The major bottleneck to use this information, is however, digitizing the specimens. Efforts to do so have provide great benefits and allow the characterization of the status and trends of bee pollinators is the US and EU (e.g. Bartomeus et al 2013, Scheper et al 2014) and despite data deposited in museums is often collected opportunistically and have its own biases (@Keil), is the only data we have to reconstruct the past.  
 
-##Current evidence:
-- US: Bartomeus 2013 and Burkle 201?, ... NAS book Critizize Burkle dessign and compare to mine.
-- EU: Beijsmier, Carvalho, Schepper, ... UK? Peter Keil flies? Moths? Buterflies!
-- South Africa: Pauw, maybe with plants...
-- Specific examples e.g. Bombus dalbhomi (Aizen), ... Thomson ecology letters
+Regardless of the method, it's important to consider that biodiversity has many aspects beyond species richness, and we should put more effort in differentiating declines not only in local (alpha) diversity or regional (gamma) diversity, but also in the turnover over sites (beta), the abundance of key species, and the evenness of the communities (@winfree2016ELE). In fact, environmental change often give us few winners, and lots of loosers (@Bartomeusetal2013), and characterizing those is extremely important as the few winners are often exotic species (@Stavertetal2018).  [Add something about traits of winners and loosers?]()
 
-We compiled current evidence worldwide and show that ... (short methods included in text)
+## The use of museum specimens    
+ 
+Digitizing old specimens is not a trivial task and it needs expertise to (i) ensure proper taxonomic identification (@ref cory paper on taxonomy needs), (ii) geolocate the coordinates of the collection event (@ref and software) and (iii) store the data in a proper curated database (@ref on database management). Doing this process one by one with each of the thousands of specimens located in a museum is a daunting task and needs specialized personnel. While some tasks can be only done by experts taxonomists, new technologies and citizen science can speed up the process of digitizing old collections. High resolution photos and scanning of the associated labels have been uploaded to the internet to get the power of distributed work where thousands of volunteers can transcript the images to text. This process is validated, etc... Examples include zooniverse, ... [Is there anything on AI to automate the process? e.g. there is something on wing venation from photos at Netherlands. Can be mentioned?]
+[how much do we want to extend on this? Is interesting info, but boring o read?]()  
+
+##Current evidence on pollinatior declines    
+
+Is not surprising the the best evidence of pollinator declines comes from the more disturbed countries. A pioneer study using citizen science and museum specimens in UK and Netherlands, two of the most populated and transformed countries showed a worrisome trend for both bees, flies and flowering plants, but specially for bees (@Beisjmieretal2006). However, it's important to note that even within those countries, the local estimates are all nearby big cities and agricultural areas, and data is lacking for better conserved areas. Further exploration of this data set shows that the declining trend has attenuated in recent decades (@carvalheiroetal). Detailed trends for common species in the Netherlands using museum specimens confirm the link between pollinator and plant declines, as bees wich preferred host plants have declined the most are the more threatened (@Schepper2014).   
+[- EU: UK? Ollerton Science, Peter Keil flies? Moths? Buterflies!]()  
+
+In comparison, regional estimates for the eastern US using museum specimens show a moderate decline in bee diversity (@Bartomeusetal2013) and very few regional extinctions as most species can still persist (@Colla2012?). This is in harsh contrast with the high local extinctions reported by Burkle (@Burkle) when comparing historical observations of a large forested ecosystem with the few remnants that still exists, but note that this comparison do not takes into account the opportunistic bees using other land use changes, and that the local richness may have changes, but not declined as drastically. In any case, there is a great concordance between species locally extinct and regionally declining (@Bartomeus_winfree2013).  
+
+Outside of Europe and the US there is surprisingly little evidence of pollinator declines using historical records. [South Africa: Pauw, maybe with plants...]() .  However, there are specific examples showing the historical decline of certain species e.g. Bombus dalbhomi (Aizen)  
+
+[add % in text also]()  
+
+We compiled all this information to show several worldwide maps showing knowledge about bee richness (a), Bee species declines (b), syrphid species declines (c) and ?? to highlight the little coverage we have...  
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(rworldmap)
@@ -45,26 +58,22 @@ map2 <- joinCountryData2Map(map, joinCode="NAME", nameJoinColumn = "country",
                             nameCountryColumn = "distribution")
 #need to use ISO's to make sure we don't carry over NA's due to country misspellings
 mapCountryData(mapToPlot = map2, nameColumnToPlot = "bee_richness"
-               , mapTitle = "Bee richness", addLegend = FALSE) 
+               , mapTitle = "Bee richness", addLegend = TRUE) 
 
 ```
 
-Fig 1: a global map showing evidence (% decline in richness) and Data deficient areas would be great.
+Fig 1: A global map showing evidence (% decline in richness) and Data deficient areas would be great.  
 
 
-## Beyond species occurrences
-Other uses of museums in pollinators. Identifying mechanisms of decline
-- Oliveira plos one 
-- Osorio Ecol Lettres
-- Phenoloy (Bartomeus)
+## Beyond species occurrences  
+ 
+Museum can provide valuable information besides species occurrence records, and this is important to track when digitizing the collections. This is specially relevant to identify mechanisms of decline and adaptation. One particularly important source of information is the date of capture, which has allowed to track phenological advances congruent with contemporary climate change (@Bartomeusetal2011). In addition, as mentioned above, insect pollinator labels often include as information the host plant where collected. This information is precious to understand past and present species interactions (@tylianakis2010ELE). Even when the host plant is not noted, bee specimens often contain pollen loads trapped in the hairs, making possible to reconstruct past visitation events (@kleinj_raemakers). Finally, museum specimens can be measured for specific attributes and this has been done to show tongue length (@refAlaskaScience) and body size (@Oliveira) shrinkage with climate and land use change.   
 
+## The way forward: Prioritizing the low hanging fruit.   
 
-## Prioritizing the low hanging fruit.
+As illustrated in Figure 1, there is a paucity of countries for which museum data is available, and hence can be used as baseline for assessing pollinator population declines. While ideally, one would aim to digitize all museum records in the world, in the practical world this is an unlikely to happen due mainly to funding constrains. Here we illustrate how this can be prioritized and optimized to encourage independent researchers to assess declines in its own country.   
 
-Analyze trade off between number of records in Gbif for > 1980 and pre <1980. Each quadrant needs an analysis. 
-+ we provide code to run it, and maybe add it to the repo per country? distributed database style?
-We do it for two regions:
-
+Gbif (@ref) is a central repository centralizing occurrence data. Much of this data comes from museum, but it integrates several other sources. Alongside the popular statistical language R (@ref), gbif can be directly queried into your computer (@rgbif) and check data availability for your region of interest. In Figure 2 we show the number of modern and historical bee records already available per country. While for some countries like UK and US the numbers are high in both axes, and hence, data is directly analyzable, most countries fall short in one or both of the axes. Hence, for countries with large number of recent records, researchers should prioritize the digitalization of old material to conduct their analysis. On the contrary, for countries with large number of historical records, organized re-surveys should be organized (e.g. @cameron2013). Interestingly, we show that >100 countries have less than 1000 records, making them unlikely candidates to study, but countries like X or X... Also note that historical records are not always in local museums, but many UK and US museums contain large collection of exotic pollinators.   
 
 ```{r low hanging fruits, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(rgbif)
@@ -117,50 +126,51 @@ abline(h = 150000, v = 150000)
 
 ```
 
-Fig 2: number of bee occurrences pre 1980 and post 1980 in gbif. Upper rigth cuadrat are well covered countries, upper left cuadrat are countries that need resurvey of old sites. Lower right are sites which needs to digg museum records and lower left are countries hard to get data.
+Fig 2: number of bee occurrences pre 1980 and post 1980 in gbif. Upper right cuadrat are well covered countries, upper left cuadrat are countries that need resurvey of old sites. Lower right are sites which needs to dig museum records and lower left are countries hard to get data.    
 
-I am not sure the 1980 cut is apropiate. Looks like it is too correlated. Maybe we should correct per country size? Or per total records? % post vs % pre.
-
+Alternative plots:  
 ```{r alternative plot (bad), echo=FALSE, message=FALSE, warning=FALSE}
 lhf$percent_post1980 <- lhf$post1980 / (lhf$pre1980+lhf$post1980)
 lhf$percent_pre1980 <- lhf$pre1980 / (lhf$pre1980+lhf$post1980)
 
-plot(lhf$percent_post1980, lhf$percent_pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,1), ylim = c(0, 1))
-abline(h = 0.50, v = 0.50)
+plot(sort(lhf$percent_post1980), xlab = "post1980", ylab = "%", col = as.factor(lhf$country))
+#Add country labels in x axes.
 
 plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
 abline(h = 8, v = 8)
 
 ```
-This is even worst... correcting for size would be the best BUT I don't think richness and size have a linear relationship, so we should account for that then??
-Simply logging the data may work, we can point out % of countries with > 1000 records in either axes, for example, etc...
+% makes it unidimensional. Simply logging the data may work, we can point out % of countries with > 1000 records in either axes, for example, etc... Correcting for country size would be the best BUT I don't think richness and size have a linear relationship, so we should account for that then?    
+
+Once the data sets are made available, the researcher needs to gauge very carefully the potential bias in data. We illustrate this process with two examples for Spain and New Zealand. In the first one, most historical data comes from a few locations and is collected by the same team of people. In this case, we contacted the original authors to understand their sampling protocol, and resurveyed the same sites 20 years later. The second case shows a diversity of collectors and sites. In this case, we should ensure that geographical and taxonomic coverage do not change systematically with time. For example, some collectors may target only certain taxa, biasing the sample. We provide annotated R scripts to treat this kind of data and show two relevant case studies adding data for two unique regions with contrasting histories and hope this resource will cheer people to add more data and analysis (include a repository where people can contribute?)   
+
+## Case study one: Spain  
+
+Spain is an interesting study system because is has been transformed by human heavely, but is not as intensified as other EU countries. In addition, Spain is a hotspot of bee diversity and maintains an heterogeneous landscape. As illustrated in Figure 2, Spain has already digitalized a decent amount of occurrence data both historical, and recent. However, a visual inspection reveals that data points are clustered and historical and recent records do not match spatially, making them hard to compare. Among the old records, it is striking that most of them are located around Valladolid and collected by Enrique Asensio and his team. Unfortunately, there is no recent sampling in the area. After some investigations, we discover that Enrique sampled systematically 8 localities and that more data is available at the "Museo de historia Nacional" and other minor collections. An effort to digitize the remaining material, and a re-survey of the area provides the perfect data set to make a comparison before-after of this 8 sites.   
+ 
+In brief, we check sampling completeness at both time periods, and compare the richness level of each site before 1980 and after 1980 with a paired t-test. [Maybe more analysis arise...](). We show that...    
+
+Fig 3: Mutipanel figure  
+
+## Case study two: NZ    
+  
+- Describe data and analysis.   
+- Present main results   
+
+Fig 3: Mutipanel figure  
+
+## The way forward  
+
+As illustrated in this examples, unleashing the power of museum data to answer pressing questions is at our hands, and need the coordinated effort of many actors. We envision that rather than a central repository of museum records, we should aim to make the digitalized data available and easy to share, and if possible ultimately centralized in existing platforms like Gbif. Even when the data lives in different museum webpages or databases, if it's easily accessible and has programmatic access (API e.g. @heltmint) it can be retried and joined with other data sets using open science tools (@ropensci).   
+
+We also need to revalorize museums and foster a birectional relationship between researchers and museums. Researchers collect massive amounts of specimens, not always appropriately vouched. Depositing this in museums should ensure its long term preservation. However, this require appropriately funded museums and recognizing data (and not only papers) as an important research output.  
+
+[What about an interactive bee decline map? or Integration of DATA and analysis:]()  
+
+Ultimately, we need more data to compare global differences geographically and see which are the generalized trends. As far as we know there have been few bee regional extinctions (@Ollerton, @Bartomeus2013), but bee declines are widespread in disturbed ecosystems of north america and Europe (@Bartomeus, @dePalma, @Carvalheiro). We know almost nothing about the rest... for those areas, the first step is to know what pollinators exists and name the species before we loss them.  
+
+#Acknowledgements  
+
+E. Asensio (or maybe coauthor?). Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL.  
 
 
-We ilustrate how this can be done using two countries and providing code to reproduce our analysis, so that more countries can contribute.
-
-## Case study one: Spain
-
-- Describe data and analysis.
-- Present main results
-
-## Case study two: NZ
-
-- Describe data and analysis.
-- Present main results
-
-
-## Future needs /knowledge gaps:
-- Digitalization of MORE museums (coordinated) Just common protocols? RopenSci? What about an interactive bee decline map? Predicts?
-- Integration of DATA and analysis:
-- Communication Museums- Sci (biderictional. Importance of voucering specimens fused for science).
-- Compare global differences geographically (Eu Z US, for example)
-
-
-## Conclusions: Joint efforts needed at the global scale, scit science, ...
-
-highlight digitalyzing initiatives including AMNH, LondonMNH, ¿? Highlight gaps that will never be filled probably (central africa).
-
-
-#Acknowledgements
-
-E. Asensio (or maybe coauthor?). Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL.
