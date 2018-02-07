@@ -22,10 +22,93 @@ Old data:
 ```{r}
 sp <- read.csv(file = "raw_data/Spain.csv", h = T)
 head(sp)
+head(sort(table(sp$LOCALIDAD), decreasing = TRUE))
+write.csv(sort(table(sp$LOCALIDAD), decreasing = TRUE),
+          "raw_data/localidades.csv")
+
+sp$gen_sp <- paste(sp$G.NERO, sp$ESPECIE, sep = "_")
+unique(sp$gen_sp) #721 species! #clean, but only for the subset of used data. The 7 localities.
+head(sort(table(sp$gen_sp), decreasing = TRUE), 50)
+
+#subset only the 7 localities.
+
+
+#check sampling completness
+library(vegan)
+#need to fix first locality
+comm <- table(sp2$LOCALIDAD, sp2$gen_sp)
+temp <- specaccum(comm, "random")
+summary(temp)
+plot(temp)
+rarecurve(comm)
 
 ```
 
 New data:
 
-- Not entered yet.
+```{r}
+now <- read.csv(file = "raw_data/Spain_2016.csv", h = T)
+head(now)
+table(now$LOCALIDAD)
+levels(now$LOCALIDAD) <- c("auditorio_Delibes",
+                           "auditorio_Delibes",
+                           "hornillos",
+                           "hornillos",
+                           "olmedo",
+                           "sanbernardo",
+                           "toro",
+                           "vilalba",
+                           "zamaduenas")
+#get lat long
+library(spatial)
+#biogeomancer(country = "Spain", adm1 = "Castilla y Leon", adm2 = "Valladolid", 
+#             locality = levels(now$LOCALIDAD), 
+#             singleRecord=TRUE, progress="text")
+#not working, but Ropen sci has alternative packages.
+now$gen_sp <- paste(now$GÉNERO, now$ESPECIE, sep = "_")
+sort(table(now$gen_sp))
+#clean species
+unique(now$gen_sp) #197!!! but still some duplicates 
+
+#check sampling completness
+library(vegan)
+comm <- table(now$LOCALIDAD, now$gen_sp)
+temp <- specaccum(comm, "random")
+summary(temp)
+plot(temp)
+rarecurve(comm) #uf... not really well sampled... but ~80 species per site it's quite good!
+```
+
+Data Gbif:
+```{r}
+gbif <- read.csv(file = "raw_data/data_gbif.csv", h = T)
+head(gbif)
+hist(gbif$year) #nice, bimodal!
+sort(table(gbif$recordedBy), decreasing = TRUE)
+#Engel, M, Hinojosa, I, Bennett, D, & Davis, S
+#G.E. Bohart
+#Torchio, Asensio, etc...
+#Baker, D. & Baker, M.
+# see
+set <- which(gbif$recordedBy == "Engel, M, Hinojosa, I, Bennett, D, & Davis, S")
+library(mapr)
+colnames(gbif)[2:3] <- c("latitude", "longitude") 
+map_leaflet(gbif[set,]) #interesting, 
+# Engel collected in 2007 in the south! And taxonomy is bad!
+# Baker in Estartit #del 62! 
+# Bohart Madrid, islands, south... in 78's
+
+#Overall, most pre 1980 collections around valladolid.
+head(sort(table(gbif$species), decreasing = TRUE), 50)
+unique(gbif$species) #443! BUT here lots of duplicates?
+```
+
+#Analysis
+
+1) only for 7 localities, join now and then and paired t-test on rarefied richness per site
+
+2) For common species we can do the same but with standardized frequency.
+
+
+
 
