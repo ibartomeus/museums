@@ -1,0 +1,256 @@
+country,code,species
+Afghanistan,AF,223
+Albania,AL,150
+Aldabra Atoll,AB,7
+Algeria,AG,763
+Andorra,AN,17
+Angola,AO,127
+Anguilla,AV,6
+Antigua and Barbuda,AC,2
+Argentina,AR,1128
+Armenia,AM,396
+Australia,AS,1624
+Austria,AU,673
+Azerbaijan,AJ,390
+Azores,AZ,18
+Bahamas,BF,34
+Bahrain,BA,2
+Baker Island,FQ,1
+Balearic Islands,BZ,201
+Bangladesh,BG,15
+Barbados,BB,7
+Belarus,BO,110
+Belgium,BE,381
+Belize,BH,136
+Benin,BN,27
+Bermuda,BD,1
+Bhutan,BT,39
+Bioko,OK,2
+Bolivia,BL,569
+Bonin Islands,OF,12
+Borneo,BI,3
+Bosnia and Herzegovina,BK,139
+Botswana,BC,127
+Brazil,BR,1859
+British Virgin Islands,VI,17
+Brunei,BX,26
+Bulgaria,BU,579
+Burkina Faso,UV,57
+Burma,BM,193
+Burundi,BY,53
+Cambodia,CB,63
+Cameroon,CM,217
+Canada,CA,748
+Canary Islands,CL,119
+Cape Verde,CV,20
+Caroline Island,LD,5
+Caucasus,UC,66
+Cayman Islands,CJ,2
+Central Africa,XC,1
+Central African Republic,CT,54
+Chad,CD,39
+Chile,CI,439
+China,CH,1187
+Christmas Island,KT,5
+Colombia,CO,567
+Comoros,CN,22
+Congo,CF,77
+"Congo, Democratic Republic of the",CG,606
+Cook Islands,CW,3
+Costa Rica,CS,519
+Cote D'ivoire,IV,64
+Crete,EE,282
+Croatia,HR,587
+Cuba,CU,93
+Curacao,QC,2
+Cyprus,CY,340
+Czech Republic,EZ,559
+Denmark,DA,286
+Djibouti,DJ,16
+Dominica,DO,24
+Dominican Republic,DR,47
+Ecuador,EC,462
+Egypt,EG,426
+Egypt (excluding Sinai Peninsula),EX,1
+El Salvador,ES,90
+Equatorial Guinea,EK,84
+Eritrea,ER,66
+Estonia,EN,237
+Ethiopia,ET,203
+Europa Island,EU,2
+Faroe Islands,FO,4
+Fiji,FJ,10
+Finland,FI,241
+Former Yugoslavia,FY,21
+France,FR,893
+French Guiana,FG,187
+French Polynesia,FP,6
+French West Africa,XW,1
+Gabon,GB,167
+Gambia,GA,46
+Georgia,GG,419
+Germany,GM,560
+Ghana,GH,93
+Greece,GR,1062
+Grenada,GJ,11
+Guadeloupe,GP,12
+Guam,GU,9
+Guatemala,GT,274
+Guinea,GV,44
+Guinea-Bissau,PU,1
+Guyana,GY,237
+Haiti,HA,31
+Hispaniola,HS,13
+Honduras,HO,201
+Howland Island,HI,2
+Hungary,HU,674
+Iceland,IC,5
+India,IN,717
+Indonesia,ID,464
+Iran,IR,820
+Iraq,IZ,75
+Ireland,EI,104
+Isle of Man,IM,65
+Israel,IS,830
+Italy,IT,978
+Jamaica,JM,53
+Japan,JA,382
+Jordan,JO,265
+Kashmir,KX,2
+Kazakhstan,KZ,574
+Kenya,KE,342
+Kermadec Islands,KM,1
+Korea,AK,8
+Kuwait,KU,1
+Kyrgyzstan,KG,284
+Laos,LA,94
+Latvia,LG,278
+Lebanon,LE,187
+Lesotho,LT,63
+Liberia,LI,101
+Libya,LY,233
+Liechtenstein,LS,42
+Line Islands,YZ,1
+Lithuania,LH,328
+Loyalty Islands,OY,2
+Luxembourg,LU,300
+Macau,MC,1
+Macedonia,MK,374
+Madagascar,MA,220
+Madeira,DE,14
+Malawi,MI,211
+Malaysia,MY,265
+Maldives,MV,7
+Mali,ML,50
+Malta,MT,99
+Marianas Islands,RN,1
+Marshall Islands,RM,2
+Martinique,MB,7
+Mauritania,MR,27
+Mauritius,MP,11
+Mayotte,MF,3
+Mexico,MX,1850
+Micronesia,FM,2
+Moldova,MD,61
+Monaco,MN,1
+Mongolia,MG,321
+Montenegro,OG,121
+Montserrat,MH,10
+Morocco,MO,813
+Mozambique,MZ,184
+Namibia,WA,351
+Nepal,NP,173
+Netherlands,NL,366
+Netherlands Antilles,NT,6
+New Caledonia,NC,31
+New Guinea (whole),UI,8
+New Zealand,NZ,39
+Nicaragua,NU,138
+Niger,NG,56
+Nigeria,NI,156
+North Africa,FC,3
+North Korea,KN,76
+Northern Mariana Islands,CQ,5
+Norway,NO,139
+Oman,MU,74
+Pakistan,PK,281
+Palau,PS,11
+Pamir,PD,3
+Panama,PM,428
+Papua New Guinea,PP,232
+Paraguay,PA,485
+Peru,PE,725
+Philippines,RP,215
+Poland,PL,522
+Portugal,PO,525
+Puerto Rico,PR,35
+Punjab,PJ,5
+Qatar,QA,4
+Reunion,RE,6
+Rodrigues,OO,3
+Romania,RO,647
+Rota Island,RL,5
+Russia,RS,955
+Rwanda,RW,49
+Saint Kitts and Nevis,SC,3
+Saint Lucia,ST,4
+Saint Vincent and Grenadines,VC,32
+Samoa,WS,14
+San Marino,SM,2
+Sao Tome and Principe,TP,5
+Saudi Arabia,SA,103
+Senegal,SG,124
+Serbia,YA,241
+Seychelles,SE,16
+Sierra Leone,SL,78
+Singapore,SN,104
+Slovakia,LO,611
+Slovenia,SI,568
+Socotra,QT,19
+Solomon Islands,BP,41
+Somalia,SO,69
+South Africa,SF,1152
+South Korea,KS,174
+Spain,SP,984
+Sri Lanka,CE,134
+St. Bartholomew,OW,1
+St. Croix,RX,6
+St. John,JS,3
+St. Thomas,DD,8
+Sudan,SU,140
+Suriname,NS,116
+Swaziland,WZ,15
+Sweden,SW,290
+Switzerland,SZ,615
+Syria,SY,344
+Taiwan,TW,161
+Tajikistan,TI,386
+Tanzania,TZ,353
+Thailand,TH,225
+Timor,OT,18
+Tinian Island,DI,1
+Togo,TO,71
+Tonga,TN,4
+Torres Strait Islands,RR,1
+Trinidad and Tobago,TD,109
+Tunisia,TS,591
+Turkestan,UR,70
+Turkey,TU,1579
+Turkmenistan,TX,413
+Tuvalu,TV,1
+Uganda,UG,209
+Ukraine,UP,598
+United Arab Emirates,AE,86
+United Kingdom,UK,269
+United States,US,3565
+Uruguay,UY,76
+Uzbekistan,UZ,362
+Vanuatu,NH,14
+Venezuela,VE,284
+Vietnam,VM,88
+West Bank,WE,157
+Western Sahara,WI,6
+Yap Island,YP,4
+Yemen,YM,61
+Zambia,ZA,148
+Zimbabwe,ZI,399

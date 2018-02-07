@@ -45,7 +45,7 @@ We compiled all this information to show several worldwide maps showing knowledg
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(rworldmap)
-map <- read.csv("data/bee_declines.csv", sep = ";")
+map <- read.csv("data/bee_richness.csv")
 #Jamie, if you want, we could complete this data set based on the papers.
 # If two estimates available for the same country, I will use two rows. 
 # We can compute the mean or the max using reshape here.
@@ -57,11 +57,15 @@ map <- read.csv("data/bee_declines.csv", sep = ";")
 map2 <- joinCountryData2Map(map, joinCode="NAME", nameJoinColumn = "country",
                             nameCountryColumn = "distribution")
 #need to use ISO's to make sure we don't carry over NA's due to country misspellings
-mapCountryData(mapToPlot = map2, nameColumnToPlot = "bee_richness"
-               , mapTitle = "Bee richness", addLegend = TRUE) 
+#have plotted countries with missing values as black (shows we have richness for pretty much everywhere)
+map3 <- mapCountryData(map2, nameColumnToPlot = "species", missingCountryCol = "black",
+               mapTitle = "Bee species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE)
+
+#add a modified legend using the same initial parameters as mapCountryData
+do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5))
+
 
 ```
-
 Fig 1: A global map showing evidence (% decline in richness) and Data deficient areas would be great.  
 
 
