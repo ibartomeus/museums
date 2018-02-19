@@ -152,7 +152,7 @@ for (i in 3:10){
     }
     All$time_period_quant  <- cut(All$year, breaks = break1, labels = lab)
     comm2 <- table(All$time_period_quant, factor(All$Gen_sp))
-    (x2 <- rarefy(comm2,200, se = TRUE)) #same result as my resampling...
+    (x2 <- rarefy(comm2,150, se = TRUE)) #same result as my resampling...
     #rar[[i-2+10]] <- x2
     #str(x2)
     time <- c(1:i)
@@ -163,7 +163,7 @@ for (i in 3:10){
     se <- as.data.frame(x2)[2,]
     if(i == 3){
         rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
-        abline(v = 200)}
+        abline(v = 150)}
     plot(time,t(xx2), xlab = "", las = 2, ylab = "species", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
