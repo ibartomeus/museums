@@ -1,31 +1,11 @@
 ########################################
-#read in data
+#read in NZ bee data
 ########################################
 
-<<<<<<< HEAD:NZexploration_bees.R
-d <- read.csv("data/NZbees_raw.csv", header = TRUE, sep = ",")
-NZAC <- read.csv("data/NZbees_NZAC.csv", header = TRUE, sep = ",")
-str(d)
-=======
-#my dataset from Barry Donovan
-dx <- read.csv("data/bee_data_PhilB.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
->>>>>>> e3f775bd5a23047f34bde5a22bad22217a892cf9:script/NZexploration_bees.R
-
-#remove NZAC records
-dx <- dx[ ! dx$collection %in% c("NZAC"), ]#remove NZAC records from my collection data
-
-#NZAC dataset
-nzac <- read.csv("data/NZbees_NZAC.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
-
-########################################
-#merge and clean datasets
-########################################
-
-#bind both datasets together
-d <- bind_rows(dx, nzac)
+d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
 #select required variables
-d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method")))
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
 d <- na.omit(d) #remove NAs
 
 #remove honeybees
@@ -41,8 +21,8 @@ sort(table(d$Gen_sp))
 sum(table(d$Gen_sp))
 head(d)
 
-#date
-date2 <- strptime(d$date, "%d/%m/%Y") #several formats mixed in... will be painfull
+#standardise dates
+date2 <- strptime(d$date, "%d/%m/%Y")
 d$jday <- date2$yday
 d$year <- 1900 + date2$year
 d$month <- date2$mon + 1
@@ -55,8 +35,6 @@ head(d$month)
 #}
 
 #d <- completeFun(d, c("day", "month", "year"))
-
-
 uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
 str(uni)
 dup <- duplicated(uni)
@@ -66,11 +44,12 @@ d2 <- d[-which(dup == TRUE),]
 str(d2)
 
 #retain only sweep netting and no data
-keep <- c("sweep", "no_data")#method is missing for a number of records
-d2 <- d2[d2$method %in% keep, ]
+#keep <- c("sweep", "no_data") #method is missing for a number of records
+#d2 <- d2[d2$method %in% keep, ]
+
+#create dataframes to remove species with less that 30 records
 no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
 species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
-str(d2)
 #visualize the data: #not with bees
 #plot(d2$Long, d2$Lat)
 #library(maps)
@@ -79,8 +58,45 @@ str(d2)
 #plot(d2$Long, d2$Lat, ylim = c(-50,-32), xlim = c(163,183))
 #map("world", col="red", add=TRUE) #fix wrong lat/long
 
+#######################################
+#plot number of records by year for bees
+#######################################
 
+d2$count <- rep(1,nrow(d2)) # make new value column 
+date.record.bee <- exotic %>% 
+    group_by(year) %>% 
+    summarise(Freq = sum(count))
+
+no.ind.bee <- as.data.frame(sort(table(date.record.bee$Gen_sp))) #14 species with more than 30 datapoints
+species.remove.bee <- filter(no.ind.bee, Freq < 30)#create df with species that have less than 30 records
+colnames(species.remove.bee)[1] <- "Gen_sp"
+date.record.bee <- date.record.bee[!(date.record.bee$Gen_sp %in% species.remove.bee$Gen_sp),]
+
+#plot bee records
+p <- ggplot(date.record.bee, aes(year, Freq))
+p <- p + xlab("Year") + ylab("Number of records all bees")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(size = 3)
+p <- p + facet_wrap(~Gen_sp, scales="free_y")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(legend.position="none")
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p
+
+#######################################
 #create time periods
+#######################################
+
 d4 <- d2
 #for now
 #d4$year <- d4$year+1900 #skip this
@@ -112,8 +128,8 @@ levels(d4$time_period_custom) #fix year = 0!
 #plot(temp$Long, temp$Lat, ylim = c(-50,-32), xlim = c(163,183), col = "green")
 #map("world", col="black", add=TRUE)
 
-
 ####species acumulation curve for years
+#do this for exotics and natives separately? 
 library(vegan)
 
 com <- table(d4$year,d4$Gen_sp)
@@ -134,24 +150,31 @@ axis(side = 1, at= c(5,30,55,80,105,130), labels= c("2010","1980","1955","1930",
 x3 <- specaccum(com, method = "random", permutations = 100, conditioned =TRUE, gamma = "jack1")
 plot(x3, add = FALSE, xlab = "Random number of years subsampled", ylab = "Species")
 
-
 #######################################
 #Resampling Analysis
 #######################################
+
+All <- d2
+native <- filter(All, exotic_native == "native") %>% droplevels()
+exotic <- filter(All, exotic_native == "exotic") %>% droplevels()
+
+#############################################
+#Resampling Analysis for natives species 
+#############################################
+
 par(mfrow = c(2,5), mar = c(4,3,1,1))
 
-All <- d4
 #fin year = 0 quick and dirty
-length(which(All$year < 1900))
-All <- subset(All, year > 1900)
+length(which(native2$year < 1900))
+native <- subset(native2, year > 1900)
 for (i in 3:10){
-    break1 <- quantile(All$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    break1 <- quantile(native2$year, probs = seq(0,1,1/i), na.rm = TRUE)
     lab <- c(1:i)
     for(j in 1:i){
         lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
     }
-    All$time_period_quant  <- cut(All$year, breaks = break1, labels = lab)
-    comm2 <- table(All$time_period_quant, factor(All$Gen_sp))
+    native2$time_period_quant  <- cut(native2$year, breaks = break1, labels = lab)
+    comm2 <- table(native2$time_period_quant, factor(native2$Gen_sp))
     (x2 <- rarefy(comm2,150, se = TRUE)) #same result as my resampling...
     #rar[[i-2+10]] <- x2
     #str(x2)
@@ -189,11 +212,70 @@ for (i in 3:10){
         abline(m, lty = 1)}    
     if(i == 10){
         rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
-        abline(v = 200)}    
+        abline(v = 150)}    
     #rarecurve(comm2)
     #abline(v = 1000)
 }
 
+
+#############################################
+#Resampling Analysis for exotic species 
+#############################################
+
+par(mfrow = c(2,5), mar = c(4,3,1,1))
+
+#fin year = 0 quick and dirty
+length(which(exotic$year < 1900))
+exotic <- subset(exotic, year > 1900)
+for (i in 3:10){ #error saying break are not unique - how to fix?
+    break1 <- quantile(exotic$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+    }
+    exotic$time_period_quant  <- cut(exotic$year, breaks = break1, labels = lab)
+    comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+    (x2 <- rarefy(comm2,25, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    if(i == 3){
+        rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        abline(v = 25)}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "species", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    if(p > 0.05){
+        abline(m, lty = 2)}
+    else{
+        abline(m, lty = 1)}    
+    if(i == 10){
+        rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        abline(v = 25)}    
+    #rarecurve(comm2)
+    #abline(v = 1000)
+}
 
 #############################
 # species models

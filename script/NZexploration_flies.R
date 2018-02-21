@@ -1,8 +1,21 @@
+library(plyr)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(maps)
+library(vegan)
+
 #load data
 
 d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 str(d)
 
+#remove unidentified species
+completeFun <- function(data, desiredCols) {
+    completeVec <- complete.cases(data[, desiredCols])
+    return(data[completeVec, ])
+}
+d <- completeFun(d, "exotic_native")
 
 d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
 
@@ -43,10 +56,46 @@ str(d2)
 no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
 species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
 
+#######################################
+#plot number of records by year for flies
+#######################################
 
-#visualize the data:
+exotic$count <- rep(1,nrow(exotic)) # make new value column 
+date.record.fly <- exotic %>% 
+    group_by(year) %>% 
+    summarise(Freq = sum(count))
+
+no.ind.fly <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove.fly <- filter(no.ind.fly, Freq < 30)#create df with species that have less than 30 records
+colnames(species.remove.fly)[1] <- "Gen_sp"
+date.record.fly <- date.record.fly[!(date.record.fly$Gen_sp %in% species.remove.fly$Gen_sp),]
+
+#plot fly records
+p <- ggplot(date.record.fly, aes(year, Freq, colour=Gen_sp))
+p <- p + xlab(NULL) + ylab("Number of exotic fly records")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(size = 1)
+p <- p + facet_wrap(~Gen_sp, scales="free_y")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(legend.position="none")
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p
+
+##########################################################################
+#visualize the data
+##########################################################################
+
 plot(d2$Long, d2$Lat)
-library(maps)
 map("world", col="red", add=TRUE)
 
 plot(d2$Long, d2$Lat, ylim = c(-50,-32), xlim = c(163,183))
@@ -82,9 +131,9 @@ temp <- subset(d4, time_period_custom == "1976-2007")
 plot(temp$Long, temp$Lat, ylim = c(-50,-32), xlim = c(163,183), col = "green")
 map("world", col="black", add=TRUE)
 
-
-####species acumulation curve for years
-library(vegan)
+##########################################################################
+#species acumulation curve for years
+##########################################################################
 
 com <- table(d4$year,d4$Gen_sp)
 
@@ -105,24 +154,28 @@ x3 <- specaccum(com, method = "random", permutations = 100, conditioned =TRUE, g
 plot(x3, add = FALSE, xlab = "Random number of years subsampled", ylab = "Species")
 
 
-#######################################
-#Resampling Analysis
-#######################################
-par(mfrow = c(2,5), mar = c(4,3,1,1))
+##########################################################################
+#Resampling Analysis for native flies
+##########################################################################
 
 All <- d4
+native <- filter(All, exotic_native == "native") %>% droplevels()
+exotic <- filter(All, exotic_native == "exotic") %>% droplevels()
+
+par(mfrow = c(2,5), mar = c(4,3,1,1))
+
 #fin year = 0 quick and dirty
-length(which(All$year < 1900))
-All <- subset(All, year > 1900)
+length(which(native$year < 1900))
+native <- subset(native, year > 1900)
 for (i in 3:10){
-    break1 <- quantile(All$year, probs = seq(0,1,1/i))
+    break1 <- quantile(native$year, probs = seq(0,1,1/i))
     lab <- c(1:i)
     for(j in 1:i){
         lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
     }
-    All$time_period_quant  <- cut(All$year, breaks = break1, labels = lab)
-    comm2 <- table(All$time_period_quant, factor(All$Gen_sp))
-    (x2 <- rarefy(comm2,40, se = TRUE)) #same result as my resampling...
+    native$time_period_quant  <- cut(native$year, breaks = break1, labels = lab)
+    comm2 <- table(native$time_period_quant, factor(native$Gen_sp))
+    (x2 <- rarefy(comm2,100, se = TRUE)) #same result as my resampling...
     #rar[[i-2+10]] <- x2
     #str(x2)
     time <- c(1:i)
@@ -133,7 +186,7 @@ for (i in 3:10){
     se <- as.data.frame(x2)[2,]
     if(i == 3){
         rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
-        abline(v = 40)}
+        abline(v = 100)}
     plot(time,t(xx2), xlab = "", las = 2, ylab = "species", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
@@ -164,10 +217,67 @@ for (i in 3:10){
     #abline(v = 1000)
 }
 
+##########################################################################
+#Resampling Analysis for exotic flies
+##########################################################################
 
-#############################
+#fin year = 0 quick and dirty
+length(which(exotic$year < 1900))
+exotic <- subset(exotic, year > 1900)
+for (i in 3:10){
+    break1 <- quantile(exotic$year, probs = seq(0,1,1/i))
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+    }
+    exotic$time_period_quant  <- cut(exotic$year, breaks = break1, labels = lab)
+    comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+    (x2 <- rarefy(comm2,20, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    if(i == 3){
+        rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        abline(v = 20)}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "species", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    if(p > 0.05){
+        abline(m, lty = 2)}
+    else{
+        abline(m, lty = 1)}    
+    if(i == 10){
+        rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        abline(v = 40)}	
+    #rarecurve(comm2)
+    #abline(v = 1000)
+}
+
+##########################################################################
 #species models
-#############################
+##########################################################################
+
 #collection history per year
 B <- All
 frq <- table(factor(B$Gen_sp),factor(B$year))
@@ -242,8 +352,10 @@ summary(g.over)$dispersion
 
 p.val <- pchisq(summary(g.over)$dispersion * g$df.residual, m$df.residual, lower = F)
 
+##########################################################################
+#estimates for all sp
+##########################################################################
 
-#### estimates for all sp
 #mB <- frq[,c(1:11)]
 #colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
 mB <- frq[,c(1:10)]
@@ -302,13 +414,9 @@ et <- subset(All, Gen_sp == "Melanostoma_fasciatum" | Gen_sp == "Eristalis tenax
 boxplot(et$jday)
 summary(et$jday)
 
-############################################
+##########################################################################
 #plot model estimates and predictions
-############################################
-
-library(dplyr)
-library(reshape2)
-library(ggplot2)
+##########################################################################
 
 #prepare dataframe
 xx <- as.data.frame(mB)
