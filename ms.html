@@ -147,7 +147,7 @@ $(document).ready(function () {
 <p>In comparison, regional estimates for the eastern US using museum specimens show a moderate decline in bee diversity (<span class="citation">@Bartomeusetal2013</span>) and very few regional extinctions as most species can still persist (<span class="citation">@Colla2012</span>?). This is in harsh contrast with the high local extinctions reported by Burkle (<span class="citation">@Burkle</span>) when comparing historical observations of a large forested ecosystem with the few remnants that still exists, but note that this comparison do not takes into account the opportunistic bees using other land use changes, and that the local richness may have changes, but not declined as drastically. In any case, there is a great concordance between species locally extinct and regionally declining (<span class="citation">@Bartomeus_winfree2013</span>) indicating that local extinctions are part of the downward regional population trends.</p>
 <p>Outside of Europe and the US there is surprisingly little evidence of pollinator declines using historical records. <a href>South Africa: Pauw, maybe with plants…</a> . However, there are specific examples showing the historical decline of certain species e.g. Bombus dalbhomi (Aizen)</p>
 <p><a href>add % in text also</a></p>
-<p>Justify focus on bees? We compiled all this information to show several worldwide maps showing knowledge about bee richness (a), Bee species declines (b), syrphid species declines (c) and ?? to highlight the little coverage we have…</p>
+<p>Justify focus on bees? We compiled all this information to show several worldwide maps showing knowledge about bee richness (a), Bee species richness changes (b), syrphid species richness changes (c) and butterfly species richness changes to highlight the little coverage that we have globally.</p>
 <pre><code>## 207 codes from your data successfully matched countries in the map
 ## 48 codes from your data failed to match with a country code in the map
 ## 37 codes from the map weren't represented in your data</code></pre>
@@ -426,12 +426,17 @@ $(document).ready(function () {
 </div>
 <div id="case-study-two-nz" class="section level2">
 <h2>Case study two: NZ</h2>
+<p>New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of New Zealand’s pollinator fauna is also relatively depauperate. For example, New Zealand has only 27 species of native bees (<span class="citation">@Donovan</span>, 2007), which is a fraction of nearby Australia’s c. 1600 species (REF). However, New Zealand has a surprisingly high diversity of fly (Diptera) pollinators, which are important pollinators in many ecosystems (<span class="citation">@Newstrom</span> &amp; Robertson, 2005). Therefore, New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.</p>
+<p>Human colonisation of New Zealand was relatively recent in global terms (c. 740 y) (<span class="citation">@Wilmshurst</span> et al. 2008). Before human arrival, New Zealand was mostly forested, but has since been dramatically altered by people. Early Māori settlers cleared forests by burning and more recently, European colonists cleared much of remaining forests for agriculture, mostly before 1900 (<span class="citation">@Perry</span> et al, 2014). Therefore, human activity likely affected New Zealand pollinator communities long before collections began. Nevertheless, we can use museum records to identify trends in pollinator communities during New Zealand’s more recent history.</p>
+<p>New Zealand pollinator collections We used New Zealand bee collection records gathered from multiple sources, including university, research institute, museum and private collections. Fly pollinator data was obtained from six participating New Zealand museums and covers two families (Calliphoridae and Syrphidae) that contain important fly pollinators. Collections for the bee and fly datasets span over 100 years (early 1900s to late 2000s).</p>
+<p>Data analyses First, we filtered our original datasets so that data used for analyses only included unique collection events. To do this, we removed specimens collected at the same location, on the same data and by the same collector. We found our data had reasonable coverage across time periods, although there was a peak in collection occurrences from 1960-1980. We accounted for differences in collection effort through time by binning collection records, so that each bin had a similar number of records but a different number of years (see <span class="citation">@Bartomeusetal2013</span> for further details). We then estimated richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the mean species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.</p>
+<p>To test whether there were relative differences in occurrences of species over time (should we analyse natives and exotics together or separately?). To determine if the probability of finding a species in the collection changed over time we used a general linear model with a binomial distribution and a logit link. For species that showed overdispersion, we used a quasi-binomial distribution. We only included species in this analysis that had more than 30 records. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected in that year.</p>
+<p>Changes in species richness over time We found that rarefied richness for both native and exotic bees increased overtime, but these trends were non-significant (P-values for both groups &gt; 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups &gt; 0.05).</p>
+<p>Changes in species relative abundances over time We found that 10 out of 27 bee species increased in relative abundance over time (nine native and one exotic). Three bee species declined in relative abundance (one native and two exotic). However, only two out of 14 fly species increased in relative abundance, both of which were exotic, whereas four species decreased in abundance (three native and one exotic).</p>
+<p>Fig 3: Multi-panel figure</p>
 <ul>
-<li>Describe data and analysis.<br />
-</li>
-<li>Present main results</li>
+<li>Do we need some sort of separate discussion or integrate into the results section? … Although this is surprising, it could simply indicate a change in the evenness of species collected over time as the method we used actually measures both richness and evenness.</li>
 </ul>
-<p>Fig 3: Mutipanel figure</p>
 </div>
 <div id="the-way-forward" class="section level2">
 <h2>The way forward</h2>
@@ -442,7 +447,7 @@ $(document).ready(function () {
 </div>
 <div id="acknowledgements" class="section level1">
 <h1>Acknowledgements</h1>
-<p>E. Asensio (or maybe coauthor?). Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL.</p>
+<p>E. Asensio (or maybe coauthor?). Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL. Barry Donovan for providing New Zealand bee collection records. Carola Warner for entering the New Zealand data.</p>
 </div>
 
 
