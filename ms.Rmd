@@ -31,17 +31,15 @@ Digitizing old specimens is not a trivial task and requires expertise to (i) ens
 
 [how much do we want to extend on this? Is interesting info, but boring o read?]()  
  
-
 ##Current evidence on pollinatior declines    
 
-Start with buterflies?
+Start with butterflies?
 
-Is not surprising the best evidence of pollinator declines comes from the more disturbed countries western countries. For the UK and the Netherlands, which have been subject to extensive environmental changes, a study using citizen science and museum specimens found declines for bees, flies and flowering plants (@Beisjmieretal2006). However, it is important to note that even for these two countries, the local estimates for pollinator richness are nearby all for large cities and agricultural areas, and data is lacking for conserved natural areas. Further exploration of this dataset showed that the declining trend has attenuated in recent decades (@carvalheiroetal). Using museum specimens in the Netherlands, detailed trends for common bee species confirm the link between pollinator and plant declines, as bees which preferred host plants have declined the most are the more threatened (@Schepper2014).??confusing.    
-[- EU: UK? Ollerton Science, Peter Keil flies? Moths? Buterflies! Add Ollerton paper!]()  
+It is unsurprising that most evidence of pollinator declines is biased towards developed western countries, which have also been subject to extensive anthropogenic disturbance. For example, in the UK and the Netherlands, which have experienced a multitude of widespread anthropogenic changes, a citizen science based study using and museum collections detected declines for bees, flies and flowering plants (@Beisjmieretal2006). However, it is important to note that even for these two countries, pollinator richness local estimates are biased toward large cities and regions dominated by agriculture, and data is lacking for natural areas. Further exploration of this dataset revealed that the declining trend for pollinator taxa has attenuated in recent decades (@carvalheiroetal). More detailed trends for common bee species in the Netherlands have also been explored using museum specimens and confirm the link between simultaneous plant and pollinator declines (@Schepper2014). This study found that bee species with the strongest host plant preferences (i.e., specialists) displayed the strongest declines and thus were most threatened with extinction. [check this] [- EU: UK? Ollerton Science, Peter Keil flies? Moths? Buterflies! Add Ollerton paper!]()  
 
-In comparison, regional estimates in species richness changes for the eastern US show a moderate decline in bee diversity (@Bartomeusetal2013) and very few regional extinctions as most species tend to persist (@Colla2012?). These findings are in stark contrast with the widespread local extinctions reported by Burkle (@Burkle), who compared historical observations of bees from a large forested ecosystem with the few remnants. However, it is important to note that this comparison does not take into account opportunistic bee species using novel land use types in the region. Thus, local richness may have declines but regional richness may not have declined as drastically. In any case, there is strong concordance between local extinctions and regional declines (@Bartomeus_winfree2013), suggesting that local extinctions are indicators of regional population declines.  
+In comparison to local decline estimates, regional estimates for changes in species richness in the eastern US show a moderate decline in bee diversity (@Bartomeusetal2013) and very few regional extinctions (@Colla2012?). These findings are in stark contrast with the widespread local extinctions reported by Burkle (@Burkle), who compared historical observations of bee occurrence in a large forested ecosystem with the present-day remaining forest remnants. However, it is important to note that this comparison does not take into account opportunistic bee species that use novel land-use types. Thus, studies may detect local richness declines, while regional richness remains relatively stable. In any case, there is strong concordance between local extinctions and regional declines (@Bartomeus_winfree2013), suggesting that local extinctions are indicators of regional population declines.
 
-Outside of Europe and the US there is surprisingly studies on pollinator declines using historical records. [South Africa: Pauw, maybe with plants...]() .  However, there are specific examples showing the historical decline of certain species e.g. Bombus dalbhomi (Aizen)  
+Outside of Europe and the US there are no studies on pollinator declines using historical museum collection records. [South Africa: Pauw, maybe with plants...]() . However, there are species-specific examples of historical (e.g., Bombus dalbhomi; Aizen). 
 
 [add % in text also]()  
 
@@ -152,36 +150,205 @@ abline(h = 8, v = 8)
 ```
 % makes it unidimensional. Simply logging the data may work, we can point out % of countries with > 1000 records in either axes, for example, etc... Correcting for country size would be the best BUT I don't think richness and size have a linear relationship, so we should account for that then?    
 
-Once the data sets are made available, the researcher needs to gauge very carefully the potential bias in occurrence data. We illustrate this process with two contrasted examples for Spain and New Zealand. In the first one, most historical data comes from a few locations and is collected by the same team of people. In this case, we contacted the original authors to understand their sampling protocol, and resurveyed the same sites 20 years later. The second case shows a diversity of collectors and sites. In this case, we should ensure that geographical and taxonomic coverage do not change systematically with time. For example, some collectors may target only certain taxa, biasing the sample. We provide annotated R scripts to treat both kind of data while revealing trends for two relevant regions with contrasting histories. We hope this resource will encourage people to add more data and analysis... (include a repository where people can contribute?)   
+Once museum collection datasets are made available, researchers needs to gauge any potential biases in the data. We explore this process with two contrasting examples from Spain and New Zealand. In the Spanish dataset, most of the data comes from a few specific locations and was collected by the same team of people. In this case, we contacted the original collectors to define their sampling protocols. We then resurveyed the same sites [using the same protocols?] 20 years later. The New Zealand dataset includes a wide suite of collectors and collection locations. For this dataset, we ensured that there no clear changes to geographical [I haven’t actually looked at this as there weren’t and GPS coordinates in the data] and taxonomic collection patterns through time. For example, some collectors may have targeted particular taxa, at specific locations or during certain time periods, which would represent a bias in the data. For these case studies, we provide annotated R scripts to analyse the different kinds of data (as described above). Essentially, these different analytical approaches allow us to reveal long-term trends in pollinator populations for regions with contrasting sampling histories. We hope this resource will encourage researchers to analyses data for regions where little is currently know about pollinator declines. [include a repository where people can contribute?]
 
 ## Case study one: Spain  
 
-Spain is an interesting study system because is has been transformed by humans heavely, but is not as intensified as other EU countries. In addition, Spain is a hotspot of bee diversity and maintains an heterogeneous landscape. As illustrated in Figure 2, Spain has already digitalized a decent amount of occurrence data both historical, and recent. However, a visual inspection reveals that data points are clustered and historical and recent records do not match spatially, making them hard to compare. Among the old records, it is striking that most of them are located around Valladolid and collected by Enrique Asensio and his team. Unfortunately, there is no recent sampling in the area. After some investigations, we discover that Enrique sampled systematically 7 localities and that more data is available at the "Museo de historia Nacional" and other minor collections. An effort to digitize the remaining material, and a re-survey of the area provides the perfect data set to make a comparison before-after of this 7 sites.   
+Spain provides an interesting study system because its natural habitats have been transformed extensively by humans, but land-use is not as intensive as many other European countries. In addition, Spain is a bee diversity hotspot and maintains a relatively heterogeneous landscape. Spain has already digitalized a decent amount of occurrence data both historical, and recent (Figure 2). However, visual inspection of the data reveals that the data are clustered [in what way?]. Further, historic records do not spatially match recent records, making them difficult to compare. For this dataset, most of the old records are located around Valladolid and were collected by Enrique Asensio and his team. There has been no recent sampling of bees in this area. However we found that Enrique systematically sampled seven locations and that there was additional data available at the "Museo de historia Nacional" and other minor collections. Digitization of these records, along with a re-survey of the locations that Enrique and his team collected from, provided us with an excellent dataset for before and after comparisons of bee communities at these sites.
  
-In brief, we check sampling completeness at both time periods, and compare the richness level of each site before 1980 and after 1980 with a paired t-test. [Maybe more analysis arise...](). We show that ...    
+In brief, we check sampling completeness at both time periods, and compare the richness level of each site before 1980 and after 1980 with a paired t-test. [Maybe more analyses arise...](). We show that ...    
 
-Fig 3: Mutipanel figure  
+Fig 3: Multi-panel figure  
 
 ##Case study two: NZ    
-New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of New Zealand’s pollinator fauna is also relatively depauperate. For example, New Zealand has only 27 species of native bees (@Donovan, 2007), which is a fraction of nearby Australia’s c. 1600 species (REF). However, New Zealand has a surprisingly high diversity of fly (Diptera) pollinators, which are important pollinators in many ecosystems (@Newstrom & Robertson, 2005). Therefore, New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.
+In contrast to Spain, Aotearoa-New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of Aotearoa-New Zealand’s pollinator fauna is also relatively depauperate. For example, Aotearoa-New Zealand has only 27 species of native bees (@Donovan, 2007), which is a fraction of nearby Australia’s c. 1600 species (REF). However, Aotearoa-New Zealand has a surprisingly high diversity of fly (Diptera) pollinators, which are important pollinators in many ecosystems (@Newstrom & Robertson, 2005). Thus, Aotearoa-New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.
 
-Human colonisation of New Zealand was relatively recent in global terms (c. 740 y) (@Wilmshurst et al. 2008). Before human arrival, New Zealand was mostly forested, but has since been dramatically altered by people. Early Māori settlers cleared forests by burning and more recently, European colonists cleared large tracts of remaining forests and drained low-lying wetlands for agriculture, mostly before 1900 (@Perry et al, 2014). Therefore, human activity likely affected New Zealand pollinator communities long before surveys and collections of pollinators began. Nevertheless, we can use museum records to identify trends in pollinator communities during New Zealand’s more recent history.
+In global terms, human colonisation of Aotearoa-New Zealand was relatively recent (c. 740 y) (@Wilmshurst et al. 2008). Before human arrival, Aotearoa-New Zealand was predominately forested, but has since been dramatically altered by people. Early Māori settlers cleared forests by burning and more recently, European colonists cleared large tracts of remaining forests and drained low-lying wetlands for agriculture, mostly before 1900 (@Perry et al, 2014). Therefore, human activity likely affected pollinator communities in Aotearoa-New Zealand long before surveys and collections began. Nevertheless, we can use museum records to identify trends in pollinator communities during Aotearoa-New Zealand’s more recent history.
 
 New Zealand pollinator collections
 We used New Zealand bee collection records gathered from multiple sources, including university, research institute, museum and private collections. Fly pollinator data was obtained from six participating New Zealand museums and covers two families (Calliphoridae and Syrphidae) that contain important fly pollinators. Collections for the bee and fly datasets span over 100 years (early 1900s to late 2000s).
 
 Data analyses
-First, we filtered our original datasets so that data for analyses only included unique collection events. To do this, we removed specimens collected at the same location, on the same date, and by the same collector. We found our data had reasonable coverage across time periods, although there was a peak in collection occurrences from 1960-1980. We accounted for differences in collection effort through time by binning collection records, so that each bin had a similar number of records but a different number of years (see @Bartomeusetal2013 for further details). We then estimated richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the mean species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.
+First, we filtered our original datasets so that data used for analyses only included unique collection events. To do this, we removed specimens collected at the same location, on the same date, and by the same collector. We found our data had reasonable coverage across time periods, although there was a peak in collection occurrences from 1960-1980. We accounted for differences in collection effort through binning collection records by time so that each bin had a similar number of records but a different number of years (see @Bartomeusetal2013 for further details). We then estimated richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the mean species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.
 
-To determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. (should we analyse natives and exotics together or separately?). For species that showed overdispersion, we used a quasi-binomial distribution. We only included species in this analysis that had more than 30 records. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected in that year. 
+To determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. [should we analyse natives and exotics together or separately?]. For species that showed overdispersion, we used a quasi-binomial distribution. Further, we only included species in this analysis for which we had 30 or more records. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected in that year. 
 
 Changes in species richness over time 
 We found that rarefied richness for both native and exotic bees increased overtime, but these trends were non-significant (P-values for both groups > 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups > 0.05).
 
 Changes in species relative abundances over time 
-We found that 10 out of 27 bee species increased in relative abundance over time (nine native and one exotic). Three bee species declined in relative abundance (one native and two exotic). However, only two out of 14 fly species increased in relative abundance, both of which were exotic, whereas four species decreased in abundance (three native and one exotic).
+We found that 10 out of 27 bee species increased in relative abundance over time (nine native and one exotic) and three bee species declined in relative abundance (one native and two exotic) (Figure 3). However, only two out of 14 fly species increased in relative abundance, both of which were exotic, whereas four species decreased in abundance (three native and one exotic).
 
-Fig 3: Multi-panel figure
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#load packages
+library(plyr)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(maps)
+library(vegan)
+
+d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#select required variables
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
+d <- na.omit(d) #remove NAs
+
+#remove honeybees
+d$species <- as.factor(d$species)
+d <- d[ ! d$species %in% c("Apis mellifera"), ]
+d$species <- droplevels(d$species)
+
+#need to correct space between genus and species
+#levels(d$species)
+#d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+d$Gen_sp <- d$species
+#sort(table(d$Gen_sp))
+#sum(table(d$Gen_sp))
+#head(d)
+
+#standardise dates
+date2 <- strptime(d$date, "%d/%m/%Y")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+#head(d$month)
+
+#select fields to be independent
+#completeFun <- function(data, desiredCols) {
+#  completeVec <- complete.cases(data[, desiredCols])
+#  return(data[completeVec, ])
+#}
+
+#d <- completeFun(d, c("day", "month", "year"))
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
+#str(uni)
+dup <- duplicated(uni)
+
+# remove duplicates
+d2 <- d[-which(dup == TRUE),]
+
+#retain only sweep netting and no data
+#keep <- c("sweep", "no_data") #method is missing for a number of records
+#d2 <- d2[d2$method %in% keep, ]
+
+#create dataframes to remove species with less that 30 records
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+#visualize the data: #not with bees
+#plot(d2$Long, d2$Lat)
+#library(maps)
+#map("world", col="red", add=TRUE)
+
+#plot(d2$Long, d2$Lat, ylim = c(-50,-32), xlim = c(163,183))
+#map("world", col="red", add=TRUE) #fix wrong lat/long
+
+All <- d2
+#############################
+# species models
+#############################
+#collection history per year
+B <- All
+frq <- table(factor(B$Gen_sp),factor(B$year))
+bin <- ifelse(frq > 0, 1, 0) 
+
+
+i=1
+last_year2 <- c(1:length(bin[,1]))
+#for (i in 1:length(bin[,1])){
+  #  bin2 <- bin[i,-which(bin[i,] == 0)]
+  #  last_year2[i] <- names(tail(bin2,1))
+#}
+l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
+#l_yBB #broken at i = 5 check.
+
+#year vector
+y <- as.numeric(colnames(bin))
+
+
+#weights per year (specimens collected/max specimens collected)
+
+effort <- c(1:length(y))
+wei <- c(c(1:length(y)))
+for (i in 1:length(y)){effort[i] <- sum(frq[,i])}
+for (i in 1:length(y)){wei[i] <- sum(frq[,i])/max(effort)}
+
+#### estimates for all sp
+#mB <- frq[,c(1:11)]
+#colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
+mB <- frq[,c(1:10)]
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
+try(for (i in 1:length(frq[,1])){
+    mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
+    mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
+    mB[i,3] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[8]
+    if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
+    }
+    #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
+    else {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
+    }
+})
+
+############################################
+#plot model estimates and predictions
+############################################
+
+#prepare dataframe
+xx <- as.data.frame(mB)
+xx.cast <- dcast(xx, Var1 ~ Var2, value.var="Freq")
+xx.cast <- xx.cast[!(xx.cast$Var1 %in% species.remove$Var1),]
+
+#add direction change based on estimate and p-value
+xx.cast$frq_direction <- with(xx.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'negative', ifelse(
+        p_frq >= 0.05, 'stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'positive'))))
+
+####################################################
+#plot frequency estimates
+####################################################
+
+#need to add fly data and analyse bees and flies separately. Include all analyses in a multi-panel figure.
+p <- ggplot(xx.cast, aes(Var1, estimate_frq, group=Var1))
+p <- p + xlab(NULL) + ylab("Frequency estimate")
+p <- p + theme(text = element_text(size=18))
+p <- p + geom_point(aes(colour=frq_direction), size = 3)
+p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=frq_direction), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.y=element_text(size=30, vjust = 1),
+          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
+          axis.title.x=element_text(size=30, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=10))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + scale_colour_brewer(palette = "Dark2")
+p
+
+####################################################
+
+```
+
+Figure 3. Model estimated changes in the realtive occurance frequencey for diffent New Zealand bee species in collections (± 1 SE) over time.
 
 -	Do we need some sort of separate discussion or integrate into the results section?
 … Although this is surprising, it could simply indicate a change in the evenness of species collected over time as the method we used actually measures both richness and evenness.
@@ -189,16 +356,14 @@ Fig 3: Multi-panel figure
 
 ## The way forward  
 
-As illustrated in our examples, unleashing the power of museum collection data to answer pressing questions is at our hands, but requires the coordinated effort of many actors. We show in our case studies that collaboration with both museum curators and data collectors is key to understanding the data and treating it appropriately. We envision that rather than a central repository of museum collection records, we should aim to make digitalized data readily available and easy to share. Ultimately, centralisation of these data in existing platforms such as Gbif would facilitate free and widespread access. However, even when data is stored in different webpages or databases, it can be retried and joined with other data sets using open science tools (@ropensci) if it is easily accessible and has programmatic access (API e.g. @heltmint).   
+As illustrated in our examples, unleashing the power of museum collection data to answer pressing questions is at our hands, but requires the coordinated effort of many actors. Using case studies, we show that collaboration with both museum curators and data collectors is key to adequately understanding the data and treating it appropriately. We envision that instead of a central museum collection record repository, researchers and curators should simply aim to make digitalized data readily available and easy to share. Ultimately, centralisation of these data in existing platforms such as Gbif would facilitate free and widespread access. However, even when data are stored in different webpages or databases, it can be retried and combined with other datasets using open science tools (@ropensci), providing these tools are accessible (API e.g. @heltmint).   
 
-We also need to revolutionize the way that researchers collaborate with museums by foresting healthy bidirectional relationships. For instance, researchers collect massive numbers of specimens, but these are often inappropriately vouched, rendering them useless for research purposes. To improve this, strong communication between museums and researchers is required, but this will only be achieved if there is adequate funding and recognition that accurate data recording and long term preservation are critical for research.
+We also need to revolutionize the way that researchers collaborate with museums, which should start with foresting healthy bidirectional relationships. For instance, researchers collect massive amounts of specimens, but these are often inappropriately vouchered, rendering them useless for research purposes. To improve this, strong communication between museums and researchers is required, but this will only be achieved if there is adequate funding, and recognition that accurate data recording and long-term preservation are critical for research.
 [What about an interactive bee decline map? or Integration of DATA and analysis:]()  
 
-Ultimately, to identify global trends in pollinator declines we require data from diverse geographic regions. In particular, we need to put increased emphasis on quantifying pollinator declines in regions outside of the US and Europe. Furthermore, we need to investigate whether there have been declines in pollinator groups other than bees. As far as we know, there have been few regional bee extinctions (@Ollerton, @Bartomeus2013), but declines are widespread in disturbed ecosystems of the US and Europe (@Bartomeus, @dePalma, @Carvalheiro). For most other pollinator taxa we know almost nothing. For many taxa, the first step is to identify and describe them and only then can we begin to document declines.  
+Ultimately, to identify global trends in pollinator declines we require robust data, collected from diverse geographic regions. Further, it is crucial that data are analysed in the appropriate way. This requires researches identifying biases and filling in gaps where possible. We need to put increased emphasis on quantifying pollinator declines in regions outside of the US and Europe and for pollinator groups other than bees. For the US and Europe there have been few regional bee extinctions (@Ollerton, @Bartomeus2013), but declines are widespread in disturbed ecosystems (@Bartomeus, @dePalma, @Carvalheiro). For most other pollinator taxa and regions throughout the world we know almost nothing. Moving forward, the first step for many taxa will be to identify and describe species. Only then can we begin to document declines.  
 
 #Acknowledgements  
 
 We thank E. Asensio (or maybe coauthor?), Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum, ITACyL. We also thank Barry Donovan for providing New Zealand bee collection records and Carola Warner for entering the New Zealand data.  
-
-
 
