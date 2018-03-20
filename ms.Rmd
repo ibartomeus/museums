@@ -69,7 +69,8 @@ do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5))
 
 
 ```
-Fig 1: A global map showing evidence (% decline in richness) and Data deficient areas would be great.  
+
+Figure 1: Global map showing bee species richness. Countries without available data are coloured in black. Data were downloaded from the Discover Life website.
 
 
 ## Beyond species occurrences  
@@ -127,7 +128,7 @@ lhf <- read.csv("data/rgbif_output.csv", row.names = 1 )
 #lhf
 #head(lhf)
 #str(lhf)
-lhf[order(lhf$pre1980),c(1,17,18)]
+lhf <- lhf[order(lhf$pre1980),c(1,17,18)]
 plot(lhf$post1980, lhf$pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,300000), ylim = c(0, 300000))
 abline(h = 150000, v = 150000)
 #plot needs legend by country, and to be ggplotted. Add some labels will be good, at least for ES and NZ, which we explore below.
@@ -173,20 +174,361 @@ First, we filtered our original datasets so that data used for analyses only inc
 
 To determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. [should we analyse natives and exotics together or separately?]. For species that showed overdispersion, we used a quasi-binomial distribution. Further, we only included species in this analysis for which we had 30 or more records. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected in that year. 
 
-Changes in species richness over time 
+Changes in species richness over time
+
 We found that rarefied richness for both native and exotic bees increased overtime, but these trends were non-significant (P-values for both groups > 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups > 0.05).
 
-Changes in species relative abundances over time 
-We found that 10 out of 27 bee species increased in relative abundance over time (nine native and one exotic) and three bee species declined in relative abundance (one native and two exotic) (Figure 3). However, only two out of 14 fly species increased in relative abundance, both of which were exotic, whereas four species decreased in abundance (three native and one exotic).
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-#load packages
 library(plyr)
 library(dplyr)
 library(reshape2)
 library(ggplot2)
 library(maps)
 library(vegan)
+
+########################################
+#read in NZ bee data
+########################################
+
+d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#select required variables
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
+d <- na.omit(d) #remove NAs
+
+#remove honeybees
+d$species <- as.factor(d$species)
+d <- d[ ! d$species %in% c("Apis mellifera"), ]
+d$species <- droplevels(d$species)
+
+#need to correct space between genus and species
+#levels(d$species)
+#d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+d$Gen_sp <- d$species
+#sort(table(d$Gen_sp))
+#sum(table(d$Gen_sp))
+#head(d)
+
+#standardise dates
+date2 <- strptime(d$date, "%d/%m/%Y")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+#head(d$month)
+
+#select fields to be independent
+#completeFun <- function(data, desiredCols) {
+#  completeVec <- complete.cases(data[, desiredCols])
+#  return(data[completeVec, ])
+#}
+
+#d <- completeFun(d, c("day", "month", "year"))
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
+dup <- duplicated(uni)
+
+# remove duplicates
+d2 <- d[-which(dup == TRUE),]
+
+#retain only sweep netting and no data
+#keep <- c("sweep", "no_data") #method is missing for a number of records
+#d2 <- d2[d2$method %in% keep, ]
+
+native <- filter(d2, exotic_native == "native") %>% droplevels()
+exotic <- filter(d2, exotic_native == "exotic") %>% droplevels()
+
+#############################################
+#Resampling Analysis for natives species 
+#############################################
+
+par(mfrow = c(2,2), mar = c(4,4,2,1))
+
+#fin year = 0 quick and dirty
+#length(which(native$year < 1900))
+native <- subset(native, year > 1900)
+for (i in 3:10){
+    break1 <- quantile(native$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+    }
+    native$time_period_quant  <- cut(native$year, breaks = break1, labels = lab)
+    comm2 <- table(native$time_period_quant, factor(native$Gen_sp))
+    (x2 <- rarefy(comm2,150, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    #if(i == 3){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 150)}
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    #if(p > 0.05){
+        #abline(m, lty = 2)}
+    #else{
+        #abline(m, lty = 1)}    
+    #if(i == 10){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 150)}    
+    #rarecurve(comm2)
+    #abline(v = 1000)
+    
+}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of native bee species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+
+#############################################
+#Resampling Analysis for exotic species 
+#############################################
+
+#length(which(exotic$year < 1900))
+exotic <- subset(exotic, year > 1900)
+for (i in 3:6){ #error saying break are not unique - how to fix?
+    break1 <- quantile(exotic$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+    }
+    exotic$time_period_quant  <- cut(exotic$year, breaks = break1, labels = lab)
+    comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+    (x2 <- rarefy(comm2,25, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    #if(i == 3){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 25)}
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    #if(p > 0.05){
+      # abline(m, lty = 2)}
+   # else{
+       # abline(m, lty = 1)}    
+   # if(i == 10){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 25)}    
+    #rarecurve(comm2)
+    #abline(v = 1000)
+}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of exotic bee species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+
+############################################
+#resampling analysis for flies
+############################################
+    
+    #load data
+    d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+    
+    #remove unidentified species
+    completeFun <- function(data, desiredCols) {
+        completeVec <- complete.cases(data[, desiredCols])
+        return(data[completeVec, ])
+    }
+    
+    d <- completeFun(d, "exotic_native")
+    
+    d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+    
+    #date
+    date2 <- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
+    d$jday <- date2$yday
+    d$year <- 1900 + date2$year
+    d$month <- date2$mon + 1
+    
+    #select fields to be independent
+    #two approaches lat = 0 and others
+    lat <- subset(d, Lat != 0 & is.na(year) == F)#remove all records with no latitude recording
+    #unique fields by lata, long, day of the year and year
+    uni <- as.data.frame(cbind(lat$Gen_sp, lat$Lat, lat$Long, lat$jday, lat$year))
+    dup <- duplicated(uni)
+    #d2 <- d[-which(dup == TRUE),]
+    # lat/long = 0
+    #lat0 <- subset(d, Dlat == 0 & is.na(year) == F)
+    #str(lat0)
+    #uni2 <- as.data.frame(cbind(lat0$Gen, lat0$sp, lat0$LocalityStr, lat0$SubDivStr, lat0$StateProv, lat0$Country, lat0$jday, lat0$year))
+    #str(uni2)
+    #dup2 <- duplicated(uni2)
+    
+    # remove duplicates
+    lat <- lat[-which(dup == TRUE),]
+    #lat0 <- lat0[-which(dup2 == TRUE),]
+    #d2 <- rbind(lat,lat0)
+    d2 <- lat
+    native <- filter(d2, exotic_native == "native") %>% droplevels()
+    exotic <- filter(d2, exotic_native == "exotic") %>% droplevels()
+    
+    #length(which(native$year < 1900))
+    native <- subset(native, year > 1900)
+    for (i in 3:10){
+        break1 <- quantile(native$year, probs = seq(0,1,1/i))
+        lab <- c(1:i)
+        for(j in 1:i){
+            lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+        }
+        native$time_period_quant  <- cut(native$year, breaks = break1, labels = lab)
+        comm2 <- table(native$time_period_quant, factor(native$Gen_sp))
+        (x2 <- rarefy(comm2,100, se = TRUE)) #same result as my resampling...
+        #rar[[i-2+10]] <- x2
+        #str(x2)
+        time <- c(1:i)
+        for(j in 1:i){
+            time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+        }
+        xx2 <- as.data.frame(x2)[1,]
+        se <- as.data.frame(x2)[2,]
+        #if(i == 3){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 100)}
+        m <- lm(t(xx2)~ time)
+        summary(m)
+        corr <- cor(t(xx2), time, use = "complete.obs")
+        cor_dis <- c(1:1000)
+        for (k in 1:1000){
+            cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+        }
+        #hist(cor_dis)
+        #lines(c(corr, corr), c(0,200), col = "red")
+        (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+        #with lm
+        #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+        #abline(m, lty = 2)}
+        #else{
+        #abline(m, lty = 1)}    
+        #with corrs
+        #if(p > 0.05){
+           # abline(m, lty = 2)}
+        #else{
+            #abline(m, lty = 1)}    
+        #if(i == 10){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 40)}	
+        #rarecurve(comm2)
+        #abline(v = 1000)
+    }
+    
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of native fly species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+    
+    ##########################################################################
+    #Resampling Analysis for exotic flies
+    ##########################################################################
+    
+    #fin year = 0 quick and dirty
+    #length(which(exotic$year < 1900))
+    exotic <- subset(exotic, year > 1900)
+    for (i in 3:10){
+        break1 <- quantile(exotic$year, probs = seq(0,1,1/i))
+        lab <- c(1:i)
+        for(j in 1:i){
+            lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+        }
+        exotic$time_period_quant  <- cut(exotic$year, breaks = break1, labels = lab)
+        comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+        (x2 <- rarefy(comm2,20, se = TRUE)) #same result as my resampling...
+        #rar[[i-2+10]] <- x2
+        #str(x2)
+        time <- c(1:i)
+        for(j in 1:i){
+            time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+        }
+        xx2 <- as.data.frame(x2)[1,]
+        se <- as.data.frame(x2)[2,]
+        #if(i == 3){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 20)}
+        m <- lm(t(xx2)~ time)
+        summary(m)
+        corr <- cor(t(xx2), time, use = "complete.obs")
+        cor_dis <- c(1:1000)
+        for (k in 1:1000){
+            cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+        }
+        #hist(cor_dis)
+        #lines(c(corr, corr), c(0,200), col = "red")
+        (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+        #with lm
+        #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+        #abline(m, lty = 2)}
+        #else{
+        #abline(m, lty = 1)}    
+        #with corrs
+        #if(p > 0.05){
+            #abline(m, lty = 2)}
+        #else{
+            #abline(m, lty = 1)}    
+        #if(i == 10){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 40)}	
+        #rarecurve(comm2)
+        #abline(v = 1000)
+    }
+    
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of exotic fly species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+    
+    ##########################################################################
+    #END
+    ##########################################################################
+
+```
+
+Figure 4. Changes in species richness for different pollinator groups in New Zealand over time. All trends were non-signifficant.
+
+Changes in species relative abundances over time
+
+We found that 10 out of 27 bee species increased in relative abundance over time (nine native and one exotic) and three bee species declined in relative abundance (one native and two exotic) (Figure 3). Interestingly, the two exotic bee species that declined in relative abundance were both Bombus. Native bees that increased in relative abundance were mostly from the genus Leioproctus. Only two out of 14 fly species increased in relative abundance, both of which were exotic, whereas four species decreased in abundance (three native and one exotic). Native flies that decreased in relative abundance were all Syrphidae in the genus Helophilus.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+############################################
+#analyse the bee dataset
+############################################
 
 d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
@@ -243,24 +585,23 @@ species.remove <- filter(no.ind, Freq < 30)#create df with species that have les
 #plot(d2$Long, d2$Lat, ylim = c(-50,-32), xlim = c(163,183))
 #map("world", col="red", add=TRUE) #fix wrong lat/long
 
-All <- d2
 #############################
 # species models
 #############################
 #collection history per year
-B <- All
+B <- d2
 frq <- table(factor(B$Gen_sp),factor(B$year))
 bin <- ifelse(frq > 0, 1, 0) 
 
 
-i=1
-last_year2 <- c(1:length(bin[,1]))
+#i=1
+#last_year2 <- c(1:length(bin[,1]))
 #for (i in 1:length(bin[,1])){
-  #  bin2 <- bin[i,-which(bin[i,] == 0)]
-  #  last_year2[i] <- names(tail(bin2,1))
+#  bin2 <- bin[i,-which(bin[i,] == 0)]
+#  last_year2[i] <- names(tail(bin2,1))
 #}
-l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
-#l_yBB #broken at i = 5 check.
+#l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
+##l_yBB #broken at i = 5 check.
 
 #year vector
 y <- as.numeric(colnames(bin))
@@ -308,47 +649,183 @@ try(for (i in 1:length(frq[,1])){
 ############################################
 
 #prepare dataframe
-xx <- as.data.frame(mB)
-xx.cast <- dcast(xx, Var1 ~ Var2, value.var="Freq")
-xx.cast <- xx.cast[!(xx.cast$Var1 %in% species.remove$Var1),]
+bee.est <- as.data.frame(mB)
+bee.est.cast <- dcast(bee.est, Var1 ~ Var2, value.var="Freq")
+bee.est.cast <- bee.est.cast[!(bee.est.cast$Var1 %in% species.remove$Var1),]
 
 #add direction change based on estimate and p-value
-xx.cast$frq_direction <- with(xx.cast, ifelse(
-    estimate_frq < 0 & p_frq < 0.05, 'negative', ifelse(
-        p_frq >= 0.05, 'stable', ifelse(
-            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'positive'))))
+bee.est.cast$change_in_occurance <- with(bee.est.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'Negative', ifelse(
+        p_frq >= 0.05, 'Stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
+bee.est.cast$taxa <- "Bee"
+
+############################################
+#analyse fly dataset
+############################################
+
+#load data
+d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#remove unidentified species
+completeFun <- function(data, desiredCols) {
+    completeVec <- complete.cases(data[, desiredCols])
+    return(data[completeVec, ])
+}
+
+d <- completeFun(d, "exotic_native")
+
+d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+
+#date
+date2 <- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+
+#select fields to be independent
+#two approaches lat = 0 and others
+lat <- subset(d, Lat != 0 & is.na(year) == F)#remove all records with no latitude recording
+#unique fields by lata, long, day of the year and year
+uni <- as.data.frame(cbind(lat$Gen_sp, lat$Lat, lat$Long, lat$jday, lat$year))
+dup <- duplicated(uni)
+#d2 <- d[-which(dup == TRUE),]
+# lat/long = 0
+#lat0 <- subset(d, Dlat == 0 & is.na(year) == F)
+#str(lat0)
+#uni2 <- as.data.frame(cbind(lat0$Gen, lat0$sp, lat0$LocalityStr, lat0$SubDivStr, lat0$StateProv, lat0$Country, lat0$jday, lat0$year))
+#str(uni2)
+#dup2 <- duplicated(uni2)
+
+# remove duplicates
+lat <- lat[-which(dup == TRUE),]
+#lat0 <- lat0[-which(dup2 == TRUE),]
+#d2 <- rbind(lat,lat0)
+d2 <- lat
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+
+no.ind.fly <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove.fly <- filter(no.ind.fly, Freq < 30)#create df with species that have less than 30 records
+colnames(species.remove.fly)[1] <- "Gen_sp"
+
+##########################################################################
+#species models
+##########################################################################
+
+#collection history per year
+B <- d2
+frq <- table(factor(B$Gen_sp),factor(B$year))
+bin <- ifelse(frq > 0, 1, 0) 
+
+#i=1
+#last_year2 <- c(1:length(bin[,1]))
+#for (i in 1:length(bin[,1])){
+   #bin2 <- bin[i,-which(bin[i,] == 0)]
+    #last_year2[i] <- names(tail(bin2,1))
+#}
+#l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
+#l_yBB #broken at i = 5 check.
+
+#year vector
+y <- as.numeric(colnames(bin))
+
+
+#weights per year (specimens collected/max specimens collected)
+
+effort <- c(1:length(y))
+wei <- c(c(1:length(y)))
+for (i in 1:length(y)){effort[i] <- sum(frq[,i])}
+for (i in 1:length(y)){wei[i] <- sum(frq[,i])/max(effort)}
+
+
+##########################################################################
+#estimates for all sp
+##########################################################################
+
+#mB <- frq[,c(1:11)]
+#colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
+mB <- frq[,c(1:10)]
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
+try(for (i in 1:length(frq[,1])){
+    mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
+    mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
+    mB[i,3] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[8]
+    if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
+    }
+    #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
+    else {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
+    }
+})
+
+##########################################################################
+#plot model estimates and predictions
+##########################################################################
+
+#prepare dataframe
+fly.est <- as.data.frame(mB)
+fly.est.cast <- dcast(fly.est, Var1 ~ Var2, value.var="Freq")
+fly.est.cast <- fly.est.cast[!(fly.est.cast$Var1 %in% species.remove$Var1),]
+
+#add direction change based on estimate and p-value
+fly.est.cast$change_in_occurance <- with(fly.est.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'Negative', ifelse(
+        p_frq >= 0.05, 'Stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
+fly.est.cast$taxa <- "Fly"
+
+#merge bee and fly estimate datasets
+est.all <- rbind(fly.est.cast,bee.est.cast)
+est.all$Var1 <- gsub("_", " ", est.all$Var1)
 
 ####################################################
 #plot frequency estimates
 ####################################################
 
-#need to add fly data and analyse bees and flies separately. Include all analyses in a multi-panel figure.
-p <- ggplot(xx.cast, aes(Var1, estimate_frq, group=Var1))
+p <- ggplot(est.all, aes(Var1, estimate_frq, group=taxa))
 p <- p + xlab(NULL) + ylab("Frequency estimate")
-p <- p + theme(text = element_text(size=18))
-p <- p + geom_point(aes(colour=frq_direction), size = 3)
-p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=frq_direction), width = 0)
+p <- p + theme(text = element_text(size=16))
+p <- p + facet_wrap(~taxa,scales = "free_x")
+p <- p + geom_point(aes(colour=change_in_occurance), size = 2)
+p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=change_in_occurance), width = 0)
 p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
 p <- p + theme(panel.grid.minor = element_blank(),
                panel.background = element_blank(),
                axis.line = element_line(colour = "black")) +
     theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
-    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =8),
-          axis.title.y=element_text(size=30, vjust = 1),
-          axis.text.x=element_text(angle= 90, hjust = 0.5, vjust = 0.5, size =8),
-          axis.title.x=element_text(size=30, vjust = 1),
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =14),
+          axis.title.y=element_text(size=22, vjust = 1),
+          axis.text.x=element_text(face = "italic", angle= 90, hjust = 0, vjust = 0.5, size =7),
+          axis.title.x=element_text(size=22, vjust = 1),
           axis.text=element_text(colour = "black"))+
     theme(strip.background = element_rect(colour="NA", fill=NA),
-          strip.text = element_text(size=10))
+          strip.text = element_text(size=16))
 p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
 p <- p + scale_colour_brewer(palette = "Dark2")
+p$labels$colour <- "Change in occurance"
 p
 
+####################################################
+#END
 ####################################################
 
 ```
 
-Figure 3. Model estimated changes in the realtive occurance frequencey for diffent New Zealand bee species in collections (± 1 SE) over time.
+Figure 5. Model estimated changes (± 1 SE) in the relative occurance frequencey for diffent New Zealand bee and fly species in museum collections over time.
 
 -	Do we need some sort of separate discussion or integrate into the results section?
 … Although this is surprising, it could simply indicate a change in the evenness of species collected over time as the method we used actually measures both richness and evenness.
