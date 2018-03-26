@@ -175,6 +175,8 @@ unique(dat$gen_sp) #400
 #this can be cleaned, but looks decent!
 
 colnames(dat) <- c("locality", "gen_sp", "freq", "when")
+#freq should be melted.
+
 unique(dat$locality) #400
 
 write.csv(dat, "data/spain_clean.csv", row.names = F)
