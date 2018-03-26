@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+author: "I. Bartomeus"
+date: "26/03/2018"
+output: html_document
+---
+
+To Do:
+
+- check formating rules (words in abstract, main body, etc...)
+- correct fig1 for country size?
+- Species declines in % for different taxa... what to do?
+- think on gbif plot...
+- Spain.
+
+
+
+#refs clarifications
+
+@Ollerton2012 
+@Winfree2011 - > 
