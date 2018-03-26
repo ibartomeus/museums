@@ -3,6 +3,8 @@ title: "SP"
 author: "I. Bartomeus"
 date: "05/10/2017"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -23,8 +25,8 @@ Old data:
 sp <- read.csv(file = "raw_data/Spain.csv", h = T)
 head(sp)
 head(sort(table(sp$LOCALIDAD), decreasing = TRUE))
-write.csv(sort(table(sp$LOCALIDAD), decreasing = TRUE),
-          "raw_data/localidades.csv")
+#write.csv(sort(table(sp$LOCALIDAD), decreasing = TRUE),
+ #         "raw_data/localidades.csv")
 
 sp$gen_sp <- paste(sp$G.NERO, sp$ESPECIE, sep = "_")
 unique(sp$gen_sp) #721 species! #clean, but only for the subset of used data. The 7 localities.
@@ -32,10 +34,57 @@ head(sort(table(sp$gen_sp), decreasing = TRUE), 50)
 
 #subset only the 7 localities.
 
+sp2 <- subset(sp, LOCALIDAD %in% c('"Finca Zamadue?as"',
+                            "Toro",
+                            "Granja Escuela Jose Antonio",
+                            "Villab??ez",
+                            '""Finca Zamadue?as""',
+                            "Hornillos",
+                            '"Camino Hondo" Granja Escuela Jose Antonio',
+                            "Parc. 16 Granja Escuela Jose Antonio",
+                            "Mojados",
+                            "Coto Bajo Matallana",
+                            "San llorente",
+                            "San Llorente",
+                            "_Finca Zamadue?as_",
+                            "La Senovilla Olmedo",
+                            "Coto Bajo de Matallana Villalba de los Alcores",
+                            "Mojados",
+                            "Olmedo",
+                            "Coto Bajo Matallana Villalba de los Alcores",
+                            "Las Fuentes Mojados",
+                            "Paramo de Matallana",
+                            "Villalba de los Alcores",
+                            "_Coto Bajo de Matallana_",
+                            "_Coto Bajo de Matallana_",
+                            "Coto Bajo de Matallana Montealegre",
+                            "Coto Bajo Matallana",
+                            "Las Fuentes  Mojados",
+                            "P?ramo de Matallana Villanubla",
+                            "Olmedo"))
+
+head(sp2)
+
+sp2 <- droplevels(sp2)
+levels(sp2$LOCALIDAD) <- c("zamaduenas",
+                           "auditorio_Delibes", 
+                           "zamaduenas",
+                           "auditorio_Delibes",
+                           "hornillos",
+                           "olmedo",
+                           "olmedo",
+                           "auditorio_Delibes",
+                           "sanbernardo",
+                           "sanbernardo",
+                           "toro",
+                           "vilalba",
+                           "vilalba")
+
 
 #check sampling completness
 library(vegan)
 #need to fix first locality
+head(sp2)
 comm <- table(sp2$LOCALIDAD, sp2$gen_sp)
 temp <- specaccum(comm, "random")
 summary(temp)
@@ -105,9 +154,43 @@ unique(gbif$species) #443! BUT here lots of duplicates?
 
 #Analysis
 
+```{r}
+#make final dataset
+sp3 <- sp2[,c("LOCALIDAD", "gen_sp", "NUM_EJEMPLARES")]
+now3 <- now[, c("LOCALIDAD", "gen_sp")]
+now3$NUM_EJEMPLARES <- 1
+now3$when <- "now"
+sp3$when <- "asensio"
+
+library(lettercase)
+str_ucfirst(str_lower_case(sp3$gen_sp[1:10]))
+
+
+sp3$gen_sp <- str_ucfirst(str_lower_case(sp3$gen_sp))
+
+dat <- rbind(sp3, now3)
+#check stuff
+head(dat)
+unique(dat$gen_sp) #400
+#this can be cleaned, but looks decent!
+
+colnames(dat) <- c("locality", "gen_sp", "freq", "when")
+unique(dat$locality) #400
+
+write.csv(dat, "data/spain_clean.csv", row.names = F)
+```
+
+
 1) only for 7 localities, join now and then and paired t-test on rarefied richness per site
 
+1.1) Show raref per site
+
 2) For common species we can do the same but with standardized frequency.
+
+
+
+
+
 
 
 
