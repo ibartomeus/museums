@@ -8,8 +8,9 @@ declines <- read.csv(file = "data/richness_declines.csv", header = TRUE, sep = "
 
 #aggregate data
 declines.ave <- declines %>% 
-    group_by(country, taxa) %>% 
+    group_by(country, taxa, study) %>% 
     summarise(average = mean(percent_richness_change),
+              median = median(percent_richness_change),
               max = max(percent_richness_change),
               min = min(percent_richness_change))
 

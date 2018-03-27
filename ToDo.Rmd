@@ -10,6 +10,7 @@ To Do:
 - check formating rules (words in abstract, main body, etc...)
 - correct fig1 for country size?
 - Species declines in % for different taxa... what to do?
+- for NZ species abundance analysis - should data be split by exotic/native first?
 - think on gbif plot...
 - Spain.
 - Refs
