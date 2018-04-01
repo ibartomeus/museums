@@ -31,15 +31,16 @@ To Do:
 @DePalma2016: De Palma, Adriana, et al. "Predicting bee community responses to land-use changes: Effects of geographic and taxonomic biases." Scientific Reports 6 (2016): 31153.
 @vanSwaay: van Swaay, Chris AM, et al. "Butterfly monitoring in Europe: methods, applications and perspectives." Biodiversity and Conservation 17.14 (2008): 3455-3469.
 @Scheper2014. PNAS Museum specimens reveal loss of pollen host plants as key factor driving wild bee decline in The Netherlands
+@pearce PEARCE, J. L. and BOYCE, M. S. (2006), Modelling distribution and abundance with presence‐only data. Journal of Applied Ecology, 43: 405-412. doi:10.1111/j.1365-2664.2005.01112.x
 @young Are pollinating hawk moths declining in the Northeastern United States? An analysis of collection records
 @helminth helminthR: an R interface to the London Natural History Museum's Host–Parasite Database
 @keil Biodiversity change is scale‐dependent: an example from Dutch and UK hoverflies (Diptera, Syrphidae)
 P Keil, JC Biesmeijer, A Barendregt, M Reemer, WE Kunin
 Ecography 34 (3), 392-401
-@@taxonomy papers (2):
+@taxonomy1
 https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1523-1739.2004.00233.x
-Huber, J. T. "The importance of voucher specimens, with practical guidelines for preserving specimens of the major invertebrate phyla for identification." Journal of Natural History 32.3 (1998): 367-385.
-@ref geonames, geoparser and opencage: thos are likns to software.
+@taxonomy2 Huber, J. T. "The importance of voucher specimens, with practical guidelines for preserving specimens of the major invertebrate phyla for identification." Journal of Natural History 32.3 (1998): 367-385.
+@ref geonames, geoparser and opencage: those are likns to software.
 @Hart Ten simple rules for digital data storage. DOI: 10.7287/peerj.preprints.1448v1
 @collado2018: https://www.biorxiv.org/content/early/2018/03/08/278812
 @Bartomeus_Winfree2013 F1000 https://f1000research.com/articles/2-146/v1
@@ -60,7 +61,18 @@ Cited by 53 Related articles All 11 versions
 
 #to add
 
+@greve M. Greve, A.M. Lykke, C.W. Fagg, R.E. Gereau, G.P. Lewis, R. Marchant, A.R. Marshall, J. Ndayishimiye, J. Bogaert and J.-C. Svenning, Realising the potential of herbarium records for conservation biology, South African Journal of Botany, 105, (317)
+@lavoie Claude Lavoie, Biological collections in an ever changing world: Herbaria as tools for biogeographical and environmental studies, Perspectives in Plant Ecology, Evolution and Systematics, 15, 1, (68)
+X@Thomson Thomson SA, Pyle RL, Ahyong ST, Alonso-Zarazaga M, Ammirati J, Araya JF, et al. (2018) Taxonomy based on science is necessary for global conservation. PLoS Biol 16(3): e2005075. https://doi.org/10.1371/journal.pbio.2005075
+X@brief1: https://biologicalsurvey.ca/public/Bsc/Controller/Page/briefs/importance.pdf THE IMPORTANCE OF RESEARCH COLLECTIONS OF TERRESTRIAL ARTHROPODS
+X@brief2: http://biologicalsurvey.ca/assets/file/43 The role of voucher specimens in validating faunistic and ecological research
+X@Packer Packer, L. , Monckton, S. K., Onuferko, T. M., Ferrari, R. R. and Didham, R. (2018), Validating taxonomic identifications in entomological research. Insect Conserv Divers, 11: 1-12. doi:10.1111/icad.12284
+
+@Cox Cox, Paul Alan. “Extinction of the Hawaiian Avifauna Resulted in a Change of Pollinators for the Ieie, Freycinetia Arborea.” Oikos, vol. 41, no. 2, 1983, pp. 195–199. JSTOR, JSTOR, www.jstor.org/stable/3544263.
+@Robbirt Robbirt, Karen M., et al. "Validation of biological collections as a source of phenological data for use in climate change studies: a case study with the orchid Ophrys sphegodes." Journal of Ecology 99.1 (2011): 235-241.
+@Maebe Maebe, K., Meeus, I., Maharramov, J. et al. Apidologie (2013) 44: 188. https://doi.org/10.1007/s13592-012-0170-9 Microsatellite analysis in museum samples reveals inbreeding before the regression of Bombus veteranus.
 @Mikheyev Museum samples reveal rapid evolution by wild honey bees exposed to a novel parasite
+
 
 
 

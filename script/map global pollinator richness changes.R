@@ -5,6 +5,9 @@ library(reshape2)
 
 #read in data
 declines <- read.csv(file = "data/richness_declines.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+head(declines)
+
+#nothing outside EU- USA. Spain and NZ can be added.
 
 #aggregate data
 declines.ave <- declines %>% 
