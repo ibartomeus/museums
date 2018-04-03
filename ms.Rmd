@@ -5,6 +5,8 @@ csl: data/philb_style.xml
 output:
   html_document: default
 bibliography: data/references.xml
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -55,26 +57,87 @@ map <- read.csv("data/bee_richness.csv")
 size <- read.csv("data/country_area.csv")
 colnames(size) <- c("country", "size")
 map0 <- merge(map, size, all.x = TRUE)
-scatter.smooth(log(map0$species) ~ log(map0$size+1))
+#remove some countries with doubtful sampling
+#map0 <- subset(map0, !country %in% c("Kuwait", "Guinea-Bissau", "Chad", "Mali", "Mauritania"))
+#map0[which(is.na(map0$size)),] #some can be rescued?
+#scatter.smooth(log(map0$species) ~ log(map0$size+1))
 m <- lm(log(map0$species) ~ log(map0$size+1), na.action = na.exclude) 
 map0$res <- residuals(m)
+#subset(map0, res < -2)
 map2 <- joinCountryData2Map(map0, joinCode="NAME", nameJoinColumn = "country",
                             nameCountryColumn = "distribution")
 #need to use ISO's to make sure we don't carry over NA's due to country misspellings
 #have plotted countries with missing values as grey (shows we have richness for pretty much everywhere)
-map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "light grey",
+par(mfrow = c(2,2))
+map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "white",
                mapTitle = "Bee species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE)
 #add a modified legend using the same initial parameters as mapCountryData
 do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5))
 
-#Nacho needs to correct for country size
-#Need to 1) match all country names (includinh US and UK!)
-#2) check subsaharian countries maybe omit?
-
 #need to add all the pannels.
+library(plyr)
+library(dplyr)
+library(reshape2)
+
+#read in data
+declines <- read.csv(file = "data/richness_declines.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+#nothing outside EU- USA. Spain and NZ can be added.
+
+#aggregate data
+declines.ave <- declines %>% 
+    group_by(country, taxa, study) %>% 
+    summarise(average = mean(percent_richness_change),
+              median = median(percent_richness_change),
+              max = max(percent_richness_change),
+              min = min(percent_richness_change))
+
+####################################################
+#make syrphid map
+####################################################
+
+declines.syrphid <- as.data.frame(filter(declines.ave, taxa == "syrphid")) %>% droplevels()
+
+map.syrphid <- joinCountryData2Map(declines.syrphid, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution")
+
+#average richness change
+map.syrphid.ave <- mapCountryData(map.syrphid, nameColumnToPlot = "average", colourPalette="topo",
+                       mapTitle = "Average syrphid richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.syrphid.ave, legendLabels="all", legendWidth=0.5))
+
+####################################################
+#make bee map
+####################################################
+
+declines.bee <- as.data.frame(filter(declines.ave, taxa == "bee")) %>% droplevels()
+
+map.bee <- joinCountryData2Map(declines.bee, joinCode="NAME", nameJoinColumn = "country",
+                                   nameCountryColumn = "distribution")
+
+#average richness change
+map.bee.ave <- mapCountryData(map.bee, nameColumnToPlot = "average", colourPalette="topo",
+                                  mapTitle = "Average bee richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.bee.ave, legendLabels="all", legendWidth=0.5))
+
+
+####################################################
+#make butterfly map
+####################################################
+
+declines.butterfly <- as.data.frame(filter(declines.ave, taxa == "butterfly")) %>% droplevels()
+
+map.butterfly <- joinCountryData2Map(declines.butterfly, joinCode="NAME", nameJoinColumn = "country",
+                                     nameCountryColumn = "distribution")
+
+#average richness change
+map.butterfly.ave <- mapCountryData(map.butterfly, nameColumnToPlot = "average", colourPalette="topo",
+                                    mapTitle = "Average butterfly richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.butterfly.ave, legendLabels="all", legendWidth=0.5))
+
+par(mfrow = c(1,1))
 ```
 
-Figure 1: Global map showing a) bee species richness per area (Data from www.discoverlife.org). This is calculated as the residuals of the log-log regresion between bee richness and country size to account for the species-area relationships. We show mean local bee (b), syrphid (c) and butterflies (d) richness percent change in the last century. Warmer colors indicate steeper declines observed. Countries without available data are coloured in grey. 
+Figure 1: Global map showing a) bee species richness per area (Data from www.discoverlife.org). This is calculated as the residuals of the log-log regresion between bee richness and country size to account for the species-area relationships. We show mean local bee (b), syrphid (c) and butterflies (d) richness percent change in the last century. Warmer colors indicate steeper declines observed. Countries without available data are coloured in white. Note that some African countries may have incomplete faunas listed and that Alaska is included with US values. 
 
 #How to use historical records vouchered in museum specimens to fill the gaps.
 
@@ -119,7 +182,7 @@ for(i in 1:length(country_codes)){
                             georeferenced=TRUE,
                             country = country_codes[i]))
         lhf[i,1+j+7] <- as.numeric(occ_count(taxonKey= keys[j],
-                            from = 1850, to = 1980,
+                            from = 1850, to = 1979,
                             georeferenced=TRUE,
                             country = country_codes[i]))
     }
@@ -149,8 +212,106 @@ lhf$percent_pre1980 <- lhf$pre1980 / (lhf$pre1980+lhf$post1980)
 #plot(sort(lhf$percent_post1980), xlab = "post1980", ylab = "%", col = as.factor(lhf$country))
 #Add country labels in x axes.
 
+lhf <- lhf[-which(is.na(lhf$country)),]
 plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
-abline(h = 8, v = 8)
+abline(h = 7.5, v = 7.5)
+lhf$log_pre1980 <- log(lhf$pre1980)
+lhf$log_post1980 <- log(lhf$post1980)
+lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) < 7.5),]
+# poland switcherland need old records! > 10000 vs 300
+# sri lanka and french guayana, 
+# nicaragua, venezuela, Ecuador..>2000 vs >500.
+# Colombia & Panama, zimbawe > 3000 vs >1500
+nrow(lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),])
+lhf[which(lhf$country == "ES" | lhf$country == "NZ"),]
+col <- ifelse(lhf$country == "ES" | lhf$country == "NZ", "red", "black")
+col <- ifelse(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5, col, "grey")
+plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col)
+temp <- subset(lhf, country %in% c("ES", "NZ"))
+text(x = temp$log_post1980+1, y = temp$log_pre1980+1 , labels = temp$country)
+#36 countries!
+#exp(7.5) #1800 records.
+
+#Can we do rar richness per time period $ country and test? YES!! 
+#1) Select countries.
+countries <- lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),"country"]
+#2) Get all data
+occ_list <- list()
+for(i in 1:length(countries)){
+    taxon_list <- list()
+    count_list <- list()
+    for(j in 1:length(keys)){
+        taxon_list[[j]] <- occ_data(taxonKey= keys[j], 
+                            year = '1850,2018', 
+                            country = as.character(countries[i]),
+                            limit = 200000)
+        #count_list[[j]] <- occ_count(taxonKey= keys[j],
+                         #    from = 1850, to = 1979,
+                         #   georeferenced=TRUE,
+                         #   country = countries[i])
+    }
+    select <- c("name", "year")
+    out <- rbind(as.data.frame(taxon_list[[1]]$data[,select]), 
+                 as.data.frame(taxon_list[[2]]$data[,select]),
+                 as.data.frame(taxon_list[[3]]$data[,select]),
+                 as.data.frame(taxon_list[[4]]$data[,select]),
+                 as.data.frame(taxon_list[[5]]$data[,select]),
+                 as.data.frame(taxon_list[[6]]$data[,select]),
+                 as.data.frame(taxon_list[[7]]$data[,select]),
+                 as.data.frame(taxon_list[[8]]$data[,select]))
+    occ_list[[i]] <- out
+    print(i)
+}
+#save output
+save(occ_list, file = "data/gbif.RData")
+#3) split by year
+library(vegan)
+post1980 <- c()
+pre1980 <- c()
+n <- c()
+for(i in 1:length(countries)){
+    dat <- occ_list[[i]]
+    nrow(dat) 
+    dat1 <- dat[-which(is.na(dat$name)),]
+    nrow(dat1) # 
+    dat1$period <- ifelse(dat1$year < 1980, "pre1980", "post1980")
+    table(dat1$period) # :(
+#4) rar richness
+    comm <- dcast(dat1, period ~ name, fun.aggregate = length, value.var = "name")
+    rownames(comm) <- comm$period
+    comm <- comm[,-1]
+    temp <- rarefy(comm, sample = round(min(table(dat1$period))*0.75))
+    #str(temp)
+    post1980[i] <- temp[1]
+    pre1980[i] <- temp[2]
+    n[i] <- round(min(table(dat1$period))*0.75)
+}
+#5) t test!
+data <- data.frame(countries = as.character(countries), pre1980 = pre1980, post1980 = post1980, n = n)
+head(data)
+#maybe delete n < 500?
+data2 <- subset(data, n > 500)
+
+t.test(data2$pre1980, data2$post1980, paired = TRUE)
+
+boxplot(data2$pre1980, data2$post1980, names = c("pre1980", "post1980"), ylab = "rarefied species richness", 
+            las = 1, border = "light grey")
+points(x = c(rep(1,nrow(data2)), rep (2,nrow(data2))), y = c(data2$pre1980, data2$post1980), pch = 19)
+for(i in 1:nrow(data2)){
+    lines(x = 1:2, y = c(data2$pre1980[i], data2$post1980[i]))
+}
+
+#map
+data2$change <- ((data2$post1980 - data2$pre1980)*100 / data2$pre1980)
+
+map.gbif <- joinCountryData2Map(data2, joinCode="ISO2", nameJoinColumn = "countries",
+                            nameCountryColumn = "countries")
+
+#average richness change
+map.gbif.plot <- mapCountryData(map.gbif, nameColumnToPlot = "change", colourPalette="topo",
+                       mapTitle = "Average bee richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.gbif.plot, legendLabels="all", legendWidth=0.5))
+
 
 ```
 
