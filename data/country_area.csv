@@ -1,7 +1,7 @@
 Country,Land area
 Russia,17075200
 Canada,9976140
-United States of America,9629091
+United States,9629091
 China,9596960
 Brazil,8511965
 Australia,7686850
@@ -10,7 +10,6 @@ Argentina,2766890
 Kazakhstan,2717300
 Sudan,2505810
 Algeria,2381740
-Congo (Dem. Rep.),2345410
 Greenland,2166086
 Mexico,1972550
 Saudi Arabia,1960582
@@ -38,7 +37,7 @@ Mozambique,801590
 Turkey,780580
 Chile,756950
 Zambia,752614
-Burma (Myanmar,678500
+Burma,678500
 Afghanistan,647500
 Somalia,637657
 Central African Republic,622984
@@ -61,12 +60,12 @@ Paraguay,406750
 Zimbabwe,390580
 Japan,377835
 Germany,357021
-Congo (Republic),342000
+"Congo, Democratic Republic of the",2345410
 Finland,337030
 Malaysia,329750
 Vietnam,329560
 Norway,324220
-Cote d'Ivoire,322460
+Cote D'ivoire,322460
 Poland,312685
 Italy,301230
 Philippines,300000
@@ -76,7 +75,7 @@ New Zealand,268680
 Gabon,267667
 Tokelau,266000
 Guinea,245857
-Great Britain & Northern Ireland,244820
+United Kingdom,244820
 Ghana,239460
 Romania,237500
 Laos,236800
@@ -97,7 +96,7 @@ Nepal,140800
 Greece,131940
 Nicaragua,129494
 Eritrea,121320
-Korea (North),120540
+North Korea,120540
 Malawi,118480
 Benin,112620
 Honduras,112090
@@ -107,7 +106,7 @@ Cuba,110860
 Guatemala,108890
 Iceland,103000
 Serbia,102350
-Korea (South),98480
+South Korea,98480
 Hungary,93030
 Portugal,92391
 Jordan,92300
@@ -126,7 +125,7 @@ Latvia,64589
 Svalbard,62049
 Togo,56785
 Croatia,56542
-Bosnia & Herzegovina,51129
+Bosnia and Herzegovina,51129
 Costa Rica,51100
 Slovakia,48845
 Dominican Republic,48730
@@ -136,7 +135,7 @@ Denmark,43094
 Netherlands,41526
 Switzerland,41290
 Guinea-Bissau,36120
-Taiwan (Rep. of China),35980
+Taiwan,35980
 Moldova,33843
 Belgium,30510
 Lesotho,30355
@@ -171,7 +170,7 @@ Cyprus,9250
 Puerto Rico,9104
 Palestinian Territories,6220
 Brunei,5770
-Trinidad & Tobago,5128
+Trinidad and Tobago,5128
 Kosovo,4203
 French Polynesia,4167
 Cape Verde,4033
@@ -199,7 +198,7 @@ Northern Mariana Is.,477
 Andorra,468
 Palau,458
 Seychelles,455
-Antigua & Barbuda,443
+Antigua and Barbuda,443
 Barbados,431
 Turks & Caicos Islands,430
 Saint Helena,410
@@ -213,7 +212,7 @@ Wallis and Futuna,274
 Cayman Islands,262
 Saint Kitts & Nevis,261
 Niue,260
-Saint Vincent & the Grenadines,242
+Saint Vincent and Grenadines,242
 Cook Islands,240
 American Samoa,199
 Aruba,193
@@ -238,3 +237,5 @@ Gibraltar,7
 Monaco,2
 Western Sahara,0
 Vatican City,0
+Aldabra Atoll,155
+Congo,342000
