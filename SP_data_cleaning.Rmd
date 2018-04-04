@@ -176,17 +176,44 @@ dat$gen_sp <- gsub(x = dat$gen_sp, pattern = "_", replacement = " ", fixed = TRU
 #Hylaeus_Variegatus
 #source("clean_species.R") #sourced from Evenness project.
 library(taxize)
-spp <- clean_species(dat$gen_sp, rows = 1)
-species <- dat$gen_sp
-#table(dat2$gen_sp, dat2$when)
-#Andrena_pilipes = carbonaria
+#SLOW!!
+spp <- clean_species(dat$gen_sp, rows = 1) 
+spp[which(as.character(spp$species) != as.character(spp$final_names)),]
+spp$species
+temp <- spp[which(is.na(spp$final_names)),]
+str(temp)
+options(max.print = 4000)
+print(temp)
+spp[which(spp$species == "Andrena pilipes"),2] <- "Andrena carbonaria"
+spp[which(spp$species == "Megabombus laesus"),2] <- "Bombus laesus"
+spp[which(spp$species == "Colletes eousMorice,1904"),2] <- "Colletes eous"
+spp[which(spp$species == "Reanthidium nigricolle"),2] <- "Anthidium nigricolle"
+spp[which(spp$species == "Megabombus muscorum"),2] <- "Bombus muscorum"
+spp[which(spp$species == "Megabombus ruderatus"),2] <- "Bombus ruderatus"
+spp[which(spp$species == "Megabombus sylvarum"),2] <- "Bombus sylvarum"
+
+head(dat)
+head(spp)
+dat <- merge(dat, spp[,1:2], by.x = "gen_sp", by.y = "species", all.x = TRUE)
+head(dat, 100)
 #remove A. mellifera
-rich_tot <- dcast(dat, when ~ ., value.var = "gen_sp", 
+dat <- subset(dat, !matched_name2 %in% c("Apis mellifera"))
+# and genus only
+pos <- regexpr(dat$matched_name2, pattern = " ", fixed = TRUE)
+str(pos)
+dat2 <- dat[-which(pos < 1),]
+dat2$matched_name2
+#NA
+dat3<- dat2[-which(is.na(dat2$matched_name2)),]
+unique(dat3$matched_name2)
+dat <- dat3
+
+rich_tot <- dcast(dat, when ~ ., value.var = "matched_name2", 
               fun.aggregate = function(x) length(unique(x)))
 rich_tot #wow.
 #extract genus
-pos <- regexpr(dat$gen_sp, pattern = " ", fixed = TRUE)
-dat$genus <- substr(dat$gen_sp, 
+pos <- regexpr(dat$matched_name2, pattern = " ", fixed = TRUE)
+dat$genus <- substr(dat$matched_name2, 
                     start = 1,
                     stop = pos-1)
 genus_tot <- dcast(dat, when ~ ., value.var = "genus", 
@@ -197,18 +224,60 @@ genus_tot #wow, reversed??
 genus_tot2
 subset(genus_tot2, now == 0 & asensio == 1)
 subset(genus_tot2, now == 1 & asensio == 1)
-subset(genus_tot2, now == 1 & asensio == 0)
+(x <- subset(genus_tot2, now == 1 & asensio == 0))
 
 #remove non apis genus! check with Curro.
+#Anthocopa is Hoplitis
+#Chalicodoma
+#Pseudapis
+
+dat4 <- dat[which(!dat$genus %in% x$genus[c(1:5,7:25,27:34)]),]
+dat <- dat4
+#Heliophila <-  Anthophora
+#Metallinella <- Osmia
+#Reanthidium <-  Anthidium
+head(dat)
+dat[which(dat$genus == "Heliophila"),"matched_name2"] <- "Anthophora bimaculata"
+dat[which(dat$genus == "Metallinella"),"matched_name2"] <- "Osmia brevicornis"
+dat[which(dat$genus == "Reanthidium"),"matched_name2"] <- "Pseudoanthidium reticulatum"
+
+
+#resave data
+write.csv(dat, "data/spain_clean_used.csv", row.names = F)
+
+
+dat <- read.csv("data/spain_clean.csv")
+#Repeat richness and genus
+rich_tot <- dcast(dat, when ~ ., value.var = "matched_name2", 
+              fun.aggregate = function(x) length(unique(x)))
+rich_tot #wow.
+#extract genus
+pos <- regexpr(dat$matched_name2, pattern = " ", fixed = TRUE)
+dat$genus <- substr(dat$matched_name2, 
+                    start = 1,
+                    stop = pos-1)
+genus_tot <- dcast(dat, when ~ ., value.var = "genus", 
+              fun.aggregate = function(x) length(unique(x)))
+genus_tot2 <- dcast(dat,  genus ~ when, value.var = "genus", 
+              fun.aggregate = function(x) length(unique(x)))
+genus_tot #wow, lot's of genus lost!
+genus_tot2
+subset(genus_tot2, now == 0 & asensio == 1) #20 lost!
+subset(genus_tot2, now == 1 & asensio == 1) #27 stable
+subset(genus_tot2, now == 1 & asensio == 0) #2 added!
+genus_tot3 <- dcast(dat,  genus ~ when, value.var = "matched_name2", 
+              fun.aggregate = function(x) length(unique(x)))
+genus_tot3
+colSums(genus_tot3[,2:3])
 
 #losts easely spotted: nomadas & Tyreus, prosopis, teralonias
 
 #calculate richness per site and time period
 #head(dat)
-rich <- dcast(dat, locality ~ when, value.var = "gen_sp", 
+rich <- dcast(dat, locality ~ when, value.var = "matched_name2", 
               fun.aggregate = function(x) length(unique(x)))
-#rich
-#t.test(rich$asensio, rich$now, paired = TRUE)
+(rich <- rich[-8,])
+t.test(rich$asensio[-4], rich$now[-4], paired = TRUE) #0.056!
 
 boxplot(rich$asensio[c(1,2,3,5,6,7)], rich$now[c(1,2,3,5,6,7)], names = c("1980's", "2016"), ylab = "species richness", 
             las = 1, border = "light grey")
@@ -219,31 +288,36 @@ for(i in c(1,2,3,5,6,7)){
 }
 
 library(vegan)
+str(dat)
+unique(dat$freq)
+dat[which(is.na(dat$freq)),"freq"] <- 1 
+dat$freq <- as.numeric(dat$freq)
 temp <- subset(dat, when == "now")
-comm <- dcast(temp, locality ~ gen_sp, value.var = "freq", 
+comm <- dcast(temp, locality ~ matched_name2, value.var = "freq", 
               fun.aggregate = sum, na.rm = TRUE)
 rownames(comm)[-8] <- as.character(comm$locality[-8])
 comm2 <- comm[,-1] 
-#rowSums(comm2) #toro is low, but same sampling effort. 
-temp <- specaccum(comm2, "random")
-#plot(temp)
-#rarecurve(comm2)
-now <- rarefy(x = comm2, sample = 120)
+comm2 <- comm2[-8,] 
+rowSums(comm2) #toro is low, but same sampling effort. 
+plot(specaccum(comm2, "random"))
+rarecurve(comm2) #Good!
+now <- rarefy(x = comm2, sample = 1000)
 
 temp <- subset(dat, when == "asensio")
-comm <- dcast(temp, locality ~ gen_sp, value.var = "freq", 
+comm <- dcast(temp, locality ~ matched_name2, value.var = "freq", 
               fun.aggregate = sum, na.rm = TRUE)
-#comm <- dcast(temp, locality ~ gen_sp, value.var = "freq", 
- #             fun.aggregate = length, na.rm = TRUE)
 rownames(comm)[-8] <- as.character(comm$locality[-8])
 comm2 <- comm[,-1]
-#rowSums(comm2) #sanbernardo useless. Others ok! Delives super sampled!!
-temp <- specaccum(comm2, "random")
-#plot(temp)
-#rarecurve(comm2) #for delives quite complete!
-asensio <- rarefy(x = comm2, sample = 120)
+rowSums(comm2) #sanbernardo useless. Others ok! Delives super sampled!!
+plot(specaccum(comm2, "random"))
+rarecurve(comm2) #for delives quite complete!
+head(comm2)
+rarecurve(comm2[-1,]) #for the rest is ok, but sanbernardo.
+abline(v = 1000)
+asensio <- rarefy(x = comm2, sample = 1000)
 
 ttest <- t.test(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,6,7)], paired = TRUE)
+ttest #0.05828
 
 boxplot(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,6,7)], names = c("1980's", "2016"), ylab = "rarefied species richness", 
             las = 1, border = "light grey")
@@ -251,10 +325,6 @@ points(x = c(rep(1,6), rep (2,6)), y = c(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,
 for(i in c(1,2,3,5,6,7)){
     lines(x = 1:2, y = c(asensio[i], now[i]), col = i)
 }
-
-
-#do by coverage?
-#clean sp.
 ```
 
 
