@@ -1,11 +1,12 @@
 ---
 title: Historical collections as baseline for assessing the extent of the pollinator
   crisis
-author: "I. Bartomeus1, J. Stavert2, D. Ward2,3, O. Aguado4"
+author: "Bartomeus^1^, I., Stavert^2^, J.R., Ward^2,3^, D., and Aguado^4^, O."
 csl: data/philb_style.xml
 output:
-  word_document: default
   html_document: default
+  pdf_document: default
+  word_document: default
 editor_options:
   chunk_output_type: console
 bibliography: data/references.xml
@@ -34,11 +35,11 @@ There is increasing concern about the decline of pollinators worldwide. However,
 
 #Introduction  
 
-Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “the forgotten pollinators” [@Buchman1996]. However, early accounts were somewhat anecdotal, given the lack of data on pollinator populations at that time. These initial claims triggered the first efforts to assess the problem, including the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction, land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, greater than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
+Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “the forgotten pollinators” [@Buchmann1996]. However, early accounts were somewhat anecdotal, given the lack of data on pollinator populations at that time. These initial claims triggered the first efforts to assess the problem, including the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction, land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, greater than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
 
 One of the main barriers to identifying pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and even lizards [@Winfree2011]. Additionally, many pollinators are highly mobile, short-lived and small, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Ollerton2017]. However, bees are diverse, with more than 20,000 species currently described worldwide [@Archer2014], and often require expert taxonomists for identification. Furthermore, the uneven distribution of researchers [@Martin2012] has resulted in geographical biases in bee decline research, as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
 
-One solution to overcoming these barriers has been to use space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of data on pollinator populations. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollination associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most practical approach for assessing long-term historical pollinator population trends is to use the historical information on species occurrences, which is archived in museum collections [e.g., @bartomeus2013a].
+One solution to overcoming these barriers has been to use space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of data on pollinator populations. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollination associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most practical approach for assessing long-term historical pollinator population trends is to use the historical information on species occurrences, which is archived in museum collections [e.g., @Bartomeus2013a].
 
 In this review, we first assess current evidence for pollinator richness declines and present a road map outlining a strategy for using museum collection data to fill current knowledge gaps. We highlight the major technical difficulties involved in using museum collection data and demonstrate several approaches for analysing different types of museum collection data to assess long-term trends in pollinator populations. Finally, we highlight the need to move beyond simple biological diversity descriptors and unleash the power of historical data to assess changes in species interactions, ecosystem functioning and evolutionary changes through time.
 
@@ -338,7 +339,7 @@ Once museum collection datasets are made available, researchers must identify an
 
 Spain provides an interesting study system because its natural habitats have been transformed extensively by humans over a long time period, but land-use is not as intensive compared with many other European countries. In addition, Spain is a bee diversity hotspot (Figure 1) and maintains a relatively heterogeneous landscape. Spain has already digitalized a large amount of pollinator occurrence data for both historical and recent periods (Figure 2). However, visual inspection of the data reveals clustering around a few localities. Further, historic records do not spatially match recent records, making comparisons difficult. For this dataset, most of the historical records are located around Valladolid and were collected by Enrique Asensio and his collaborators. There has been no recent sampling of bees in this area. However, we found that Enrique systematically sampled seven locations and that additional data were available at the “Museo de Historia Nacional” and other minor collections. Digitization of these records, along with a re-survey of these locations provided an excellent dataset for a before and after comparison of bee communities at these specific locations. Interestingly, this localities have experienced all large agricultural intensification [expand]()
 
-In brief, we cleaned taxonomical names using taxize (@chamberlain), checked sampling completeness for both time periods and compared species richness for each site before and after 1980 with a paired t-test. We found that there is a trend to find a reduced number of species per site (P = 0.058). However, this is higlhly dependant on the site as 2 out of 3 sites show no richness declines. However, there are clear groups of species suffereing larger declines. Andrenids and its parasites being among the losers and Halictids among the winners. This is in accordance with findings elsewhere (e.g. @Bartomeusetal2013a) (appendix?). 
+In brief, we cleaned taxonomical names using taxize [@chamberlain], checked sampling completeness for both time periods and compared species richness for each site before and after 1980 with a paired t-test. We found that there is a trend to find a reduced number of species per site (P = 0.058). However, this is higlhly dependant on the site as 2 out of 3 sites show no richness declines. However, there are clear groups of species suffereing larger declines. Andrenids and its parasites being among the losers and Halictids among the winners. This is in accordance with findings elsewhere [e.g. @Bartomeusetal2013a] (appendix?). 
 
 ```{r  spain, echo=FALSE, message=FALSE, warning=FALSE}
 dat <- read.csv("data/spain_clean_used.csv")
@@ -433,7 +434,7 @@ In global terms, human colonisation of New Zealand was relatively recent (c. 740
 
 We used New Zealand bee collection records gathered from multiple sources, including university, research institute, museum and private collections. Collection records from the New Zealand Arthropod Collection (NZAC) are freely available online (https://scd.landcareresearch.co.nz/). Fly pollinator data was obtained from six participating New Zealand museums [need to list in the acknowledgments]() and covers two families (Calliphoridae and Syrphidae) that contain important fly pollinators. Collections for the bee and fly datasets span over 100 years (early 1900s to late 2000s).
 
-We follow Bartomeus et al. 2013a protocol to analysze this data. First, we filtered our original datasets so that data used for analyses only included independent collection events. To do this, we removed specimens collected at the same location, on the same date, and by the same collector. We found our data had reasonable coverage across time periods, although there was a peak in collection occurrences from 1960-1980. We accounted for differences in collection effort through binning collection records by time so that each bin had a similar number of records but a different number of years. We then estimated richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the mean species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus, reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.
+We followed the protcols outlined in [@Bartomeus2013a] to analysze these data. First, we filtered our original datasets so that data used for analyses only included independent collection events. To do this, we removed specimens collected at the same location, on the same date, and by the same collector. We found our data had reasonable coverage across time periods, although there was a peak in collection occurrences from 1960-1980. We accounted for differences in collection effort through binning collection records by time so that each bin had a similar number of records but a different number of years. We then estimated richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the mean species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus, reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.
 
 Second, to determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. For species that showed overdispersion, we used a quasi-binomial distribution. Further, we only included species in this analysis for which we had 30 or more records. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected in that year.
 
@@ -506,9 +507,10 @@ par(mfrow = c(2,2), mar = c(4,4,2,1))
 
 #fin year = 0 quick and dirty
 #length(which(native$year < 1900))
-native <- subset(native, year > 1900)
-for (i in 3:10){
+native <- subset(native, year > 1800)
+for (i in 5){
     break1 <- quantile(native$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    #x <- c(1909,1965,1970,1974,1976,1978,1981,1986,1994,2012)
     lab <- c(1:i)
     for(j in 1:i){
         lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
@@ -918,6 +920,7 @@ try(for (i in 1:length(frq[,1])){
 bee.est <- as.data.frame(mB)
 bee.est.cast <- dcast(bee.est, Var1 ~ Var2, value.var="Freq")
 bee.est.cast <- bee.est.cast[!(bee.est.cast$Var1 %in% species.remove$Var1),]
+bee.est.cast <- droplevels(bee.est.cast)
 
 #add direction change based on estimate and p-value
 bee.est.cast$change_in_occurance <- with(bee.est.cast, ifelse(
@@ -926,6 +929,10 @@ bee.est.cast$change_in_occurance <- with(bee.est.cast, ifelse(
             estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
 bee.est.cast$taxa <- "Bee"
 
+exotic.native.bee <- c("exotic","exotic","exotic","native","native","native","native","exotic","native","native","native","native","native",                        "native","native","native","native","native","native","native","native","native","native","native","native","native",                        "exotic")
+
+bee.est.cast <- cbind(bee.est.cast,exotic.native.bee)
+colnames(bee.est.cast)[14] <- "exotic_native"
 ############################################
 #analyse fly dataset
 ############################################
@@ -1046,6 +1053,7 @@ try(for (i in 1:length(frq[,1])){
 fly.est <- as.data.frame(mB)
 fly.est.cast <- dcast(fly.est, Var1 ~ Var2, value.var="Freq")
 fly.est.cast <- fly.est.cast[!(fly.est.cast$Var1 %in% species.remove$Var1),]
+fly.est.cast <- droplevels(fly.est.cast)
 
 #add direction change based on estimate and p-value
 fly.est.cast$change_in_occurance <- with(fly.est.cast, ifelse(
@@ -1053,33 +1061,44 @@ fly.est.cast$change_in_occurance <- with(fly.est.cast, ifelse(
         p_frq >= 0.05, 'Stable', ifelse(
             estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
 fly.est.cast$taxa <- "Fly"
+exotic.native.fly <- c("exotic","exotic","exotic","exotic","exotic","native","native","native","native","exotic","native","native","exotic","native")
+fly.est.cast <- cbind(fly.est.cast,exotic.native.fly)
+colnames(fly.est.cast)[14] <- "exotic_native"
 
 #merge bee and fly estimate datasets
 est.all <- rbind(fly.est.cast,bee.est.cast)
 est.all$Var1 <- gsub("_", " ", est.all$Var1)
+
+
+est.all$Var1 <- factor(est.all$Var1, levels = est.all$Var1[order(est.all$exotic_native)])
 
 ####################################################
 #plot frequency estimates
 ####################################################
 
 p <- ggplot(est.all, aes(Var1, estimate_frq, group=taxa))
-p <- p + xlab(NULL) + ylab("Frequency estimate")
-p <- p + theme(text = element_text(size=16))
-p <- p + facet_wrap(~taxa,scales = "free_x")
+p <- p + xlab(NULL) + ylab("Change in relative occurance")
+p <- p + facet_wrap(~taxa,nrow=2,ncol=1,scales = "free_x")
 p <- p + geom_point(aes(colour=change_in_occurance), size = 2)
 p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=change_in_occurance), width = 0)
 p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + geom_vline(data=filter(est.all, taxa=="Bee"), aes(xintercept=5.5), colour="grey")
+p <- p + geom_vline(data=filter(est.all, taxa=="Fly"), aes(xintercept=7.5), colour="grey")
+p <- p + geom_text(data=data.frame(Var1=3,estimate_frq=0.145,taxa="Bee",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=4,estimate_frq=0.145,taxa="Fly",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=16.5,estimate_frq=0.145,taxa="Bee",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=11,estimate_frq=0.145,taxa="Fly",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
 p <- p + theme(panel.grid.minor = element_blank(),
                panel.background = element_blank(),
                axis.line = element_line(colour = "black")) +
     theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
-    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =14),
-          axis.title.y=element_text(size=22, vjust = 1),
-          axis.text.x=element_text(face = "italic", angle= 90, hjust = 0, vjust = 0.5, size =7),
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =12),
+          axis.title.y=element_text(size=18, vjust = 1),
+          axis.text.x=element_text(face = "italic", angle= 45, hjust = 1, vjust = 1, size =7),
           axis.title.x=element_text(size=22, vjust = 1),
           axis.text=element_text(colour = "black"))+
     theme(strip.background = element_rect(colour="NA", fill=NA),
-          strip.text = element_text(size=16))
+          strip.text = element_text(size=14))
 p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
 p <- p + scale_colour_brewer(palette = "Dark2")
 p$labels$colour <- "Change in occurance"
@@ -1095,21 +1114,20 @@ Figure 5. Model estimated changes (± 1 SE) in the relative occurrence frequency
 
 #Beyond species occurrences  
  
-A recent study found that more than 90% of the papers studying pollinator responses to land-use change focused solely on richness and abundance descriptors [@winfree2011]. But in addition to local (alpha) diversity and regional (gamma) diversity, we need to assess changes in turnover between sites (beta diversity). Environmental changes often result in a few “winner” species and many species becoming “losers” [@Bartomeus2013b]. Identifying winners and losers is critical as the few winners are often exotic and represent a subset of traits that facilitate survival in highly modified environments [@Stavert2017]. These changes can have important effects for pollination of native plant species and crops. 
+A recent study found that more than 90% of the papers studying pollinator responses to land-use change focused solely on richness and abundance descriptors [@Winfree2011]. But in addition to local (alpha) diversity and regional (gamma) diversity, we need to assess changes in turnover between sites (beta diversity). Environmental changes often result in a few “winner” species and many species becoming “losers” [@Bartomeus2013b]. Identifying winners and losers is critical as the few winners are often exotic and represent a subset of traits that facilitate survival in highly modified environments [@Stavert2017]. These changes can have important effects for pollination of native plant species and crops. 
 
 But museum specimen collections can provide much more information besides species occurrence records, providing such information is captured when digitizing collections. This is particularly important for identifying mechanisms of decline and adaptation. For example, recording the date of collection is particularly important for tracking of phenological advances congruent with contemporary climate change [@Bartomeus2011]. In addition, pollinator specimen labels often include information about the host plant on which the specimen was collected. This information critical for understanding past and present species interactions [@Tylianakis2008]. Regardless of this information, bee specimens often contain pollen loads trapped in the hairs, making possible to reconstruct past visitation events [@Kleijn2008]. Finally, museum specimens can be measured to track evolutionary changes by measuring specific specimen traits. This has been already explored to show tongue length [@Miller-Struttmann2015] and body size [@Oliveira2016] shrinkage with climate and land use change.
 
 
-#Conclucions
+#Conclusions
 
-As illustrated in our examples, unleashing the power of museum collection data to answer pressing questions is at our hands, but requires the coordinated effort of many actors. Using two case studies, we show that collaboration with both museum curators and ecologists is key to adequately understanding the data and treating it appropriately. Researchers and curators should aim to make digitalized data readily available and easy to share. Centralization of regional and national museum data in existing global platforms such as GBIF would facilitate free and widespread access. However, specific datasets can also be stored in different webpages or database repositories (e.g. Universities and museum webpages, Dryad) as far as they are well documented and can be easely retrived and combined with other datasets using open science tools [e.g., @Dallas2016].
+Unleashing the power of museum collection data to answer pressing questions is at our hands, but requires the coordinated effort of many actors. Using two case studies, we show that collaboration with both museum curators and ecologists is key to understanding the data and treating it appropriately. To progress our understanding of the global pollination crisis, researchers and curators must aim to digitize museum collection data and make it readily available it a format that is widely accessible. Centralization of regional and national museum collection data in existing global platforms, such as GBIF, would facilitate free and widespread access. However, datasets could also be stored in alternative webpages or database repositories (e.g., University and museum webpages or Dryad) providing they are well documented, easily retrieved and can be combined with other datasets using open science tools [e.g., @Dallas2016].
+Further, we must revolutionize the way that researchers collaborate with museums, to foster healthy bidirectional relationships. For example, ecological researchers collect massive numbers of specimens, but these are often inappropriately vouchered [@Packer2018; @Wheeler2003], rendering them less useful for future research. To improve this, strong communication between museums and researchers is required, but can only be achieved with adequate funding and recognition that accurate data recording and long-term preservation are critical for research [@Ward2015].
 
-We also need to revolutionize the way that researchers collaborate with museums, which should start with fostering healthy bidirectional relationships. For instance, ecological researchers collect massive amounts of specimens, but these are often inappropriately vouchered (@Packer2018; @Wheeler2003), rendering them less useful for future research. To improve this, strong communication between museums and researchers is required, but this will only be achieved if there is not adequate funding, and recognition that accurate data recording and long-term preservation are critical for research [@Ward2015].
+To identify global trends in pollinator declines we require robust data, collected from diverse geographic regions. It is also crucial that these data are analysed appropriately. This requires researches to identify biases and to any fill taxonomic and geographic gaps where possible. We need to place increased emphasis on quantifying pollinator declines in regions outside of the US and Europe, and for pollinator groups other than bees. For the US and Europe, there have been few regional bee extinctions [@Ollerton2014; @Bartomeus2013a] but in disturbed ecosystems, declines are widespread [@DePalma2017; @Bartomeus2013a; @Biesmeijer2006]. For most other pollinator taxa and regions throughout the world we know almost nothing. Moving forward, the first step for many taxa will be to identify and describe species. Only then can we begin to document pollinator declines.
 
-Ultimately, to identify global trends in pollinator declines we require robust data, collected from diverse geographic regions. Further, it is crucial that data are analysed appropriately. This requires researches to identify biases in the data and fill  taxonomic and geographic gaps in knowledge of pollinators status where possible. We need to place increased emphasis on quantifying pollinator declines in regions outside of the US and Europe and for pollinator groups other than bees. For the US and Europe there have been few regional bee extinctions [@Ollerton2014; @Bartomeus2013a], but in disturbed ecosystems declines are widespread [@DePalma2017; @Bartomeus2013a; @Biesmeijer2006]. For most other pollinator taxa and regions throughout the world we know almost nothing. Moving forward, the first step for many taxa will be to identify and describe species. Only then can we begin to document declines.
+#Acknowledgements 
 
-#Acknowledgements  
-
-IB was funded by FBBVA project. DW was funded through Landcare Research within the Characterising New Zealand’s Land Biota Portfolio. We thank E. Asensio for sharing his historical data and knowledge. We thank Curro Molina, Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum of Historia Natural and ITACyL for access to historical collections. We also thank Barry Donovan for providing New Zealand bee collection records and Carola Warner for entering the New Zealand data.
+We thank Curro Molina, Patrick McQuinn, and Crona McMonagle for data entry. Madrid museum of Historia Natural and ITACyL for access to historical collections. We thank Barry Donovan for providing New Zealand bee collection records and Carola Warner for entering the New Zealand data. IB was funded by FBBVA project. DW was funded through Landcare Research within the Characterising New Zealand’s Land Biota Portfolio. We thank E. Asensio for sharing his historical data and knowledge.
 
 #References
