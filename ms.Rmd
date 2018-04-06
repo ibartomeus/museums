@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ^1^ Estación Biológica de Doñana (EBD-CSIC), Avda. Américo Vespucio 26, Isla de la Cartuja, E-41092 Sevilla, Spain   
 ^2^ Centre for Biodiversity and Biosecurity, School of Biological Sciences, The University of Auckland, Auckland, New Zealand  
 ^3^ Landcare Research, Auckland, New Zealand  
-^4^ Andrena Iniciativas y Estudios Medio Ambientales
+^4^ Andrena Iniciativas y Estudios Medio Ambientales, Valladolid, Spain  
 *Correspondence: nacho.bartomeus@gmail.com   
 
 *Author contributions*: IB wrote the initial draft. DW and OA provided data. IB and JS analysed the data. All authors contributed to writing the manuscript.  
@@ -38,7 +38,7 @@ Animal pollinators are a critical component of both natural and agricultural eco
 
 One of the main barriers to identifying long-term pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and lizards [@Ollerton2017]. Additionally, many pollinators are highly mobile, short-lived and small, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Winfree2011]. However, bees are diverse, with more than 20,000 species currently described worldwide, and often require expert taxonomists for identification. Furthermore, the uneven distribution of researchers has resulted in geographical biases in bee decline research [@Martin2012], as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
 
-One solution to overcoming these barriers is the use of space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of pollinator population data. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollinator associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most robust approach for assessing long-term historical pollinator population trends is to use historical information on species occurrences, which is often archived in museum collections [e.g., @Bartomeus2013a].
+One solution to overcoming these barriers is the use of space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of pollinator population data. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollinator associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most practical approach for assessing long-term historical pollinator population trends is to use historical information on species occurrences, which is often archived in museum collections [e.g., @Bartomeus2013a].
 
 In this review, we first assess current evidence for pollinator richness declines and present a roadmap outlining a strategy for using historical collection data to fill current knowledge gaps. We highlight the major technical difficulties involved in using historical collection data and demonstrate several approaches for analysing different types of collection data to assess long-term pollinator population trends. Finally, we highlight the need to move beyond simple biological diversity descriptors and unleash the power of historical data to assess changes in species interactions, ecosystem functioning and evolutionary changes through time.
 
@@ -209,7 +209,7 @@ lhf <- read.csv("data/rgbif_output.csv", row.names = 1 )
 #head(lhf)
 #str(lhf)
 lhf <- lhf[order(lhf$pre1980),c(1,17,18)]
-write.csv(lhf, "data/SpMat2.csv")
+#write.csv(lhf, "data/SpMat2.csv")
 #plot(lhf$post1980, lhf$pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,300000), ylim = c(0, 300000))
 #abline(h = 150000, v = 150000)
 #plot needs legend by country, and to be ggplotted. Add some labels will be good, at least for ES and NZ, which we explore below.
@@ -239,9 +239,10 @@ lhf$log_post1980 <- log(lhf$post1980)
 col <- ifelse(lhf$country == "ES" | lhf$country == "NZ", "red", "black")
 col <- ifelse(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5, col, "grey")
 pchs <- ifelse(lhf$country == "ES" | lhf$country == "NZ", 19, 1)
-plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs)
+plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs, las = 1)
 temp <- subset(lhf, country %in% c("ES", "NZ"))
 text(x = temp$log_post1980, y = temp$log_pre1980+2 , labels = temp$country, col = "red")
+abline(h = 7.5, v = 7.5)
 #36 countries!
 #exp(7.5) #> 1800 records in both axes!
 ```
@@ -278,7 +279,7 @@ for(i in 1:length(countries)){
     print(i)
 }
 #save output
-save(occ_list, file = "data/gbif.RData")
+#save(occ_list, file = "data/gbif.RData")
 
 
 ```
@@ -330,7 +331,7 @@ for(i in 1:nrow(data2)){
 
 #map
 data2$change <- ((data2$post1980 - data2$pre1980)*100 / data2$pre1980)
-
+#mean(data2$change)
 map.gbif <- joinCountryData2Map(data2, joinCode="ISO2", nameJoinColumn = "countries",
                             nameCountryColumn = "countries")
 
