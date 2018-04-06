@@ -377,7 +377,7 @@ genus_tot3 <- dcast(dat,  genus ~ when, value.var = "matched_name2",
               fun.aggregate = function(x) length(unique(x)))
 #genus_tot3
 #colSums(genus_tot3[,2:3])
-#write.csv(genus_tot3, "data/SupMat4.csv")
+#write.csv(genus_tot3, "data/SupMat3.csv")
 
 #losts easely spotted: Andrenas, Nomadas & Tyreus, prosopis, teralonias
 
