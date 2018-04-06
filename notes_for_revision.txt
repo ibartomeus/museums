@@ -1,0 +1,10 @@
+Things to fix during review:
+
+However, bees are diverse, with more than 20,000 species currently described worldwide [@Archer2014]
+ref is Asher and pickering Discover life!
+
+For declines papers Nacho needs to digg deeper, we are missing for example moths: @Young2017
+
+Can we plot syrphid and buterlfy richness per country? At least should be possible for butterflies.
+
+Add Pauw ref (now inserted manually). Also other evolutionary papers in the to do file can be added.
