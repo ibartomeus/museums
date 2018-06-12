@@ -80,7 +80,7 @@ library(dplyr)
 library(reshape2)
 
 #read in data
-declines <- read.csv(file = "data/richness_declines.V2.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+declines <- read.csv(file = "data/richness_declines.V2.csv", header = TRUE, sep = ",", na.strings=c("","NA"),fileEncoding="latin1")
 #nothing outside EU- USA. Spain and NZ can be added.
 
 #aggregate data
