@@ -3,8 +3,8 @@ title: Historic collections as a tool for assessing the global pollination crisi
 author: "Bartomeus, I.^1^, Stavert, J.R.^2^, Ward, D.^2,3^, and Aguado, O.^4^"
 csl: data/philb_style.xml
 output:
-  word_document: default
   html_document: default
+  word_document: default
 editor_options:
   chunk_output_type: console
 bibliography: data/references.xml
@@ -34,7 +34,7 @@ Non-structured and opportunistic historical specimen collection data provide the
 
 #Introduction  
 
-Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “The forgotten pollinators” [@Buchmann1996]. However, early accounts of pollinator declines were somewhat anecdotal, given the lack of pollinator population data at that time. These initial claims triggered the first efforts to assess this potential issue and included the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction, land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, greater than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
+Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “The forgotten pollinators” [@Buchmann1996]. However, early accounts of pollinator declines were somewhat anecdotal, given the lack of pollinator population data at that time. These initial claims triggered the first efforts to assess this potential issue and included the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction [@jamie2016], land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, greater than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
 
 One of the main barriers to identifying long-term pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and lizards [@Ollerton2017]. Additionally, many pollinators are highly mobile, short-lived and small, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Winfree2011]. However, bees are diverse, with more than 20,000 species currently described worldwide, and often require expert taxonomists for identification. Furthermore, the uneven distribution of researchers has resulted in geographical biases in bee decline research [@Martin2012], as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
 
@@ -81,12 +81,9 @@ library(dplyr)
 library(reshape2)
 
 #read in data
-<<<<<<< HEAD
-declines <- read.csv(file = "data/richness_declines.V2.csv", header = TRUE, sep = ",", na.strings=c("","NA"),fileEncoding="latin1")
-=======
-declines <- read.csv(file = "data/richness_declines.V2.csv", 
-                     header = TRUE, sep = ",", na.strings=c("","NA"))
->>>>>>> dda054e284c0ce75f3725eedb392d5e45d0c811c
+declines <- read.csv(file = "data/richness_declines.V2.csv", header = TRUE, sep = ",", stringsAsFactors=FALSE,na.strings=c("","NA"))
+declines$percent_richness_change <- as.numeric(declines$percent_richness_change)
+declines$proportion_richness_change <- as.numeric(declines$proportion_richness_change)
 #nothing outside EU- USA. Spain and NZ can be added.
 #head(declines)
 
