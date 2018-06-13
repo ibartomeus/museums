@@ -5,17 +5,6 @@ date: "26/03/2018"
 output: html_document
 ---
 
-To Do:
-
-- check formating rules (words in abstract, main body, etc...)
-- correct fig1 for country size?
-- Species declines in % for different taxa... what to do?
-- for NZ species abundance analysis - should data be split by exotic/native first?
-- think on gbif plot...
-- Spain.
-- Refs -> e.g. not showing up in references in the final doc??
-
-
 #refs clarifications
 
 @Ollerton2011 -> Ollerton winfree and tarrant Oikos, I think 2012.

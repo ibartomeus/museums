@@ -1,0 +1,37 @@
+Things to fix during review:
+
+REFERENCES: 
+
+"However, bees are diverse, with more than 20,000 species currently described worldwide [@Archer2014]""
+This ref is wrong: ref is Asher and pickering Discover life! -> Ascher, J. S. and J. Pickering. 2018.
+Discover Life bee species guide and world checklist (Hymenoptera: Apoidea: Anthophila).
+http://www.discoverlife.org/mp/20q?guide=Apoidea_species
+
+For declines papers Nacho needs to digg deeper, we are missing for example moths: @Young2017: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185683 Jamie can you add this one?
+
+This one can be cited if you want http://www.nrcresearchpress.com/doi/abs/10.1139/AS-2016-0038#.WsRuYZNubMI
+
+Add Pauw ref (now inserted manually). Also other evolutionary papers in the to do file can be added.-> Reconstruction of historical pollination rates reveals linked declines of pollinators and plants
+A Pauw, JA Hawkins - Oikos, 2011
+
+Look for citation rarefied species confound evenness. 
+
+Add: Renauld M, Hutchinson A, Loeb G, Poveda K, Connelly H. 2016. Landscape simplification constrains adult size in a native ground-nesting bee. PLoS One. 11(3):e0150946”
+
+Check Refs 14,30 and 57
+
+Look citation of museums containing undescibed species. Maybe in refs already cited!
+
+
+OTHER STUFF:
+
+Emphasize when you are introducing a method for alleviating biases.
+
+Jamie: Test why 30 speciemes is enough to run pop models (See R to R)
+
+Colour scale +/- and axes bigger font size.
+
+Nacho: add the total number of spceimens collected by time period in Spain.
+
+
+

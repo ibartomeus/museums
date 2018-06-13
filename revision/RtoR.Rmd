@@ -1,0 +1,221 @@
+---
+title: "Response to reviewers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Find included the revision of the manuscript "Historic collections as a tool for assessing the global pollination crisis". We want to thank the Editors and both reviewers for the encouraging words and the comments provided which have helped clarify the message. See a detailed response below.
+
+## Editor
+
+> Thank you for this contribution. Two reviewers who are very knowledgeable about pollinators and their decline with global change have assessed your work and find that it will be a valuable addition to the literature. I agree that this manuscript has been developed thoughtfully and only requires minor revision. I especially appreciated that the statistical methods demonstrate how researchers might alleviate the constraints of biases in specimen data. The only overarching comment I have is that you emphasize when you are introducing a method for alleviating biases to draw attention of the Phil Trans B readership.
+
+Thanks for the positive comments. We have now emphasized the methodological parts that deal with biases through the text.
+
+> Here are my minor comments. 
+
+> Line 104: How often are these changes in richness at the local scale mediated by introduced species at the regional scale? I suspect this paragraph is about native species exclusively, but it would be good to specify. 
+
+Yes, we specify now we are reporting data on native species trends at both scales. As there is not much information on exotic species displacing natives (other than by pathogen spillover) we do not discuss this issue here.
+
+> Line 195: Can you give a citation for this statement that 1800 specimens is enough for analyses? And does this vary by spatial area? 
+
+Thanks for pointing this out. The 1800 specimens threshold is arbitrary and of course, it could vary with the spatial area. However, there is no magic number to put a threshold. For a global analysis, this represents a good compromise between data availability and number of countries that can be included. We clarified that in text.
+
+> And are the data you use here just museum specimens or museum specimens and observations? 
+
+Gbif includes a variety of data sources. Within bees, most of them are vouchered in public collections, but a few may be vouchered elsewhere, but as far as I can tell observations are not included.
+
+> Lines 228: Even ‘worse’ (not ‘worst’)
+
+Fixed.
+
+> Line 251: How did you find out that this was a systematic sample? From Enrique? From field notes? From the data structure?
+
+We clarify in text that we contacted Enrique directly.
+
+> Lines 264: Perhaps do not say “suffer” as it personifies the place and shows a bias toward more natural habitats. (This is tangential, but it is my understanding that often bees benefit from enhanced floral resources and openness of urban habitats.)
+
+Thank you, we changed to "experienced".
+
+> Lines 304-305: Can you be more specific about what led you to believe that these data were incomplete? All museum data are incomplete, but your specific assessment of what makes these data from prior to 1970 unanalyzable will be helpful to future researchers using museum specimens to assess decline. 
+
+We added the clues that we used for assessing incompleteness: "For example, old specimens lack particular genus, and geographically restricted."
+
+> Line 318: Can you please insert a reference for only using species that have 30 or more records? 
+
+Again, very good point on thresholds. We clarified that "Preliminary analysis using random subsampling of specimens from species with large sample size indicated that below 30 records the trends become too variable. [JAMIE, can you look onto this?]()
+
+> Lines 325-327: I know this is intuitive, but, if available, please insert a citation for this.  
+
+**Look for citation rarefied species confound evenness!
+
+
+> Line 349: “Loser” not “losers”
+
+Fixed.
+
+> Lines 353-355: Here, I think you are referring to data you can retrieve from virtual collections. From physical collections, all label data are available . . . 
+
+Good point. We clarified this.
+
+> Line 365: “herbaria” not “herbariums”
+
+Fixed.
+
+> Lines 395-396: It might be useful to note here that museums potentially contain vouchers of many (perhaps thousands? tens of thousands?) of undescribed pollinator species and are thus critical resources for the taxonomic/systematics studies required prior to ecological and evolutionary research on global change. (There should be a handy citation on this in the museum literature.)
+
+** Add citation.
+
+> Figure 2c: I realize that a graduated scale is the best way to show these data because they are continuous. However, perhaps there is a color palette that happens to shift enough at zero so that decline vs. no indication of decline can be differentiated visually. Right now, it is difficult to discern which regions have decline according to the data. 
+
+** Jamie?
+
+> Figure 5. Please increase text size in y axes of both figures and the legend. 
+
+** Jamie?
+
+# Referee: 1
+
+> Comments to Author(s)
+This is an excellent paper that reviews what we know and what we don’t know about bee declines from historical collections of bees around the world. I like the author’s introductory comments about the status of our understanding of bee declines. They comment that “early accounts of pollinator declines were somewhat anecdotal, given the lack of pollinator population data at that time.” I completely agree with that assessment. There are very few data on any group of bees other than bumble bees that can be used to assess whether bee populations are in decline or not. The use of museum specimen records provides an incredibly valuable tool, when analyzed correctly, for documenting and assessing the status of wild bees and this paper provides a nice overview of the limitations of these data and how best to use these data. 
+
+Thanks for the positive feed back!
+
+> Minor, editorial comments: 
+> Line 140-143 – this sentence is oddly worded. Rather than say “Despite outside of Europe…” I would say “Except for outside of Europe…”
+
+Thanks, we reworded it as recommended.
+
+> Line 208-209 – “Aside from bees, similar exploratory analyses can easily be conducted for other taxa” should be “We focus on bees, but similar exploratory analyses can easily be conducted for other taxa”
+Line 220, 222 – “this data” should be “these data”
+Line 224 – delete “collection”
+Line 228 – “worst” should be “worse”
+Line 263 – reword: “…the two that have experienced less dramatic change…”
+
+We reworded all sentences as suggested, thank you for the edits.
+
+> Line 266-268 – this statement matches my expectation for which groups are likely to be impacted by land use change – halictids are trash bees that hang on in even the most disturbed habitats. 
+
+Yes, this is also our experience with this group of species.
+
+> Fig. 3 – can we be confident that collecting effort was similar between the data from the 1980’s and the more recent data (2016)? How many specimens does each collection represent?
+
+**Comparisions of this kind are alwys hard to standardize. By rarefying species richness we minimize any bias due to sampling effort differences. We added the total number of spceimens collected by time period.
+
+> Line 337 – “…ground-nesting, solitary bees.” [add hyphen and comma]
+
+Added.
+
+> Line 364 – another paper to cite that has some bearing on the issue of body size change in bees is: Renauld M, Hutchinson A, Loeb G, Poveda K, Connelly H. 2016. Landscape simplification constrains adult size in a native ground-nesting bee. PLoS One. 11(3):e0150946”
+
+** Thanks for the reference, we added it. [JAMIE, can you do this?]()
+
+> Line 364-367 – awkwardly worded sentence. Please rephrase.
+Line 369-370 – awkwardly worded sentence. Please rephrase.
+
+We reworded those sentences.
+
+> Line 372 – change “progress” to “advance”
+
+Changed.
+
+> References 14 and 30 – titles of journal articles are capitalized; should be lower case for consistency with other citations. 
+
+Fixed
+**[Jamie?]()
+
+> Reference 57 – is this really the title of the article?
+
+Fixed
+**[Jamie?]()
+
+> Overall, a much needed paper that will be widely cited as the use of museum specimen data is increasingly used to address the declines of bees and other pollinators.
+
+
+# Referee: 2
+
+> Comments to Author(s)
+> In recent decades, reported declines in pollinators have raised global concerns about loss of pollinator biodiversity and delivery of pollination services. However, most data on pollinator trends originate from just a few well-developed countries (US, NW-Europe), and we actually know very little about the status of pollinator communities in other parts of the world. In addition, assessments of pollinator population trends have mostly been restricted to a limited set of taxonomic groups. In this paper, Bartomeus et al. make a case for better capitalizing the potential information stored in historic museum collections to improve our understanding of the geographical and taxonomic extent of pollinator declines. They review current evidence for pollinator declines and discuss the potential (and limitations) of entomological collections to address knowledge gaps and advance the assessment of the extent of pollinator decline. The potential of entomological collection data is nicely illustrated by presenting two case-studies.
+
+> Overall, the paper is well-structured, well written and highly topical, and I really enjoyed reading it. I only have a few (minor) comments and tweaks to further improve the clarity and readability of the paper:
+
+We are glad the reviewer enjoyed the manuscript.
+
+> L27-30: Bit long, odd sentence (despite... but....). Suggest to make separate sentences.
+
+We splited the sentence.
+
+> L55: replace “greater” with “more”
+> L59: I’d suggest to change into “diverse, including bees, etc.....” 
+
+> L65: I think I understand what you mean, but it is a bit vague what is meant by the phrase “the uneven distribution of researchers”.
+
+We clarified this sentence.
+
+> L97-99: Not quite. If I’m not mistaken this study showed that, regardless of diet breadth, the identity of preferred host plants explained decline of bee species. So bee species declined if their preferred host plant(s) declined. 
+
+Yes, you are right and we changed the wording to better reflect that result.
+
+> L100-101: Could be, but also vice versa, when records from amateur insect collectors are biased towards just these well-preserved natural areas, that (still) contain “interesting species”.
+
+Could be, but this bias would show even steeper declines. We clarified the sentence to refer to less human-developed areas.
+
+> L102-103: For clarity, add that this concerns trends in richness, not population/species distribution trends of individual species. The distinction between trends in species richness and species population trends is also sometimes not entirely clear in other parts of the manuscript, please address.
+
+Thanks for pointing this out as we agree is important to diferenciate richness from population trends data. We reworded it for clarity.
+
+> L115-118: See also Nieto et al. 2014 European Red List of bees for Europa-wide assessment of bumblebee trends (24% of bumblebee species threatened with extinction; 46% of bumblebee species have declining population trend).
+
+We added this reference.
+
+> L136: replace “this” with “these”
+
+Done.
+
+> L139: Sup Mat 1: why are there sometimes lines with identical data for some studies in this file? Same data but for different grid cells?
+
+Yes, those are different grid cells. We add the explanation to the caption.
+
+> L140-142. This sentence is really confusing and hard to grasp. Please rephrase.  
+
+We split the sentence in two and re-worded it.
+
+> L176: suggest to change into ”which may lead to spatial bias....”
+
+Changed.
+
+> L195, Figure 2a: I would like to see some justification for the used cut-off point of 1800 records in both periods. What’s the rationale behind this?
+
+The 1800 specimens threshold is arbitrary. For a global analysis, this represents a good compromise between data availability and number of countries that can be included. We clarified that in text.
+
+> L228: replace “ worst” with “worse”
+
+Replaced.
+
+> L284-291: I do not really see the point/relevance of this section. The same story (albeit over a longer timeframe) goes for e.g. NW Europe where human activity has also affected pollinator communities (either positively or negatively) before specimen collection began (e.g. through large-scale forestation, development of large areas of heathlands and extensive grasslands, etc.). I’d suggest to omit this.
+
+We amoited this as suggested.
+
+> L299: Please clarify what regional level.
+
+We removed the reference to "region" to avoid confusions.
+
+> L302-304: And what about spatial coverage?
+
+Yes, we added a note on spacial coverage.
+
+> L309: How was mean richness per bin calculated, over years within bins?
+
+Yes, we reworded it for clarity.
+
+> L361: see also ref [19] and [23]
+
+We cite here the first study we are aware of using this technique.
+
+> L389: switch “fill” and “any”
+
+Switched.
