@@ -72,11 +72,11 @@ Fixed.
 
 > Figure 2c: I realize that a graduated scale is the best way to show these data because they are continuous. However, perhaps there is a color palette that happens to shift enough at zero so that decline vs. no indication of decline can be differentiated visually. Right now, it is difficult to discern which regions have decline according to the data. 
 
-** Jamie?
+** Jamie? Nacho - change colour palette to topo? (see my response in notes)
 
 > Figure 5. Please increase text size in y axes of both figures and the legend. 
 
-** Jamie?
+Fixed.
 
 # Referee: 1
 
@@ -112,7 +112,7 @@ Added.
 
 > Line 364 – another paper to cite that has some bearing on the issue of body size change in bees is: Renauld M, Hutchinson A, Loeb G, Poveda K, Connelly H. 2016. Landscape simplification constrains adult size in a native ground-nesting bee. PLoS One. 11(3):e0150946”
 
-** Thanks for the reference, we added it. [JAMIE, can you do this?]()
+Thanks for the reference, we added it.
 
 > Line 364-367 – awkwardly worded sentence. Please rephrase.
 Line 369-370 – awkwardly worded sentence. Please rephrase.
@@ -126,12 +126,10 @@ Changed.
 > References 14 and 30 – titles of journal articles are capitalized; should be lower case for consistency with other citations. 
 
 Fixed
-**[Jamie?]()
 
 > Reference 57 – is this really the title of the article?
 
-Fixed
-**[Jamie?]()
+Yes, this is correct. 
 
 > Overall, a much needed paper that will be widely cited as the use of museum specimen data is increasingly used to address the declines of bees and other pollinators.
 
