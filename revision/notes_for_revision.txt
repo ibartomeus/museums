@@ -1,21 +1,16 @@
-Things to fix during review:
+I did a couple of things manually:
 
-REFERENCES: 
+REFERENCES manually entered: 
 
-"However, bees are diverse, with more than 20,000 species currently described worldwide [@Archer2014]""
-This ref is wrong: ref is Asher and pickering Discover life! -> Ascher, J. S. and J. Pickering. 2018.
+[Ascher] Ascher, J. S. and J. Pickering. 2018.
 Discover Life bee species guide and world checklist (Hymenoptera: Apoidea: Anthophila).
 http://www.discoverlife.org/mp/20q?guide=Apoidea_species
-**this paper is in the ref list
 
-Add Pauw ref (now inserted manually). Also other evolutionary papers in the to do file can be added.-> Reconstruction of historical pollination rates reveals linked declines of pollinators and plants
-A Pauw, JA Hawkins - Oikos, 2011
-**added to refs list
+[Pauw] Reconstruction of historical pollination rates reveals linked declines of pollinators and plants A Pauw, JA Hawkins - Oikos, 2011
 
-Look for citation rarefied species confound evenness. ->  Gotelli, Nicholas J.; Colwell, Robert K. (22 July 2001). "Quantifying biodiversity: procedures and pitfalls in the measurement and comparison of species richness". Ecology Letters. 4 (4): 379–391. doi:10.1046/j.1461-0248.2001.00230.x.
-
-Colour scale +/- and axes bigger font size.
-**Have fixed this for fig 5. Perhaps try changing the colour palette to "topo" as per the richness change graphs? I can't get this chunk of script to run for some reason, so can't see if the change improves the map or not. 
+[Gotelli] Gotelli, Nicholas J.; Colwell, Robert K. (22 July 2001). "Quantifying biodiversity: procedures and pitfalls in the measurement and comparison of species richness". Ecology Letters. 4 (4): 379–391. doi:10.1046/j.1461-0248.2001.00230.x.
+ 
+Colate figures using Keynote.
 
 
 

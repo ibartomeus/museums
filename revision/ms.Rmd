@@ -1,13 +1,13 @@
 ---
-title: Historic collections as a tool for assessing the global pollination crisis
+title: "Historic collections as a tool for assessing the global pollination crisis"
 author: "Bartomeus, I.^1^, Stavert, J.R.^2^, Ward, D.^2,3^, and Aguado, O.^4^"
-csl: data/philb_style.xml
+csl: ../data/philb_style.xml
 output:
-  html_document: default
   word_document: default
+  html_document: default
 editor_options:
   chunk_output_type: console
-bibliography: data/references2.xml
+bibliography: ../data/references2.xml
 ---
 
 ```{r setup, include=FALSE}
@@ -35,7 +35,7 @@ There is increasing concern about the decline of pollinators worldwide. However,
 
 Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “The forgotten pollinators” [@Buchmann1996]. However, early accounts of pollinator declines were somewhat anecdotal, given the lack of pollinator population data at that time. These initial claims triggered the first efforts to assess this potential issue and included the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction, land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, more than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
 
-One of the main barriers to identifying long-term pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and lizards [@Ollerton2017]. Additionally, many pollinators are highly mobile, short-lived and small in size, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Winfree2011]. However, bees are diverse, with more than 20,000 species currently described worldwide, and often require expert taxonomists for identification. Furthermore, the uneven global distribution of research studies has resulted in geographical biases in bee decline research [@Martin2012], as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
+One of the main barriers to identifying long-term pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and lizards [@Ollerton2017]. Additionally, many pollinators are highly mobile, short-lived and small in size, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Winfree2011]. However, bees are diverse, with more than 20,000 species currently described worldwide [Asher], and often require expert taxonomists for identification. Furthermore, the uneven global distribution of research studies has resulted in geographical biases in bee decline research [@Martin2012], as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
 
 One solution to overcoming these barriers is the use of space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of pollinator population data. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollinator associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most practical approach for assessing long-term historical pollinator population trends is to use historical information on species occurrences, which is often archived in museum collections [e.g., @Bartomeus2013a].
 
@@ -53,8 +53,8 @@ For illustrative purposes, we mapped the findings of these studies (Figure 1) to
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(rworldmap)
-map <- read.csv("data/bee_richness.csv")
-size <- read.csv("data/country_area.csv")
+map <- read.csv("../data/bee_richness.csv")
+size <- read.csv("../data/country_area.csv")
 colnames(size) <- c("country", "size")
 map0 <- merge(map, size, all.x = TRUE)
 #remove some countries with doubtful sampling
@@ -80,7 +80,7 @@ library(dplyr)
 library(reshape2)
 
 #read in data
-declines <- read.csv(file = "data/richness_declines.V2.csv", header = TRUE, sep = ",", stringsAsFactors=FALSE,na.strings=c("","NA"))
+declines <- read.csv(file = "../data/richness_declines.V2.csv", header = TRUE, sep = ",", stringsAsFactors=FALSE,na.strings=c("","NA"))
 declines$percent_richness_change <- as.numeric(declines$percent_richness_change)
 declines$proportion_richness_change <- as.numeric(declines$proportion_richness_change)
 #nothing outside EU- USA. Spain and NZ can be added.
@@ -107,7 +107,8 @@ map.bee <- joinCountryData2Map(declines.bee.2, joinCode="NAME", nameJoinColumn =
                                    nameCountryColumn = "distribution")
 
 #average richness change
-map.bee.ave <- mapCountryData(map.bee, nameColumnToPlot = "average", colourPalette="topo",
+colorss <- c(heat.colors(9))
+map.bee.ave <- mapCountryData(map.bee, nameColumnToPlot = "average", colourPalette= colorss,
                                   mapTitle = "Average bee richness change", catMethod = "pretty", addLegend = F)
 do.call(addMapLegend, c(map.bee.ave, legendLabels="all", legendWidth=0.5))
 
@@ -124,7 +125,8 @@ map.syrphid <- joinCountryData2Map(declines.syrphid.2, joinCode="NAME", nameJoin
                             nameCountryColumn = "distribution")
 
 #average richness change
-map.syrphid.ave <- mapCountryData(map.syrphid, nameColumnToPlot = "average", colourPalette="topo",
+colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
+map.syrphid.ave <- mapCountryData(map.syrphid, nameColumnToPlot = "average", colourPalette= colorss,
                        mapTitle = "Average syrphid richness change", catMethod = "pretty", addLegend = F)
 do.call(addMapLegend, c(map.syrphid.ave, legendLabels="all", legendWidth=0.5))
 
@@ -143,7 +145,8 @@ map.butterfly <- joinCountryData2Map(declines.butterfly.2, joinCode="NAME", name
                                      nameCountryColumn = "distribution")
 
 #average richness change
-map.butterfly.ave <- mapCountryData(map.butterfly, nameColumnToPlot = "average", colourPalette="topo",
+colorss <- c(heat.colors(6))
+map.butterfly.ave <- mapCountryData(map.butterfly, nameColumnToPlot = "average", colourPalette=colorss,
                                     mapTitle = "Average butterfly richness change", catMethod = "pretty", addLegend = F)
 do.call(addMapLegend, c(map.butterfly.ave, legendLabels="all", legendWidth=0.5))
 
@@ -204,7 +207,7 @@ write.csv(lhf, "data/rgbif_output.csv")
 ```
 
 ```{r plot rgbif, echo=FALSE, message=FALSE, warning=FALSE}
-lhf <- read.csv("data/rgbif_output.csv", row.names = 1 )
+lhf <- read.csv("../data/rgbif_output.csv", row.names = 1 )
 #lhf
 #head(lhf)
 #str(lhf)
@@ -286,7 +289,7 @@ for(i in 1:length(countries)){
 
 ```{r map rgbif, echo=FALSE, message=FALSE, warning=FALSE}
 countries <- lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),"country"]
-load("data/gbif.RData")
+load("../data/gbif.RData")
 #3) split by year
 library(vegan)
 post1980 <- c()
@@ -337,7 +340,7 @@ map.gbif <- joinCountryData2Map(data2, joinCode="ISO2", nameJoinColumn = "countr
 
 #average richness change
 #colorss <- c("firebrick", "red", "orangered", "orange", "yellow", "wheat", "green", "blue", "darkblue")
-colorss <- (heat.colors(10))
+colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
 map.gbif.plot <- mapCountryData(map.gbif, nameColumnToPlot = "change", colourPalette= colorss,
                        mapTitle = "Average bee richness change (%)", catMethod = "pretty", addLegend = F)
 do.call(addMapLegend, c(map.gbif.plot, legendLabels="all", legendWidth=0.5))
@@ -355,7 +358,7 @@ Spain provides an interesting study system because its natural habitats have bee
 In brief, after cleaning taxonomic names for erratas and synonims using the taxize package [@Chamberlain2018], we checked for sampling completeness for both time periods and compared rarefied species richness for each site before and after 1980 with a paired t-test (mean sample size pre-1980 per site: 16376 specimens; mean sample size pre-1980 per site: 2006 specimens; rarefication at 1000 specimens per site). We found that there were a reduced number of species at sites after 1980 (mean difference 20.27 species; 95 percent confidence interval: -1.03, 41.58; t = 2.44, df = 5, P = 0.06). However, this trend was highly dependent on site identity, as two out of three sites showed no richness declines. Interestingly, these two localities were the two that has experienced less dramatic land use changes (both are natural areas embeded into agro-ecosystemss). In contrast the other 4 localities experienced large urban or agricutural intensification. In addition, species not further recorded in the re-survey are not a random selection of species, but are clustered in a few genera. For example, Andrenids and their parasites (e.g. Nomada) showed the strongest declines whereas Halictids tend to be more stable (Sup mat 4). This pattern of winners and loosers of land use intensification is in accordance with findings elsewhere [e.g. @Bartomeus2013a], indicating that some clades are more sensitive to disturbance than others.
 
 ```{r  spain, echo=FALSE, message=FALSE, warning=FALSE}
-dat <- read.csv(file = "data/spain_clean_used.csv")
+dat <- read.csv(file = "../data/spain_clean_used.csv")
 #Repeat richness and genus
 rich_tot <- dcast(dat, when ~ ., value.var = "matched_name2", 
               fun.aggregate = function(x) length(unique(x)))
@@ -465,7 +468,7 @@ library(vegan)
 #read in NZ bee data
 ########################################
 
-d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+d <- read.csv("../data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
 #select required variables
 d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
@@ -636,7 +639,7 @@ for (i in 9){ #error saying break are not unique - how to fix?
 ############################################
     
     #load data
-    d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+    d <- read.csv(file = "../data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
     
     #remove unidentified species
     completeFun <- function(data, desiredCols) {
@@ -811,7 +814,7 @@ However, at the species level, we found that 11 out of 27 bee species increased 
 #analyse the bee dataset
 ############################################
 
-d <- read.csv("data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+d <- read.csv("../data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
 #select required variables
 d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
@@ -951,7 +954,7 @@ colnames(bee.est.cast)[14] <- "exotic_native"
 ############################################
 
 #load data
-d <- read.csv(file = "data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+d <- read.csv(file = "../data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
 
 #remove unidentified species
 completeFun <- function(data, desiredCols) {
