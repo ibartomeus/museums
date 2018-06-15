@@ -1,6 +1,8 @@
 ---
 title: "Response to reviewers"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -19,11 +21,11 @@ Thanks for the positive comments. We have now emphasized the methodological part
 
 > Line 104: How often are these changes in richness at the local scale mediated by introduced species at the regional scale? I suspect this paragraph is about native species exclusively, but it would be good to specify. 
 
-Yes, we specify now we are reporting data on native species trends at both scales. As there is not much information on exotic species displacing natives (other than by pathogen spillover) we do not discuss this issue here.
+Yes, we specify now that we are reporting data on native species trends at both scales. As there is not much information on exotic species displacing natives (other than by pathogen spillover) we do not discuss this issue here.
 
 > Line 195: Can you give a citation for this statement that 1800 specimens is enough for analyses? And does this vary by spatial area? 
 
-Thanks for pointing this out. The 1800 specimens threshold is arbitrary and of course, it could vary with the spatial area. However, there is no magic number to put a threshold. For a global analysis, this represents a good compromise between data availability and number of countries that can be included. We clarified that in text.
+Thanks for pointing this out. The 1800 specimens threshold is arbitrary and of course, a the optimal threshold could vary with the country area. However, there is no magic number to set up a threshold. For a global analysis, 1800 specimens represents a good compromise between data availability and number of countries that can be included. We clarified that in text.
 
 > And are the data you use here just museum specimens or museum specimens and observations? 
 
@@ -43,16 +45,15 @@ Thank you, we changed to "experienced".
 
 > Lines 304-305: Can you be more specific about what led you to believe that these data were incomplete? All museum data are incomplete, but your specific assessment of what makes these data from prior to 1970 unanalyzable will be helpful to future researchers using museum specimens to assess decline. 
 
-We added the clues that we used for assessing incompleteness: "For example, old specimens lack particular genus, and geographically restricted."
+We added the clues that we used for assessing incompleteness: "For example, some genus are not represented in old records."
 
 > Line 318: Can you please insert a reference for only using species that have 30 or more records? 
 
-Again, very good point on thresholds. We clarified that "Preliminary analysis using random subsampling of specimens from species with large sample size indicated that below 30 records the trends become too variable. [JAMIE, can you look onto this?]()
+Again, very good point on selecting thresholds. We clarified that "Preliminary analysis using random subsampling of specimens from species with large sample sizes indicated that below 30 records the trend become too variable. 
 
 > Lines 325-327: I know this is intuitive, but, if available, please insert a citation for this.  
 
-**Look for citation rarefied species confound evenness!
-
+We added a reference.
 
 > Line 349: “Loser” not “losers”
 
@@ -68,11 +69,11 @@ Fixed.
 
 > Lines 395-396: It might be useful to note here that museums potentially contain vouchers of many (perhaps thousands? tens of thousands?) of undescribed pollinator species and are thus critical resources for the taxonomic/systematics studies required prior to ecological and evolutionary research on global change. (There should be a handy citation on this in the museum literature.)
 
-** Add citation.
+We added a reference (Meier and Dikow 2004)
 
 > Figure 2c: I realize that a graduated scale is the best way to show these data because they are continuous. However, perhaps there is a color palette that happens to shift enough at zero so that decline vs. no indication of decline can be differentiated visually. Right now, it is difficult to discern which regions have decline according to the data. 
 
-** Jamie? Nacho - change colour palette to topo? (see my response in notes)
+We updated the color scale to make this ditiction clearer.
 
 > Figure 5. Please increase text size in y axes of both figures and the legend. 
 
@@ -104,7 +105,7 @@ Yes, this is also our experience with this group of species.
 
 > Fig. 3 – can we be confident that collecting effort was similar between the data from the 1980’s and the more recent data (2016)? How many specimens does each collection represent?
 
-**Comparisions of this kind are alwys hard to standardize. By rarefying species richness we minimize any bias due to sampling effort differences. We added the total number of spceimens collected by time period.
+Comparisions of this kind are alwys hard to standardize. By rarefying species richness we minimize any bias due to sampling effort differences. We added the total number of spceimens collected by time period.
 
 > Line 337 – “…ground-nesting, solitary bees.” [add hyphen and comma]
 
@@ -125,7 +126,7 @@ Changed.
 
 > References 14 and 30 – titles of journal articles are capitalized; should be lower case for consistency with other citations. 
 
-Fixed
+Fixed.
 
 > Reference 57 – is this really the title of the article?
 
@@ -150,6 +151,8 @@ We splited the sentence.
 > L55: replace “greater” with “more”
 > L59: I’d suggest to change into “diverse, including bees, etc.....” 
 
+Both edits changed as suggested.
+
 > L65: I think I understand what you mean, but it is a bit vague what is meant by the phrase “the uneven distribution of researchers”.
 
 We clarified this sentence.
@@ -160,7 +163,7 @@ Yes, you are right and we changed the wording to better reflect that result.
 
 > L100-101: Could be, but also vice versa, when records from amateur insect collectors are biased towards just these well-preserved natural areas, that (still) contain “interesting species”.
 
-Could be, but this bias would show even steeper declines. We clarified the sentence to refer to less human-developed areas.
+Could be, but this bias would show even steeper declines. We clarified the sentence to refer to "human-developed areas".
 
 > L102-103: For clarity, add that this concerns trends in richness, not population/species distribution trends of individual species. The distinction between trends in species richness and species population trends is also sometimes not entirely clear in other parts of the manuscript, please address.
 
@@ -196,7 +199,7 @@ Replaced.
 
 > L284-291: I do not really see the point/relevance of this section. The same story (albeit over a longer timeframe) goes for e.g. NW Europe where human activity has also affected pollinator communities (either positively or negatively) before specimen collection began (e.g. through large-scale forestation, development of large areas of heathlands and extensive grasslands, etc.). I’d suggest to omit this.
 
-We amoited this as suggested.
+We omited this as suggested.
 
 > L299: Please clarify what regional level.
 

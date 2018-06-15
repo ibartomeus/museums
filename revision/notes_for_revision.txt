@@ -8,38 +8,15 @@ Discover Life bee species guide and world checklist (Hymenoptera: Apoidea: Antho
 http://www.discoverlife.org/mp/20q?guide=Apoidea_species
 **this paper is in the ref list
 
-For declines papers Nacho needs to digg deeper, we are missing for example moths: @Young2017: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185683 Jamie can you add this one?
-**added to refs list
-
-This one can be cited if you want http://www.nrcresearchpress.com/doi/abs/10.1139/AS-2016-0038#.WsRuYZNubMI
-**added to refs list
-
 Add Pauw ref (now inserted manually). Also other evolutionary papers in the to do file can be added.-> Reconstruction of historical pollination rates reveals linked declines of pollinators and plants
 A Pauw, JA Hawkins - Oikos, 2011
 **added to refs list
 
-Look for citation rarefied species confound evenness. 
-
-Add: Renauld M, Hutchinson A, Loeb G, Poveda K, Connelly H. 2016. Landscape simplification constrains adult size in a native ground-nesting bee. PLoS One. 11(3):e0150946”
-**added to refs list
-
-Check Refs 14,30 and 57
-**Done, all fixed 
-
-Look citation of museums containing undescibed species. Maybe in refs already cited!
-
-
-OTHER STUFF:
-
-Emphasize when you are introducing a method for alleviating biases.
-
-Jamie: Test why 30 speciemes is enough to run pop models (See R to R)
-**I used 30 as the threshold as this is what you used in your 2013 PNAS paper. Didn't really give it much more thought other than "30 seems resonable". Do we need to do more testing or can we just cite your PNAS paper? 
+Look for citation rarefied species confound evenness. ->  Gotelli, Nicholas J.; Colwell, Robert K. (22 July 2001). "Quantifying biodiversity: procedures and pitfalls in the measurement and comparison of species richness". Ecology Letters. 4 (4): 379–391. doi:10.1046/j.1461-0248.2001.00230.x.
 
 Colour scale +/- and axes bigger font size.
 **Have fixed this for fig 5. Perhaps try changing the colour palette to "topo" as per the richness change graphs? I can't get this chunk of script to run for some reason, so can't see if the change improves the map or not. 
 
-Nacho: add the total number of spceimens collected by time period in Spain.
 
 
 
