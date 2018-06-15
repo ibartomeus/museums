@@ -1,0 +1,1151 @@
+---
+title: "Historic collections as a tool for assessing the global pollination crisis"
+author: "Bartomeus, I.^1^, Stavert, J.R.^2^, Ward, D.^2,3^, and Aguado, O.^4^"
+csl: ../data/philb_style.xml
+output:
+  word_document: default
+  html_document: default
+editor_options:
+  chunk_output_type: console
+bibliography: ../data/references2.xml
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#req: 6000 words max. inc ref's 3 figures
+#deadline: 1st April
+```
+
+*Affiliations:*
+^1^ Estación Biológica de Doñana (EBD-CSIC), Avda. Américo Vespucio 26, Isla de la Cartuja, E-41092 Sevilla, Spain   
+^2^ Centre for Biodiversity and Biosecurity, School of Biological Sciences, The University of Auckland, Auckland, New Zealand  
+^3^ Landcare Research, Auckland, New Zealand  
+^4^ Andrena Iniciativas y Estudios Medio Ambientales, Valladolid, Spain  
+*Correspondence: nacho.bartomeus@gmail.com   
+
+*Author contributions*: IB wrote the initial draft. DW and OA provided data. IB and JS analysed the data. All authors contributed to writing the manuscript.  
+
+#Abstract  
+
+There is increasing concern about the decline of pollinators worldwide. However, despite reports that pollinator declines are widespread, data are scarce and often geographically and taxonomically biased. These biases limit robust inference about any potential pollinator crisis. Non-structured and opportunistic historical specimen collection data provide the only source of historical information which can serve as a baseline for identifying pollinator declines. Specimens historically collected and preserved in museums not only provide information on where and when species were collected, but also contain other ecological information such as species interactions and morphological traits. Here, we provide a synthesis of how researchers have used historical data to identify long-term changes in biodiversity, species abundances, morphology and pollination services. Despite recent advances, we show that information on the status and trends of most pollinators is absent. We highlight opportunities and limitations to progress the assessment of pollinator declines globally. Finally, we demonstrate different approaches to analysing museum collection data using two contrasting case studies from distinct geographical regions (New Zealand and Spain) for which long-term pollinator declines have never been assessed. There is immense potential for museum specimens to play a central role in assessing the extent of the global pollination crisis. 
+
+*Keywords*: Museums, biodiversity, global change, bees, syrphid flies, butterflies.
+
+#Introduction  
+
+Animal pollinators are a critical component of both natural and agricultural ecosystems worldwide, given their role in plant reproduction [@Ollerton2011] and food security [@Klein2007]. As with many other taxa, pollinators are vulnerable to a range of anthropogenic disturbances, which can cause local and regional population declines or even extinctions. The vulnerability of pollinators was identified several decades ago, and was popularized in 1996 by the influential book “The forgotten pollinators” [@Buchmann1996]. However, early accounts of pollinator declines were somewhat anecdotal, given the lack of pollinator population data at that time. These initial claims triggered the first efforts to assess this potential issue and included the formation of a US National Academy of Science (NAS) panel in 2006, which was commissioned to assess the extent of pollinator declines. The NAS report concluded that “For most pollinator species […] the paucity of long-term population data and the incomplete knowledge of even basic taxonomy and ecology make definitive assessment of status exceedingly difficult” [@NationalResearchCouncil2007]. Since then, studies on pollinator responses to various global change drivers have multiplied rapidly. Researchers have now developed strong consensus that disturbances such as habitat destruction, land-use intensification, chemical exposure, exotic species and climate change are causing pollinator declines, and often act synergistically [@Goulson2015; @Potts2010]. Yet, the current status and population trends of most pollinator species worldwide remain unknown. For example, a recent IUCN report concluded that even for Europe’s comparatively well-studied bee fauna, more than 55% of bee species fell into the “Data Deficient” category [@Nieto2014]. For countries outside of Europe and the US, data on pollinator populations is almost non-existent.
+
+One of the main barriers to identifying long-term pollinator population trends is that pollinators are incredibly taxonomically diverse and include bees, flies, butterflies, beetles, birds, bats and lizards [@Ollerton2017]. Additionally, many pollinators are highly mobile, short-lived and small in size, which makes monitoring their populations difficult. Bees are generally regarded as the most important pollinator group due to their abundance, pollination efficiency and widespread distribution [@Winfree2011]. However, bees are diverse, with more than 20,000 species currently described worldwide [Asher], and often require expert taxonomists for identification. Furthermore, the uneven global distribution of research studies has resulted in geographical biases in bee decline research [@Martin2012], as well as taxonomic biases toward species that are easier to identify, such as bumblebees [@Archer2014; @DePalma2016].
+
+One solution to overcoming these barriers is the use of space-for-time substitutions, where researchers compare pollinator populations across environmental gradients. Despite critiques on the robustness of this approach [@Franca2016; @DePalma2018], these studies currently provide the most extensive source of pollinator population data. For example, researchers have recently estimated bee richness declines for every country in Europe using predictions from models of pollinator associations with different land-use types [@DePalma2017]. A second important method is the use of data collected from pollinator monitoring programs, which are often driven by citizen scientists. This approach was inspired by successful butterfly monitoring programs [@vanSwaay2008] and is currently being extended to other pollinator taxa. However, these programs require significant time to generate long-term datasets and cannot be used to assess historic pollinator populations. Finally, the most practical approach for assessing long-term historical pollinator population trends is to use historical information on species occurrences, which is often archived in museum collections [e.g., @Bartomeus2013a].
+
+In this review, we first assess current evidence for pollinator richness declines and present a roadmap outlining a strategy for using historical collection data to fill current knowledge gaps. We highlight the major technical difficulties involved in using historical collection data and demonstrate several approaches for analysing different types of collection data to assess long-term pollinator population trends. Finally, we highlight the need to move beyond simple biological diversity descriptors and unleash the power of historical data to assess changes in species interactions, ecosystem functioning and evolutionary changes through time.
+
+#Current evidence on pollinator declines    
+
+At a global scale, current evidence of pollinator declines is highly limited with most data restricted to the US and Europe. It is unsurprising that studies on pollinator declines are biased towards developed western countries, which have also been subject to extensive anthropogenic disturbance. For example, in the UK and the Netherlands, a citizen science based study using both observations and museum collection data detected strong richness declines for bees, hoverflies and flowering plants [@Biesmeijer2006]. In the Netherlands, museum data have also revealed coupled plant and pollinator declines [@Scheper2014]. Specifically, bee species with the strongest host plant preferences (i.e., specialists) tend to display the strongest declines and thus, are most threatened with extinction. However, it is important to note that even for these two countries, local estimates of pollinator richness are biased toward large cities and regions dominated by agriculture, and thus lack data for areas subject to less human activity. Further exploration of this dataset revealed that for declining pollinator taxa, the declining species richness trend has attenuated in recent decades [@Carvalheiro2013].
+
+Although studies of local native pollinator communities often detect richness declines, regional native richness may remain relatively stable. For example, regional estimates for bee species richness changes in the eastern US show moderate declines [@Bartomeus2013a] and very few regional extinctions [@Colla2012]. This is a pattern also detected in the UK, where relatively few regional bee extinctions has been reported [@Ollerton2014]. These regional findings contrast with the local extinctions reported in other studies. For example, Burkle et al. [@Burkle2013] compared historical observations of bee species’ occurrences in a large forested ecosystem with remaining forest remnants and reported several local extinctions. However, it is important to note that there is strong concordance between local extinctions and regional declines [@Bartomeus2013c], suggesting that local extinctions are indicators of regional population declines.
+
+Reported declines for bumblebees are the most severe of all pollinator taxa. For example, declines of up to 18% in local bumblebee richness have been reported for Belgium and the Netherlands [@Carvalheiro2013]. In other parts of Europe, local richness declines range from 5% in Great Britain [@Carvalheiro2013] to 42% in Denmark [@Dupont2011] and 70 % of bumblebee species are clasified as threatened or with declining population trends by IUCN [@Nieto2014]. In the USA, reported bumble declines are also severe with estimates ranging between 25% [@Grixti2009] and 30% [@Bartomeus2013a]. However, studies on species richness changes for other pollinator taxa are both scarce and geographically restricted. For butterflies, the only evidence of richness declines comes from Europe. Butterfly species richness has declined substantially in the Netherlands and Belgium since the 1950’s, although declines in Great Britain have been less severe [@Carvalheiro2013]. In Belgium, another study [@Maes2001] found that butterfly richness declines have been severe (approximately 30%), although this study assessed richness changes over a longer time period (early 1900’s to 2000) compared to [@Carvalheiro2013] (1950-69 vs. 1970-80 and 1970-89 vs. 1990-2009). In parts of Germany, up to 70% declines in local butterfly richness have been reported [@Wenzel2006]. Compared with other insect pollinator taxa, there are very few studies on hoverfly species richness changes, of which are all restricted to Europe. Specifically, in Belgium, Great Britain and the Netherlands, hoverfly richness changes have been modest [@Carvalheiro2013]. In the Netherlands, moderate increases in hoverfly species richness have been shown, whereas in Great Britain no significant directional changes were detected [@Biesmeijer2006]. Furthermore, directionality (richness increase or decrease) varies depending on the time period assessed. For example, hoverfly richness decreased in Belgium by approximately 6% from 1950-69 to 1970-80, but increased by approximately 10% between 1970-89 and 1990-2009 [@Carvalheiro2013].
+
+For illustrative purposes, we mapped the findings of these studies (Figure 1) to show the large differences in bee species richness worldwide, with bee diversity hotspots in mediterranean countries, against the paucity of countries for which we have any local or regional data on bee, syrphid or butterfly declines (raw data: Sup Mat 1). Except for outside of Europe and the US and for non-insect taxa, there are very few or no studies on pollinator declines using historical records. However, there are species-specific examples of historical losses from different parts of the world (e.g., *Bombus dalbhomi*; @Morales2013).
+
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(rworldmap)
+map <- read.csv("../data/bee_richness.csv")
+size <- read.csv("../data/country_area.csv")
+colnames(size) <- c("country", "size")
+map0 <- merge(map, size, all.x = TRUE)
+#remove some countries with doubtful sampling
+#map0 <- subset(map0, !country %in% c("Kuwait", "Guinea-Bissau", "Chad", "Mali", "Mauritania"))
+#map0[which(is.na(map0$size)),] #some can be rescued?
+#scatter.smooth(log(map0$species) ~ log(map0$size+1))
+m <- lm(log(map0$species) ~ log(map0$size+1), na.action = na.exclude) 
+map0$res <- residuals(m)
+#subset(map0, res < -2)
+map2 <- joinCountryData2Map(map0, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution")
+#need to use ISO's to make sure we don't carry over NA's due to country misspellings
+#have plotted countries with missing values as grey (shows we have richness for pretty much everywhere)
+par(mfrow = c(2,2))
+map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "white",
+               mapTitle = "Bee species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE)
+#add a modified legend using the same initial parameters as mapCountryData
+do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5))
+
+#need to add all the pannels.
+library(plyr)
+library(dplyr)
+library(reshape2)
+
+#read in data
+declines <- read.csv(file = "../data/richness_declines.V2.csv", header = TRUE, sep = ",", stringsAsFactors=FALSE,na.strings=c("","NA"))
+declines$percent_richness_change <- as.numeric(declines$percent_richness_change)
+declines$proportion_richness_change <- as.numeric(declines$proportion_richness_change)
+#nothing outside EU- USA. Spain and NZ can be added.
+#head(declines)
+
+#aggregate data
+declines.ave <- declines %>% 
+    group_by(country, taxa, study) %>% 
+    summarise(average = mean(percent_richness_change),
+              median = median(percent_richness_change),
+              max = max(percent_richness_change),
+              min = min(percent_richness_change))
+
+#make bee map
+declines.bee <- as.data.frame(filter(declines.ave, taxa == "bee")) %>% droplevels()
+declines.bee.2 <- declines.bee %>% 
+    group_by(country) %>% 
+    summarise(average = mean(average),
+              median = median(median),
+              max = max(max),
+              min = min(min))
+
+map.bee <- joinCountryData2Map(declines.bee.2, joinCode="NAME", nameJoinColumn = "country",
+                                   nameCountryColumn = "distribution")
+
+#average richness change
+colorss <- c(heat.colors(9))
+map.bee.ave <- mapCountryData(map.bee, nameColumnToPlot = "average", colourPalette= colorss,
+                                  mapTitle = "Average bee richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.bee.ave, legendLabels="all", legendWidth=0.5))
+
+#make syrphid map
+declines.syrphid <- as.data.frame(filter(declines.ave, taxa == "syrphid")) %>% droplevels()
+declines.syrphid.2 <- declines.syrphid %>% 
+    group_by(country) %>% 
+    summarise(average = mean(average),
+              median = median(median),
+              max = max(max),
+              min = min(min))
+
+map.syrphid <- joinCountryData2Map(declines.syrphid.2, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution")
+
+#average richness change
+colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
+map.syrphid.ave <- mapCountryData(map.syrphid, nameColumnToPlot = "average", colourPalette= colorss,
+                       mapTitle = "Average syrphid richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.syrphid.ave, legendLabels="all", legendWidth=0.5))
+
+
+#make butterfly map
+declines.butterfly <- as.data.frame(filter(declines.ave, taxa == "butterfly")) %>% droplevels()
+declines.butterfly.2 <- declines.butterfly %>% 
+    group_by(country) %>% 
+    summarise(average = mean(average),
+              median = median(median),
+              max = max(max),
+              min = min(min))
+
+
+map.butterfly <- joinCountryData2Map(declines.butterfly.2, joinCode="NAME", nameJoinColumn = "country",
+                                     nameCountryColumn = "distribution")
+
+#average richness change
+colorss <- c(heat.colors(6))
+map.butterfly.ave <- mapCountryData(map.butterfly, nameColumnToPlot = "average", colourPalette=colorss,
+                                    mapTitle = "Average butterfly richness change", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.butterfly.ave, legendLabels="all", legendWidth=0.5))
+
+par(mfrow = c(1,1))
+```
+
+**Figure 1:** Global map showing a) bee species richness per area (Data from www.discoverlife.org) calculated as the residuals of the log-log regression between bee species richness per country and country size. This correction accounts for the species-area relationship. Warmer colours indicate higher bee diversity. Note that some African countries may have incomplete listed faunas and that Alaska is included with US values. Countries with available historical changes in (b) bee, (c) syrphid and (d) butterfly richness within the last 100 years. Warmer colours indicate steeper average declines. Countries without data are coloured in white. 
+
+#Using historical collection specimen records to fill knowledge gaps
+
+Estimates of pollinator declines are lacking for most countries worldwide (Figure 1). The use of historic  collection data may be the most effective tool for filling these gaps. The core aim of museums is to conserve and curate historic collections. Thus, they serve as a precious repository for specimens, and at the same time, often ensure higher quality taxonomic identification. Yet, the major bottleneck for researchers wanting to use these data is the lack of digitization. Digitizing old collection specimens is not a trivial task and requires expertise to (i) ensure proper taxonomic identification [@Meier2004; @Huber1998; @Thomson2018], (ii) geo-locate the coordinates of collection events (e.g. http://www.geonames.org) and (iii) store the data in a properly curated database [@Hart2016]. Undertaking this process for tens or hundreds of thousands of museum collection specimens can be a daunting task and requires specialized personnel. While some tasks can only be undertaken by people with specialist skills (e.g., taxonomists), new technologies and citizen science can speed up the collection digitization process. High resolution photos of specimens and associated labels can be uploaded to the internet, where the task of image transcription can be distributed across hundreds or thousands of volunteers (e.g., https://www.zooniverse.org/). In addition, new algorithms have been created that allow location geo-referencing based on vernacular names (e.g. https://geoparser.io). However, achieving this requires adequate funding [@Wiggins1991].
+
+Where digitization has been completed, the data provide a rich source of information, allowing assessment of the current status and long-term trends of pollinator populations [e.g., @Bartomeus2013a; @Scheper2014; @Young2017]. This is despite the fact that museum collections often have a number of biases, including unknown sampling effort, personal interests of collectors and the curatorial techniques used. For example, collectors tend to target rare or unusual over common taxa, discard damaged individuals or only accession a certain number of individuals. In addition, collections are often made opportunistically, which may lead to spatial bias where difficult to access areas are under-sampled or conversely, where samples are biased towards easily accessed locations (e.g., towns, cities and roadsides). Further, museum collection data can only be used to determine where species are present, not where they are absent. However, given adequate sample sizes and appropriate statistical techniques, most biases can be accounted for [e.g., @Bartomeus2013a; @Keil2011; @Pearce2006].
+
+#The way forward: Prioritizing the low hanging fruit.   
+
+As we have shown, there is a paucity of countries for which historical data is available (Figure 1), and hence can be used as baseline for assessing pollinator population declines. While ideally one would aim to digitize all museum collection records, this is unlikely in the near future, predominantly due to funding constraints. Here we show how researchers can optimize the use of historical collection data to assess long-term pollinator population changes.
+
+GBIF (https://www.gbif.org/) is a central repository for global species occurrence data. Much of these data come from museums, private collections and government research institutes, but several other sources are also integrated. In combination with the popular statistical language R [@RCoreTeam2017], GBIF can be directly queried into your computer [@Chamberlain2014] and data availability can be checked for the region of interest. Focusing on bee taxa, we show here the number of modern and historic bee records currently available for different countries (Figure 2a, Sup mat 2). We selected thirty-seven countries that have more than 1800 records in each time period, making these data potentially analyzable without further data collection effort (see Figure 2b and c for an initial exploration). We selected this arbitrary threshold as a compromise between sample size and the number of countries that can be included in a general analysis. However, proper analysis of this dataset, including the determination of the minimum sample size needed per country, would require careful inspection of the data, We outline how this can be achived below using two examples (Spain and New Zealand). We show that most countries fall short in one or both axes. For example, a variety of countries located in different continents such as Switzerland, Sri Lanka, Nicaragua or Zimbawe have a decent number of recent records, but lack historical collections. Thus, researchers should prioritize the digitalization of old material before embarking on data analyses for these countries. It is also important to note that historical records are not always vouchered in local museums (i.e., many European and US museums contain large collections of pollinators from other countries). In contrast, more than 192 countries have less than 1000 records for both time periods, making them poor candidates for analysing long-term pollinator population trends. We focus here on bees, but similar exploratory analyses can easily be conducted for other taxa.
+
+```{r low hanging fruits, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(rgbif)
+apidae_key <- name_backbone(name="Apidae", rank = "family")$usageKey
+andrenidae_key <- name_backbone(name="Andrenidae", rank = "family")$usageKey
+halictidae_key <- name_backbone(name="Halictidae", rank = "family")$usageKey
+colletidae_key <- name_backbone(name="Colletidae", rank = "family")$usageKey
+megachilidae_key <- name_backbone(name="Megachilidae", rank = "family")$usageKey
+stenotritidae_key <- name_backbone(name="Stenotritidae", rank = "family")$usageKey
+melittidae_key <- name_backbone(name="Melittidae", rank = "family")$usageKey
+
+keys <- c(apidae_key, andrenidae_key, halictidae_key, halictidae_key, colletidae_key,
+          megachilidae_key, stenotritidae_key, melittidae_key)
+#loop through all families, through all countries and store in datarame
+country_codes <- isocodes$code 
+lhf <- matrix(ncol = 1+(7*2), nrow = length(country_codes))
+lhf <- as.data.frame(lhf)
+colnames(lhf) <- c("country", "apidaepre1980", "andrenidaepre1980", "halictidaepre1980", "colletidaepre1980", 
+                    "megachilidaepre1980", "stenotritidaepre1980", "melittidaepre1980",
+                   "apidaepost1980", "andrenidaepost1980", "halictidaepost1980", "colletidaepost1980", 
+                    "megachilidaepost1980", "stenotritidaepost1980", "melittidaepost1980")
+for(i in 1:length(country_codes)){
+    for(j in 1:length(keys)){
+        lhf[i,1] <- country_codes[i]
+        lhf[i,1+j] <- as.numeric(occ_count(taxonKey= keys[j],
+                            from = 1980, to = 2018,
+                            georeferenced=TRUE,
+                            country = country_codes[i]))
+        lhf[i,1+j+7] <- as.numeric(occ_count(taxonKey= keys[j],
+                            from = 1850, to = 1979,
+                            georeferenced=TRUE,
+                            country = country_codes[i]))
+    }
+}
+#very slow, we should save the data and load here when needed.
+lhf$post1980 <- rowSums(lhf[,2:8])
+lhf$pre1980 <- rowSums(lhf[,9:15])
+write.csv(lhf, "data/rgbif_output.csv")
+```
+
+```{r plot rgbif, echo=FALSE, message=FALSE, warning=FALSE}
+lhf <- read.csv("../data/rgbif_output.csv", row.names = 1 )
+#lhf
+#head(lhf)
+#str(lhf)
+lhf <- lhf[order(lhf$pre1980),c(1,17,18)]
+#write.csv(lhf, "data/SpMat2.csv")
+#plot(lhf$post1980, lhf$pre1980, xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country), xlim = c(0,300000), ylim = c(0, 300000))
+#abline(h = 150000, v = 150000)
+#plot needs legend by country, and to be ggplotted. Add some labels will be good, at least for ES and NZ, which we explore below.
+
+#alternative plot
+lhf$percent_post1980 <- lhf$post1980 / (lhf$pre1980+lhf$post1980)
+lhf$percent_pre1980 <- lhf$pre1980 / (lhf$pre1980+lhf$post1980)
+
+#plot(sort(lhf$percent_post1980), xlab = "post1980", ylab = "%", col = as.factor(lhf$country))
+#Add country labels in x axes.
+
+lhf <- lhf[-which(is.na(lhf$country)),]
+#plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = as.factor(lhf$country))
+#abline(h = 7.5, v = 7.5)
+lhf$log_pre1980 <- log(lhf$pre1980)
+lhf$log_post1980 <- log(lhf$post1980)
+
+#table?
+#lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) < 7.5),]
+#lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),]
+#nrow(lhf[which(log(lhf$post1980) < 6.9 & log(lhf$pre1980) < 6.9),])
+# poland switcherland need old records! > 10000 vs 300
+# sri lanka and french guayana, 
+# nicaragua, venezuela, Ecuador..>2000 vs >500.
+# Colombia & Panama, zimbawe > 3000 vs >1500
+#lhf[which(lhf$country == "ES" | lhf$country == "NZ"),]
+col <- ifelse(lhf$country == "ES" | lhf$country == "NZ", "red", "black")
+col <- ifelse(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5, col, "grey")
+pchs <- ifelse(lhf$country == "ES" | lhf$country == "NZ", 19, 1)
+plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs, las = 1)
+temp <- subset(lhf, country %in% c("ES", "NZ"))
+text(x = temp$log_post1980, y = temp$log_pre1980+2 , labels = temp$country, col = "red")
+abline(h = 7.5, v = 7.5)
+#36 countries!
+#exp(7.5) #> 1800 records in both axes!
+```
+
+```{r get rgbif, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+#Can we do rar richness per time period $ country and test? YES!! 
+#1) Select countries.
+countries <- lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),"country"]
+#2) Get all data
+occ_list <- list()
+for(i in 1:length(countries)){
+    taxon_list <- list()
+    count_list <- list()
+    for(j in 1:length(keys)){
+        taxon_list[[j]] <- occ_data(taxonKey= keys[j], 
+                            year = '1850,2018', 
+                            country = as.character(countries[i]),
+                            limit = 200000)
+        #count_list[[j]] <- occ_count(taxonKey= keys[j],
+                         #    from = 1850, to = 1979,
+                         #   georeferenced=TRUE,
+                         #   country = countries[i])
+    }
+    select <- c("name", "year")
+    out <- rbind(as.data.frame(taxon_list[[1]]$data[,select]), 
+                 as.data.frame(taxon_list[[2]]$data[,select]),
+                 as.data.frame(taxon_list[[3]]$data[,select]),
+                 as.data.frame(taxon_list[[4]]$data[,select]),
+                 as.data.frame(taxon_list[[5]]$data[,select]),
+                 as.data.frame(taxon_list[[6]]$data[,select]),
+                 as.data.frame(taxon_list[[7]]$data[,select]),
+                 as.data.frame(taxon_list[[8]]$data[,select]))
+    occ_list[[i]] <- out
+    print(i)
+}
+#save output
+#save(occ_list, file = "data/gbif.RData")
+
+
+```
+
+```{r map rgbif, echo=FALSE, message=FALSE, warning=FALSE}
+countries <- lhf[which(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5),"country"]
+load("../data/gbif.RData")
+#3) split by year
+library(vegan)
+post1980 <- c()
+pre1980 <- c()
+n <- c()
+for(i in 1:length(countries)){
+    dat <- occ_list[[i]]
+    #nrow(dat) 
+    dat2 <- dat[-which(is.na(dat$name)),]
+    dat3 <- dat2[which(is.na(as.numeric(dat2$name))),]
+    dat4 <- subset(dat3, name != "Apis mellifera")
+    #nrow(dat1) 
+    dat1 <- dat4
+    #unique(dat1$name)
+    dat1$period <- ifelse(dat1$year < 1980, "pre1980", "post1980")
+    #table(dat1$period) # :(
+#4) rar richness
+    comm <- dcast(dat1, period ~ name, fun.aggregate = length, value.var = "name")
+    rownames(comm) <- comm$period
+    comm <- comm[,-1]
+    temp <- rarefy(comm, sample = round(min(table(dat1$period))*0.75))
+    #str(temp)
+    post1980[i] <- temp[1]
+    pre1980[i] <- temp[2]
+    n[i] <- round(min(table(dat1$period))*0.75)
+}
+#5) t test!
+data <- data.frame(countries = as.character(countries), pre1980 = pre1980, post1980 = post1980, n = n)
+#head(data)
+#maybe delete n < 500?
+data2 <- subset(data, n > 500) #28 countries with enought data.
+
+#t.test(data2$pre1980, data2$post1980, paired = TRUE)
+
+boxplot(log(data2$pre1980), log(data2$post1980), names = c("pre1980", "post1980"), ylab = "log rarefied species richness", 
+            las = 1, border = "light grey")
+points(x = c(rep(1,nrow(data2)), rep (2,nrow(data2))), y = c(log(data2$pre1980), log(data2$post1980)), pch = 1)
+for(i in 1:nrow(data2)){
+    lines(x = 1:2, y = c(log(data2$pre1980[i]), log(data2$post1980[i])), 
+          col = ifelse((data2$pre1980[i] - data2$post1980[i]) > 1, "red", "blue"))
+}
+
+#map
+data2$change <- ((data2$post1980 - data2$pre1980)*100 / data2$pre1980)
+#mean(data2$change)
+map.gbif <- joinCountryData2Map(data2, joinCode="ISO2", nameJoinColumn = "countries",
+                            nameCountryColumn = "countries")
+
+#average richness change
+#colorss <- c("firebrick", "red", "orangered", "orange", "yellow", "wheat", "green", "blue", "darkblue")
+colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
+map.gbif.plot <- mapCountryData(map.gbif, nameColumnToPlot = "change", colourPalette= colorss,
+                       mapTitle = "Average bee richness change (%)", catMethod = "pretty", addLegend = F)
+do.call(addMapLegend, c(map.gbif.plot, legendLabels="all", legendWidth=0.5))
+
+```
+
+**Figure 2:** Exploration of available data for bee records showing (a) The number of bee occurrences before 1980 and after 1980 in GBIF for each country. The upper right quadrat (records in black) contains well covered countries with New Zealand (NZ) and Spain (ES) marked in red. For those countries, we show a temptaive comparision of the rarefied number of species in both time periods and show that for most countries the number of species recorded is slightly lower (red lines) in recent time periods (b). A more careful analysis of these data would help complete the map of global declines (c). In the map we plot % change is species recorded in gbif for the available countries to show the geographic coverage. Note that this data are likely to contain strong undetected biases, as we explore below.  
+
+As stated above, once historical datasets are made available, researchers must identify any potential biases. We explore this process with two contrasting dataset examples (Spain and New Zealand). In the Spanish dataset, most of the data comes from a few specific locations and was collected by a few specific teams. Hence the geographical coverage is not representative. Even worse, historical and modern collections do not overlap spatially, making any inference impossible to interpret. In this case, we contacted the original collectors of the historical data to define their sampling protocols. We then resurveyed the same sites (30 years after the original surveys) using the same sampling protocols. In contrast, the New Zealand dataset includes a wide suite of collectors and collection locations but shows no obvious biases in geographical and taxonomic coverage through time. We complemented gbif data with further museum collections for bees and flies and analyze the regional richness changes through time. For these two case studies, we provide annotated R scripts as examples of analysis for different dataset types (Sup Mat 3). These different analytical approaches allow us to reveal long-term trends in pollinator populations for regions with contrasting sampling histories. We hope this resource will encourage researchers to analyse data for regions where current information on pollinator declines is lacking.
+
+#Case study one: Spain  
+
+Spain provides an interesting study system because its natural habitats have been transformed extensively by humans over a long time period, but land-use is not as intensive compared with many other European countries. In addition, Spain is a bee diversity hotspot (Figure 1a) and maintains a relatively heterogeneous landscape. Spain has already digitalized a large amount of pollinator occurrence data for both historic and recent periods (Figure 2a). However, visual inspection of the data revealed clustering around a few localities. Further, historic records did not spatially match recent records, making comparisons difficult. For this dataset, most of the historic records were located around Valladolid and were collected by Enrique Asensio and collaborators. There has been no recent sampling of bees in this area. However, we found that Enrique systematically sampled six independent locations and that additional historical data were available at the “Museo de Historia Nacional” and other minor collections (E. Asensio personal communication). Digitization of these records, along with a re-survey of the original sampling locations provided an excellent dataset for a before and after comparison of bee communities. 
+
+In brief, after cleaning taxonomic names for erratas and synonims using the taxize package [@Chamberlain2018], we checked for sampling completeness for both time periods and compared rarefied species richness for each site before and after 1980 with a paired t-test (mean sample size pre-1980 per site: 16376 specimens; mean sample size pre-1980 per site: 2006 specimens; rarefication at 1000 specimens per site). We found that there were a reduced number of species at sites after 1980 (mean difference 20.27 species; 95 percent confidence interval: -1.03, 41.58; t = 2.44, df = 5, P = 0.06). However, this trend was highly dependent on site identity, as two out of three sites showed no richness declines. Interestingly, these two localities were the two that has experienced less dramatic land use changes (both are natural areas embeded into agro-ecosystemss). In contrast the other 4 localities experienced large urban or agricutural intensification. In addition, species not further recorded in the re-survey are not a random selection of species, but are clustered in a few genera. For example, Andrenids and their parasites (e.g. Nomada) showed the strongest declines whereas Halictids tend to be more stable (Sup mat 4). This pattern of winners and loosers of land use intensification is in accordance with findings elsewhere [e.g. @Bartomeus2013a], indicating that some clades are more sensitive to disturbance than others.
+
+```{r  spain, echo=FALSE, message=FALSE, warning=FALSE}
+dat <- read.csv(file = "../data/spain_clean_used.csv")
+#Repeat richness and genus
+rich_tot <- dcast(dat, when ~ ., value.var = "matched_name2", 
+              fun.aggregate = function(x) length(unique(x)))
+#rich_tot #wow.
+#extract genus
+pos <- regexpr(dat$matched_name2, pattern = " ", fixed = TRUE)
+dat$genus <- substr(dat$matched_name2, 
+                    start = 1,
+                    stop = pos-1)
+genus_tot <- dcast(dat, when ~ ., value.var = "genus", 
+              fun.aggregate = function(x) length(unique(x)))
+genus_tot2 <- dcast(dat,  genus ~ when, value.var = "genus", 
+              fun.aggregate = function(x) length(unique(x)))
+#genus_tot #wow, lot's of genus lost!
+#genus_tot2
+#subset(genus_tot2, now == 0 & asensio == 1) #20 lost!
+#subset(genus_tot2, now == 1 & asensio == 1) #27 stable
+#subset(genus_tot2, now == 1 & asensio == 0) #2 added!
+genus_tot3 <- dcast(dat,  genus ~ when, value.var = "matched_name2", 
+              fun.aggregate = function(x) length(unique(x)))
+#genus_tot3
+#colSums(genus_tot3[,2:3])
+#write.csv(genus_tot3, "data/SupMat4.csv")
+
+#losts easely spotted: Andrenas, Nomadas & Tyreus, prosopis, teralonias
+
+#calculate richness per site and time period
+#head(dat)
+# rich <- dcast(dat, locality ~ when, value.var = "matched_name2", 
+#               fun.aggregate = function(x) length(unique(x)))
+# (rich <- rich[-8,])
+# t.test(rich$asensio[-4], rich$now[-4], paired = TRUE) #0.056!
+# 
+# boxplot(rich$asensio[c(1,2,3,5,6,7)], rich$now[c(1,2,3,5,6,7)], names = c("1980's", "2016"), ylab = "species richness", 
+#             las = 1, border = "light grey")
+# points(x = c(rep(1,6), rep (2,6)), y = c(rich$asensio[c(1,2,3,5,6,7)],
+#                                          rich$now[c(1,2,3,5,6,7)]), col = rep(c(1,2,3,5,6,7),2), pch = 19)
+# for(i in c(1,2,3,5,6,7)){
+#     lines(x = 1:2, y = c(rich$asensio[i], rich$now[i]), col = i)
+# }
+
+library(vegan)
+#str(dat)
+#unique(dat$freq)
+dat[which(is.na(dat$freq)),"freq"] <- 1 
+dat$freq <- as.numeric(dat$freq)
+temp <- subset(dat, when == "now")
+comm <- dcast(temp, locality ~ matched_name2, value.var = "freq", 
+              fun.aggregate = sum, na.rm = TRUE)
+rownames(comm)[-8] <- as.character(comm$locality[-8])
+comm2 <- comm[,-1] 
+comm2 <- comm2[-8,] 
+#rowSums(comm2) #toro is low, but same sampling effort. 
+#plot(specaccum(comm2, "random"))
+#rarecurve(comm2) #Good!
+now <- rarefy(x = comm2, sample = 1000)
+
+temp <- subset(dat, when == "asensio")
+comm <- dcast(temp, locality ~ matched_name2, value.var = "freq", 
+              fun.aggregate = sum, na.rm = TRUE)
+rownames(comm)[-8] <- as.character(comm$locality[-8])
+comm2 <- comm[,-1]
+#rowSums(comm2) #sanbernardo useless. Others ok! Delives super sampled!!
+#plot(specaccum(comm2, "random"))
+#rarecurve(comm2) #for delives quite complete!
+#head(comm2)
+#rarecurve(comm2[-1,]) #for the rest is ok, but sanbernardo.
+#abline(v = 1000)
+asensio <- rarefy(x = comm2, sample = 1000)
+
+ttest <- t.test(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,6,7)], paired = TRUE)
+#ttest #0.05828
+
+boxplot(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,6,7)], names = c("1980's", "2016"), ylab = "rarefied species richness", 
+            las = 1, border = "light grey")
+points(x = c(rep(1,6), rep (2,6)), y = c(asensio[c(1,2,3,5,6,7)], now[c(1,2,3,5,6,7)]), col = rep(c(1,2,3,5,6,7),2), pch = 19)
+for(i in c(1,2,3,5,6,7)){
+    lines(x = 1:2, y = c(asensio[i], now[i]), col = i)
+}
+
+```
+
+**Figure 3:** Comparision of historic collections (1980's) and modern re-surveys (2016) of the rarefied richness of bees at six Spanish localities. 
+
+#Case study two: New Zealand
+
+In contrast to Spain, New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of New Zealand’s pollinator fauna is also relatively depauperate. For example, New Zealand has only 28 native bee species [@Donovan2007], which is a fraction of nearby Australia’s c. 1600 species [@Ascher2015]. However, New Zealand has a surprisingly high diversity of flies (Diptera), which are important pollinators in many ecosystems [@Newstrom2005]. Thus, New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.
+
+In global terms, human colonisation of New Zealand was relatively recent (c. 740 y) [@Wilmshurst2008]. Before human arrival, New Zealand was predominately forested, but has since been dramatically altered by people. Therefore, we can use museum records to identify trends in pollinator communities during New Zealand’s more recent history. We used New Zealand bee collection records gathered from multiple sources, including university, research institute, museum and private collections. Collection records from the New Zealand Arthropod Collection (NZAC) are freely available online (https://scd.landcareresearch.co.nz/). Fly pollinator data were obtained from three participating New Zealand museums and covers two families (Calliphoridae and Syrphidae) that contain important fly pollinators. Collections for the bee and fly datasets span over 100 years (early 1900s to late 2000s).
+
+We followed protocols outlined in [@Bartomeus2013a] to analyse the New Zealand data. First, we filtered our original datasets so that data used for analyses only included independent collection events. To do this, we removed specimens collected at the same location, on the same date, and by the same collector. We found our data had reasonable coverage along time periods and across space, although there was a peak in collection occurrences from 1960-1980. Further exploration of the New Zealand native bee data raised doubts on collection completeness in records prior to 1970. For example, some genus are not represented in old records. Hence, we removed these records from further analyses. We accounted for differences in collection effort through binning collection records by time so that each bin had a similar number of records but a different number of years. We then estimated species richness for each time period bin by rarefying all bins to an equal number of specimens and calculated the rarefied species richness ±SE for each bin. Finally, we estimated the significance of change in richness using a permutation test that randomly reordered time periods and calculated the correlation between time period and species richness. Thus, reported P-values were the proportion of permutations that had higher or lower correlations compared to the correlation between richness and the actual chronological time period sequence.
+
+Second, to determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. For species that showed overdispersion, we used a quasi-binomial distribution. Further, we only included species in this analysis for which we had 30 or more independent records [@Bartomeus2013a]. Preliminary analysis using random subsampling of specimens from species with large sample size indicated that below 30 records the trends become too variable. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected that year.
+
+We found that rarefied richness for native bees was stable through time. Exotic bees showed an increase in rarefied richness, but this trend was non-significant (P-value for both natives and exotic bees > 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups > 0.05). Note that rarefied richness is sensitive to species evenness, so increases in rarefied richness over time may actually indicate increased species evenness and vice-versa for decreased richness [Gotelli].
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(plyr)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(maps)
+library(vegan)
+
+########################################
+#read in NZ bee data
+########################################
+
+d <- read.csv("../data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#select required variables
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
+d <- na.omit(d) #remove NAs
+
+#remove honeybees
+d$species <- as.factor(d$species)
+d <- d[ ! d$species %in% c("Apis mellifera"), ]
+d$species <- droplevels(d$species)
+
+#need to correct space between genus and species
+#levels(d$species)
+#d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+d$Gen_sp <- d$species
+#sort(table(d$Gen_sp))
+#sum(table(d$Gen_sp))
+#head(d)
+
+#standardise dates
+date2 <- strptime(d$date, "%d/%m/%Y")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+#head(d$month)
+
+#select fields to be independent
+#completeFun <- function(data, desiredCols) {
+#  completeVec <- complete.cases(data[, desiredCols])
+#  return(data[completeVec, ])
+#}
+
+#d <- completeFun(d, c("day", "month", "year"))
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
+dup <- duplicated(uni)
+
+# remove duplicates
+d2 <- d[-which(dup == TRUE),]
+
+#retain only sweep netting and no data
+#keep <- c("sweep", "no_data") #method is missing for a number of records
+#d2 <- d2[d2$method %in% keep, ]
+
+native <- filter(d2, exotic_native == "native") %>% droplevels()
+exotic <- filter(d2, exotic_native == "exotic") %>% droplevels()
+
+#############################################
+#Resampling Analysis for natives species 
+#############################################
+
+par(mfrow = c(2,2), mar = c(4,4,2,1))
+
+#fin year = 0 quick and dirty
+#length(which(native$year < 1900))
+native <- subset(native, year > 1969)
+for (i in 10){
+    break1 <- quantile(native$year, probs = seq(0,1,1/i), na.rm = TRUE)
+    #x <- c(1909,1970,1971,1974,1976,1978,1981,1986,1994,2012)
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+    }
+    native$time_period_quant  <- cut(native$year, breaks = break1, labels = lab)
+    comm2 <- table(native$time_period_quant, factor(native$Gen_sp))
+    (x2 <- rarefy(comm2,88, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    #if(i == 3){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 150)}
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    #if(p > 0.05){
+        #abline(m, lty = 2)}
+    #else{
+        #abline(m, lty = 1)}    
+    #if(i == 10){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 150)}    
+    #rarecurve(comm2)
+    #abline(v = 1000)
+    
+}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of native bee species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+
+#############################################
+#Resampling Analysis for exotic species 
+#############################################
+
+#length(which(exotic$year < 1900))
+exotic <- subset(exotic, year > 1800)
+for (i in 9){ #error saying break are not unique - how to fix?
+    break1 <- quantile(exotic$year, probs = seq(0,1,1/6), na.rm = TRUE)
+    x <- c(1916,1952,1953,1969,1971,1975,1978,1983,1991,2011)
+    lab <- c(1:i)
+    for(j in 1:i){
+        lab[j] <- paste(as.numeric(x)[j],as.numeric(x)[j+1], sep = "-")
+    }
+    exotic$time_period_quant  <- cut(exotic$year, breaks = x, labels = lab)
+    comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+    (x2 <- rarefy(comm2,25, se = TRUE)) #same result as my resampling...
+    #rar[[i-2+10]] <- x2
+    #str(x2)
+    time <- c(1:i)
+    for(j in 1:i){
+        time[j] <- (as.numeric(x)[j] + as.numeric(x)[j+1])/2
+    }
+    xx2 <- as.data.frame(x2)[1,]
+    se <- as.data.frame(x2)[2,]
+    #if(i == 3){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 25)}
+    m <- lm(t(xx2)~ time)
+    summary(m)
+    corr <- cor(t(xx2), time, use = "complete.obs")
+    cor_dis <- c(1:1000)
+    for (k in 1:1000){
+        cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+    }
+    #hist(cor_dis)
+    #lines(c(corr, corr), c(0,200), col = "red")
+    (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+    #with lm
+    #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+    #abline(m, lty = 2)}
+    #else{
+    #abline(m, lty = 1)}    
+    #with corrs
+    #if(p > 0.05){
+      # abline(m, lty = 2)}
+   # else{
+       # abline(m, lty = 1)}    
+   # if(i == 10){
+        #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+        #abline(v = 25)}    
+    #rarecurve(comm2)
+    #abline(v = 1000)
+}
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of exotic bee species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+
+############################################
+#resampling analysis for flies
+############################################
+    
+    #load data
+    d <- read.csv(file = "../data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+    
+    #remove unidentified species
+    completeFun <- function(data, desiredCols) {
+        completeVec <- complete.cases(data[, desiredCols])
+        return(data[completeVec, ])
+    }
+    
+    d <- completeFun(d, "exotic_native")
+    
+    d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+    
+    #date
+    date2 <- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
+    d$jday <- date2$yday
+    d$year <- 1900 + date2$year
+    d$month <- date2$mon + 1
+    
+    #select fields to be independent
+    #two approaches lat = 0 and others
+    lat <- subset(d, Lat != 0 & is.na(year) == F)#remove all records with no latitude recording
+    #unique fields by lata, long, day of the year and year
+    uni <- as.data.frame(cbind(lat$Gen_sp, lat$Lat, lat$Long, lat$jday, lat$year))
+    dup <- duplicated(uni)
+    #d2 <- d[-which(dup == TRUE),]
+    # lat/long = 0
+    #lat0 <- subset(d, Dlat == 0 & is.na(year) == F)
+    #str(lat0)
+    #uni2 <- as.data.frame(cbind(lat0$Gen, lat0$sp, lat0$LocalityStr, lat0$SubDivStr, lat0$StateProv, lat0$Country, lat0$jday, lat0$year))
+    #str(uni2)
+    #dup2 <- duplicated(uni2)
+    
+    # remove duplicates
+    lat <- lat[-which(dup == TRUE),]
+    #lat0 <- lat0[-which(dup2 == TRUE),]
+    #d2 <- rbind(lat,lat0)
+    d2 <- lat
+    native <- filter(d2, exotic_native == "native") %>% droplevels()
+    exotic <- filter(d2, exotic_native == "exotic") %>% droplevels()
+    
+    #length(which(native$year < 1900))
+    native <- subset(native, year > 1900)
+    for (i in 3:10){
+        break1 <- quantile(native$year, probs = seq(0,1,1/i))
+        lab <- c(1:i)
+        for(j in 1:i){
+            lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+        }
+        native$time_period_quant  <- cut(native$year, breaks = break1, labels = lab)
+        comm2 <- table(native$time_period_quant, factor(native$Gen_sp))
+        (x2 <- rarefy(comm2,100, se = TRUE)) #same result as my resampling...
+        #rar[[i-2+10]] <- x2
+        #str(x2)
+        time <- c(1:i)
+        for(j in 1:i){
+            time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+        }
+        xx2 <- as.data.frame(x2)[1,]
+        se <- as.data.frame(x2)[2,]
+        #if(i == 3){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 100)}
+        m <- lm(t(xx2)~ time)
+        summary(m)
+        corr <- cor(t(xx2), time, use = "complete.obs")
+        cor_dis <- c(1:1000)
+        for (k in 1:1000){
+            cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+        }
+        #hist(cor_dis)
+        #lines(c(corr, corr), c(0,200), col = "red")
+        (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+        #with lm
+        #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+        #abline(m, lty = 2)}
+        #else{
+        #abline(m, lty = 1)}    
+        #with corrs
+        #if(p > 0.05){
+           # abline(m, lty = 2)}
+        #else{
+            #abline(m, lty = 1)}    
+        #if(i == 10){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 40)}	
+        #rarecurve(comm2)
+        #abline(v = 1000)
+    }
+    
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of native fly species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+    
+    ##########################################################################
+    #Resampling Analysis for exotic flies
+    ##########################################################################
+    
+    #fin year = 0 quick and dirty
+    #length(which(exotic$year < 1900))
+    exotic <- subset(exotic, year > 1900)
+    for (i in 3:10){
+        break1 <- quantile(exotic$year, probs = seq(0,1,1/i)) #breaks can be equal, un tie those
+        if(any(duplicated(break1))){
+            break1[duplicated(break1)] <- break1[duplicated(break1)]+1
+        }
+        if(any(duplicated(break1))){
+            break1[duplicated(break1)] <- break1[duplicated(break1)]+1
+        }
+        lab <- c(1:i)
+        for(j in 1:i){
+            lab[j] <- paste(as.numeric(break1)[j],as.numeric(break1)[j+1], sep = "-")
+        }
+        exotic$time_period_quant  <- cut(exotic$year, breaks = break1, labels = lab)
+        comm2 <- table(exotic$time_period_quant, factor(exotic$Gen_sp))
+        (x2 <- rarefy(comm2,20, se = TRUE)) #same result as my resampling...
+        #rar[[i-2+10]] <- x2
+        #str(x2)
+        time <- c(1:i)
+        for(j in 1:i){
+            time[j] <- (as.numeric(break1)[j] + as.numeric(break1)[j+1])/2
+        }
+        xx2 <- as.data.frame(x2)[1,]
+        se <- as.data.frame(x2)[2,]
+        #if(i == 3){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 20)}
+        m <- lm(t(xx2)~ time)
+        summary(m)
+        corr <- cor(t(xx2), time, use = "complete.obs")
+        cor_dis <- c(1:1000)
+        for (k in 1:1000){
+            cor_dis[k] <- cor(sample(t(xx2),i), time, use = "complete.obs")
+        }
+        #hist(cor_dis)
+        #lines(c(corr, corr), c(0,200), col = "red")
+        (p <- pnorm(corr, mean = mean(cor_dis), sd = sd(cor_dis)))
+        #with lm
+        #if(summary(m)$coef[8]> 0.05 | is.na(summary(m)$coef[8]) == TRUE){
+        #abline(m, lty = 2)}
+        #else{
+        #abline(m, lty = 1)}    
+        #with corrs
+        #if(p > 0.05){
+            #abline(m, lty = 2)}
+        #else{
+            #abline(m, lty = 1)}    
+        #if(i == 10){
+            #rarecurve(comm2, label = TRUE, step = 20, cex = 0.1, las = 2)
+            #abline(v = 40)}	
+        #rarecurve(comm2)
+        #abline(v = 1000)
+    }
+    
+    plot(time,t(xx2), xlab = "", las = 2, ylab = "Number of exotic fly species", main = "", xaxt = "n", ylim = c(min(xx2, na.rm = TRUE)- max(se), max(xx2, na.rm = TRUE)+ max(se)))
+    axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
+    arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
+    abline(m, lty = 2)
+    
+    ##########################################################################
+    #END
+    ##########################################################################
+
+```
+
+**Figure 4:** Changes in rarefied species richness for different pollinator groups in New Zealand over time. All trends were non-significant (α = 0.05).
+
+However, at the species level, we found that 11 out of 27 bee species increased in relative occurrence over time (10 native and one exotic) and three bee species declined in relative occurrence (one native and two exotic) (Figure 3). Interestingly, the two exotic bee species that declined in relative occurrence were both in the genus Bombus, which were intentionally introduced into New Zealand for the pollination of crops. Native bees that increased in relative occurrence were mostly from the genus Leioproctus, which are medium sized, ground-nesting, solitary bees. Only one out of 14 fly species increased in relative occurrence, which was exotic, whereas four species decreased in occurrence (three native and one exotic). Native flies that decreased in relative occurrence were all Syrphidae in the genus Helophilus.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+############################################
+#analyse the bee dataset
+############################################
+
+d <- read.csv("../data/NZBees_allrecords.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#select required variables
+d <- select(d, one_of(c("species", "date", "locality", "collector", "collection", "method", "exotic_native")))
+d <- na.omit(d) #remove NAs
+
+#remove honeybees
+d$species <- as.factor(d$species)
+d <- d[ ! d$species %in% c("Apis mellifera"), ]
+d$species <- droplevels(d$species)
+
+#need to correct space between genus and species
+#levels(d$species)
+#d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+d$Gen_sp <- d$species
+#sort(table(d$Gen_sp))
+#sum(table(d$Gen_sp))
+#head(d)
+
+#standardise dates
+date2 <- strptime(d$date, "%d/%m/%Y")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+#head(d$month)
+
+#select fields to be independent
+#completeFun <- function(data, desiredCols) {
+#  completeVec <- complete.cases(data[, desiredCols])
+#  return(data[completeVec, ])
+#}
+
+#d <- completeFun(d, c("day", "month", "year"))
+uni <- as.data.frame(cbind(d$Gen_sp, d$locality, d$collector, d$jday, d$year))
+#str(uni)
+dup <- duplicated(uni)
+
+# remove duplicates
+d2 <- d[-which(dup == TRUE),]
+
+#retain only sweep netting and no data
+#keep <- c("sweep", "no_data") #method is missing for a number of records
+#d2 <- d2[d2$method %in% keep, ]
+
+#create dataframes to remove species with less that 30 records
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+#visualize the data: #not with bees
+#plot(d2$Long, d2$Lat)
+#library(maps)
+#map("world", col="red", add=TRUE)
+
+#plot(d2$Long, d2$Lat, ylim = c(-50,-32), xlim = c(163,183))
+#map("world", col="red", add=TRUE) #fix wrong lat/long
+
+#############################
+# species models
+#############################
+#collection history per year
+B <- d2
+frq <- table(factor(B$Gen_sp),factor(B$year))
+bin <- ifelse(frq > 0, 1, 0) 
+
+
+#i=1
+#last_year2 <- c(1:length(bin[,1]))
+#for (i in 1:length(bin[,1])){
+#  bin2 <- bin[i,-which(bin[i,] == 0)]
+#  last_year2[i] <- names(tail(bin2,1))
+#}
+#l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
+##l_yBB #broken at i = 5 check.
+
+#year vector
+y <- as.numeric(colnames(bin))
+
+
+#weights per year (specimens collected/max specimens collected)
+
+effort <- c(1:length(y))
+wei <- c(c(1:length(y)))
+for (i in 1:length(y)){effort[i] <- sum(frq[,i])}
+for (i in 1:length(y)){wei[i] <- sum(frq[,i])/max(effort)}
+
+#### estimates for all sp
+#mB <- frq[,c(1:11)]
+#colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
+mB <- frq[,c(1:10)]
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
+try(for (i in 1:length(frq[,1])){
+    mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
+    mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
+    mB[i,3] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[8]
+    if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
+    }
+    #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
+    else {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
+    }
+})
+
+############################################
+#plot model estimates and predictions
+############################################
+
+#prepare dataframe
+bee.est <- as.data.frame(mB)
+bee.est.cast <- dcast(bee.est, Var1 ~ Var2, value.var="Freq")
+bee.est.cast <- bee.est.cast[!(bee.est.cast$Var1 %in% species.remove$Var1),]
+bee.est.cast <- droplevels(bee.est.cast)
+
+#add direction change based on estimate and p-value
+bee.est.cast$change_in_occurance <- with(bee.est.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'Negative', ifelse(
+        p_frq >= 0.05, 'Stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
+bee.est.cast$taxa <- "Bee"
+
+exotic.native.bee <- c("exotic","exotic","exotic","native","native","native","native","exotic","native","native","native","native","native",                        "native","native","native","native","native","native","native","native","native","native","native","native","native",                        "exotic")
+
+bee.est.cast <- cbind(bee.est.cast,exotic.native.bee)
+colnames(bee.est.cast)[14] <- "exotic_native"
+############################################
+#analyse fly dataset
+############################################
+
+#load data
+d <- read.csv(file = "../data/NZ_fly_pollinators.csv", header = TRUE, sep = ",", na.strings=c("","NA"))
+
+#remove unidentified species
+completeFun <- function(data, desiredCols) {
+    completeVec <- complete.cases(data[, desiredCols])
+    return(data[completeVec, ])
+}
+
+d <- completeFun(d, "exotic_native")
+
+d$Gen_sp <- paste(d$NameGenus, d$NameSpecies, sep = "_")
+
+#date
+date2 <- strptime(d$CollectionDateISOFrom, "%Y\\%m\\%d")
+d$jday <- date2$yday
+d$year <- 1900 + date2$year
+d$month <- date2$mon + 1
+
+#select fields to be independent
+#two approaches lat = 0 and others
+lat <- subset(d, Lat != 0 & is.na(year) == F)#remove all records with no latitude recording
+#unique fields by lata, long, day of the year and year
+uni <- as.data.frame(cbind(lat$Gen_sp, lat$Lat, lat$Long, lat$jday, lat$year))
+dup <- duplicated(uni)
+#d2 <- d[-which(dup == TRUE),]
+# lat/long = 0
+#lat0 <- subset(d, Dlat == 0 & is.na(year) == F)
+#str(lat0)
+#uni2 <- as.data.frame(cbind(lat0$Gen, lat0$sp, lat0$LocalityStr, lat0$SubDivStr, lat0$StateProv, lat0$Country, lat0$jday, lat0$year))
+#str(uni2)
+#dup2 <- duplicated(uni2)
+
+# remove duplicates
+lat <- lat[-which(dup == TRUE),]
+#lat0 <- lat0[-which(dup2 == TRUE),]
+#d2 <- rbind(lat,lat0)
+d2 <- lat
+no.ind <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove <- filter(no.ind, Freq < 30)#create df with species that have less than 30 records
+
+no.ind.fly <- as.data.frame(sort(table(d2$Gen_sp))) #14 species with more than 30 datapoints
+species.remove.fly <- filter(no.ind.fly, Freq < 30)#create df with species that have less than 30 records
+colnames(species.remove.fly)[1] <- "Gen_sp"
+
+##########################################################################
+#species models
+##########################################################################
+
+#collection history per year
+B <- d2
+frq <- table(factor(B$Gen_sp),factor(B$year))
+bin <- ifelse(frq > 0, 1, 0) 
+
+#i=1
+#last_year2 <- c(1:length(bin[,1]))
+#for (i in 1:length(bin[,1])){
+   #bin2 <- bin[i,-which(bin[i,] == 0)]
+    #last_year2[i] <- names(tail(bin2,1))
+#}
+#l_yBB <- data.frame(Gen_sp = rownames(bin), last_year = last_year2)
+#l_yBB #broken at i = 5 check.
+
+#year vector
+y <- as.numeric(colnames(bin))
+
+
+#weights per year (specimens collected/max specimens collected)
+
+effort <- c(1:length(y))
+wei <- c(c(1:length(y)))
+for (i in 1:length(y)){effort[i] <- sum(frq[,i])}
+for (i in 1:length(y)){wei[i] <- sum(frq[,i])/max(effort)}
+
+
+##########################################################################
+#estimates for all sp
+##########################################################################
+
+#mB <- frq[,c(1:11)]
+#colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2010","pred1880SE", "pred 2010SE","Logit")
+mB <- frq[,c(1:10)]
+colnames(mB) <- c("estimate_bin", "SE_bin", "p_bin","estimate_frq", "SE_frq", "p_frq", "pred1880", "pred 2015","pred1880SE", "pred 2015SE")
+try(for (i in 1:length(frq[,1])){
+    mB[i,1] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[2]
+    mB[i,2] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[4]
+    mB[i,3] <- summary(glm(bin[i,] ~ y, family = binomial(link=logit), na.action=na.omit, weight = wei))$coefficients[8]
+    if (deviance(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))/df.residual(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit)) > 1.5) {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]
+    }
+    #mB[i,11] <- plogis(summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = quasibinomial(link=logit), na.action=na.omit))$coefficients[2])-0.5
+    else {
+        mB[i,4] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[2]
+        mB[i,5] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[4]
+        mB[i,6] <- summary(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit))$coefficients[8]
+        mB[i,7] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[1]
+        mB[i,8] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$fit[2]
+        mB[i,9] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[1]
+        mB[i,10] <- predict(glm(cbind(frq[i,], effort-frq[i,]) ~ y, family = binomial(link=logit), na.action=na.omit), newdata = data.frame(y = c(1880,2015)), type = "response", se.fit = TRUE)$se.fit[2]    	
+    }
+})
+
+##########################################################################
+#plot model estimates and predictions
+##########################################################################
+
+#prepare dataframe
+fly.est <- as.data.frame(mB)
+fly.est.cast <- dcast(fly.est, Var1 ~ Var2, value.var="Freq")
+fly.est.cast <- fly.est.cast[!(fly.est.cast$Var1 %in% species.remove$Var1),]
+fly.est.cast <- droplevels(fly.est.cast)
+
+#add direction change based on estimate and p-value
+fly.est.cast$change_in_occurance <- with(fly.est.cast, ifelse(
+    estimate_frq < 0 & p_frq < 0.05, 'Negative', ifelse(
+        p_frq >= 0.05, 'Stable', ifelse(
+            estimate_frq > 0 & p_frq >= 0.05, 'whoops', 'Positive'))))
+fly.est.cast$taxa <- "Fly"
+exotic.native.fly <- c("exotic","exotic","exotic","exotic","exotic","native","native","native","native","exotic","native","native","exotic","native")
+fly.est.cast <- cbind(fly.est.cast,exotic.native.fly)
+colnames(fly.est.cast)[14] <- "exotic_native"
+
+#merge bee and fly estimate datasets
+est.all <- rbind(fly.est.cast,bee.est.cast)
+est.all$Var1 <- gsub("_", " ", est.all$Var1)
+
+
+est.all$Var1 <- factor(est.all$Var1, levels = est.all$Var1[order(est.all$exotic_native)])
+
+####################################################
+#plot frequency estimates
+####################################################
+
+p <- ggplot(est.all, aes(Var1, estimate_frq, group=taxa))
+p <- p + xlab(NULL) + ylab("Change in relative occurance")
+p <- p + facet_wrap(~taxa,nrow=2,ncol=1,scales = "free_x")
+p <- p + geom_point(aes(colour=change_in_occurance), size = 2)
+p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=change_in_occurance), width = 0)
+p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
+p <- p + geom_vline(data=filter(est.all, taxa=="Bee"), aes(xintercept=5.5), colour="grey")
+p <- p + geom_vline(data=filter(est.all, taxa=="Fly"), aes(xintercept=7.5), colour="grey")
+p <- p + geom_text(data=data.frame(Var1=3,estimate_frq=0.145,taxa="Bee",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=4,estimate_frq=0.145,taxa="Fly",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=16.5,estimate_frq=0.145,taxa="Bee",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=11,estimate_frq=0.145,taxa="Fly",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + theme(panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               axis.line = element_line(colour = "black")) +
+    theme(panel.border=element_rect(colour = "black", fill = "NA", size = 1)) +
+    theme(axis.text.y=element_text(angle= 360, hjust = 0.5, vjust = 0.5, size =12),
+          axis.title.y=element_text(size=18, vjust = 1),
+          axis.text.x=element_text(face = "italic", angle= 45, hjust = 1, vjust = 1, size =8),
+          axis.title.x=element_text(size=22, vjust = 1),
+          axis.text=element_text(colour = "black"))+
+    theme(strip.background = element_rect(colour="NA", fill=NA),
+          strip.text = element_text(size=14))
+p <- p + theme(axis.title.y=element_text(margin=margin(0,20,0,0)))
+p <- p + theme(legend.text=element_text(size=12))
+p <- p + theme(legend.title = element_blank())
+p <- p + scale_colour_brewer(palette = "Dark2")
+p$labels$colour <- "Change in occurance"
+p
+
+####################################################
+#END
+####################################################
+
+```
+
+**Figure 5** Model estimated changes (± 1 SE) in the relative occurrence frequency of different New Zealand bee and fly species in museum collections over time.
+
+#Beyond species occurrences  
+ 
+A recent study found that more than 90% of the papers investigating pollinator responses to land-use change focused solely on richness and abundance descriptors [@Winfree2011]. However, in addition to local (alpha) diversity and regional (gamma) diversity, researchers need to assess changes in turnover between sites (beta diversity). Environmental changes often result in a few “winner” species and many “loser” species [@Bartomeus2013a]. Identifying winners and losers is critical as the few winners are often exotic and represent a subset of traits that facilitate survival in highly modified environments [@Stavert2017]. These changes can have important effects for pollination of native plant species and crops [@Stavert2018]. 
+
+In addition, digitalized museum specimen collections can provide much more information besides species occurrence records, given that such information is recorded when digitizing collections. This is particularly important for identifying mechanisms of decline and adaptation. For example, recording the date of collection is particularly important for tracking of phenological advances congruent with contemporary climate change [@Bartomeus2011]. In addition, pollinator specimen labels often include information about the host plant on which the specimen was collected. This information critical for understanding past and present species interactions [@Tylianakis2008]. Aside from this information, bee specimens often contain pollen loads trapped on hairs, from which past visitation events can be identified [@Kleijn2008]. Finally, museum specimens can be measured to track evolutionary changes by measuring the traits of specimens. This approach has already been used to investigate tongue length [@Miller-Struttmann2015] and body size [@Oliveira2016, @Renauld2016] in response to climate and land-use change. Finally, plant specimens stored in plant herbaria may contain indirect evidence of pollination declines [Pauw], thus linking pollinator declines with consequences for ecosystem functioning.
+
+#Conclusions
+
+Unleashing the power of museum collection data to answer pressing ecological and evolutionary questions is at our hands, but requires the coordinated effort of many actors. Using two case studies, we show that strong collaboration between museum curators and ecologists is key to understanding data and treating it appropriately. To advance our understanding of the global pollination crisis, researchers and curators must aim to digitize museum collection data and make it readily available in a format that is widely accessible. Centralization of regional and national museum collection data in existing global platforms, such as GBIF, would facilitate free and widespread access. However, datasets could also be stored in alternative webpages or database repositories (e.g., university and museum webpages or Dryad) providing they are thoroughly documented, and easy to retrieve and combined with other datasets using open science tools [e.g., @Dallas2016].  
+
+We must revolutionize the way that researchers collaborate with museums in order to foster healthy bidirectional relationships. For example, ecological researchers collect massive amounts of specimens, but these are often inappropriately vouchered [@Packer2018; @Wheeler2003], rendering them less useless for future research. To improve this process, strong communication between museums and researchers is required. However, this can only be achieved with adequate funding and recognition that accurate data recording and long-term preservation are critical for research [@Ward2015].
+
+To identify global trends in pollinator declines we require robust data, collected from diverse geographic regions. It is also crucial that these data are analysed appropriately. This requires researches to identify biases and to fill any taxonomic and geographic gaps where possible. We need to place increased emphasis on quantifying pollinator declines in regions outside of the US and Europe, and for pollinator groups other than bees. For the US and Europe, there have been few regional bee extinctions [@Ollerton2014; @Bartomeus2013a] but in disturbed ecosystems, declines are widespread [@DePalma2017; @Biesmeijer2006]. For most other pollinator taxa and regions throughout the world, we know almost nothing. Moving forward, the first step for many taxa will be to identify and describe species [@Meier2004]. Only then can we begin to document pollinator declines.
+
+#Acknowledgements 
+
+We thank Curro Molina, Carola Warner, Patrick McQuinn, and Crona McMonagle for data entry and Gregorio Aguado for carrying out the Spanish re-sampling. We thank Barry Donovan for providing New Zealand bee collection records and E. Asensio for sharing his historical data and knowledge. We thank the "Museo Nacional de Ciencias Naturales", specially Mercedes Paris, ITACyL (Instituto Tecnológico Agrario de Castilla y León), Canterbury Museum, the New Zealand Arthropod Collection and the Museum of New Zealand Te Papa Tongarewa for access to historical collections. IB was funded by Fundación Banco Bilbao Vizcaya Argentaria (FBBVA) project. DW was funded through Landcare Research within the Characterising New Zealand’s Land Biota Portfolio.
+
+#References
