@@ -1,256 +1,256 @@
-country,code,species
-Afghanistan,AF,223
-Albania,AL,150
-Aldabra Atoll,AB,7
-Algeria,AG,763
-Andorra,AN,17
-Angola,AO,127
-Anguilla,AV,6
-Antigua and Barbuda,AC,2
-Argentina,AR,1128
-Armenia,AM,396
-Australia,AS,1624
-Austria,AU,673
-Azerbaijan,AJ,390
-Azores,AZ,18
-Bahamas,BF,34
-Bahrain,BA,2
-Baker Island,FQ,1
-Balearic Islands,BZ,201
-Bangladesh,BG,15
-Barbados,BB,7
-Belarus,BO,110
-Belgium,BE,381
-Belize,BH,136
-Benin,BN,27
-Bermuda,BD,1
-Bhutan,BT,39
-Bioko,OK,2
-Bolivia,BL,569
-Bonin Islands,OF,12
-Borneo,BI,3
-Bosnia and Herzegovina,BK,139
-Botswana,BC,127
-Brazil,BR,1859
-British Virgin Islands,VI,17
-Brunei,BX,26
-Bulgaria,BU,579
-Burkina Faso,UV,57
-Burma,BM,193
-Burundi,BY,53
-Cambodia,CB,63
-Cameroon,CM,217
-Canada,CA,748
-Canary Islands,CL,119
-Cape Verde,CV,20
-Caroline Island,LD,5
-Caucasus,UC,66
-Cayman Islands,CJ,2
-Central Africa,XC,1
-Central African Republic,CT,54
-Chad,CD,39
-Chile,CI,439
-China,CH,1187
-Christmas Island,KT,5
-Colombia,CO,567
-Comoros,CN,22
-Congo,CF,77
-"Congo, Democratic Republic of the",CG,606
-Cook Islands,CW,3
-Costa Rica,CS,519
-Cote D'ivoire,IV,64
-Crete,EE,282
-Croatia,HR,587
-Cuba,CU,93
-Curacao,QC,2
-Cyprus,CY,340
-Czech Republic,EZ,559
-Denmark,DA,286
-Djibouti,DJ,16
-Dominica,DO,24
-Dominican Republic,DR,47
-Ecuador,EC,462
-Egypt,EG,426
-Egypt (excluding Sinai Peninsula),EX,1
-El Salvador,ES,90
-Equatorial Guinea,EK,84
-Eritrea,ER,66
-Estonia,EN,237
-Ethiopia,ET,203
-Europa Island,EU,2
-Faroe Islands,FO,4
-Fiji,FJ,10
-Finland,FI,241
-Former Yugoslavia,FY,21
-France,FR,893
-French Guiana,FG,187
-French Polynesia,FP,6
-French West Africa,XW,1
-Gabon,GB,167
-Gambia,GA,46
-Georgia,GG,419
-Germany,GM,560
-Ghana,GH,93
-Greece,GR,1062
-Grenada,GJ,11
-Guadeloupe,GP,12
-Guam,GU,9
-Guatemala,GT,274
-Guinea,GV,44
-Guinea-Bissau,PU,1
-Guyana,GY,237
-Haiti,HA,31
-Hispaniola,HS,13
-Honduras,HO,201
-Howland Island,HI,2
-Hungary,HU,674
-Iceland,IC,5
-India,IN,717
-Indonesia,ID,464
-Iran,IR,820
-Iraq,IZ,75
-Ireland,EI,104
-Isle of Man,IM,65
-Israel,IS,830
-Italy,IT,978
-Jamaica,JM,53
-Japan,JA,382
-Jordan,JO,265
-Kashmir,KX,2
-Kazakhstan,KZ,574
-Kenya,KE,342
-Kermadec Islands,KM,1
-Korea,AK,8
-Kuwait,KU,1
-Kyrgyzstan,KG,284
-Laos,LA,94
-Latvia,LG,278
-Lebanon,LE,187
-Lesotho,LT,63
-Liberia,LI,101
-Libya,LY,233
-Liechtenstein,LS,42
-Line Islands,YZ,1
-Lithuania,LH,328
-Loyalty Islands,OY,2
-Luxembourg,LU,300
-Macau,MC,1
-Macedonia,MK,374
-Madagascar,MA,220
-Madeira,DE,14
-Malawi,MI,211
-Malaysia,MY,265
-Maldives,MV,7
-Mali,ML,50
-Malta,MT,99
-Marianas Islands,RN,1
-Marshall Islands,RM,2
-Martinique,MB,7
-Mauritania,MR,27
-Mauritius,MP,11
-Mayotte,MF,3
-Mexico,MX,1850
-Micronesia,FM,2
-Moldova,MD,61
-Monaco,MN,1
-Mongolia,MG,321
-Montenegro,OG,121
-Montserrat,MH,10
-Morocco,MO,813
-Mozambique,MZ,184
-Namibia,WA,351
-Nepal,NP,173
-Netherlands,NL,366
-Netherlands Antilles,NT,6
-New Caledonia,NC,31
-New Guinea (whole),UI,8
-New Zealand,NZ,39
-Nicaragua,NU,138
-Niger,NG,56
-Nigeria,NI,156
-North Africa,FC,3
-North Korea,KN,76
-Northern Mariana Islands,CQ,5
-Norway,NO,139
-Oman,MU,74
-Pakistan,PK,281
-Palau,PS,11
-Pamir,PD,3
-Panama,PM,428
-Papua New Guinea,PP,232
-Paraguay,PA,485
-Peru,PE,725
-Philippines,RP,215
-Poland,PL,522
-Portugal,PO,525
-Puerto Rico,PR,35
-Punjab,PJ,5
-Qatar,QA,4
-Reunion,RE,6
-Rodrigues,OO,3
-Romania,RO,647
-Rota Island,RL,5
-Russia,RS,955
-Rwanda,RW,49
-Saint Kitts and Nevis,SC,3
-Saint Lucia,ST,4
-Saint Vincent and Grenadines,VC,32
-Samoa,WS,14
-San Marino,SM,2
-Sao Tome and Principe,TP,5
-Saudi Arabia,SA,103
-Senegal,SG,124
-Serbia,YA,241
-Seychelles,SE,16
-Sierra Leone,SL,78
-Singapore,SN,104
-Slovakia,LO,611
-Slovenia,SI,568
-Socotra,QT,19
-Solomon Islands,BP,41
-Somalia,SO,69
-South Africa,SF,1152
-South Korea,KS,174
-Spain,SP,984
-Sri Lanka,CE,134
-St. Bartholomew,OW,1
-St. Croix,RX,6
-St. John,JS,3
-St. Thomas,DD,8
-Sudan,SU,140
-Suriname,NS,116
-Swaziland,WZ,15
-Sweden,SW,290
-Switzerland,SZ,615
-Syria,SY,344
-Taiwan,TW,161
-Tajikistan,TI,386
-Tanzania,TZ,353
-Thailand,TH,225
-Timor,OT,18
-Tinian Island,DI,1
-Togo,TO,71
-Tonga,TN,4
-Torres Strait Islands,RR,1
-Trinidad and Tobago,TD,109
-Tunisia,TS,591
-Turkestan,UR,70
-Turkey,TU,1579
-Turkmenistan,TX,413
-Tuvalu,TV,1
-Uganda,UG,209
-Ukraine,UP,598
-United Arab Emirates,AE,86
-United Kingdom,UK,269
-United States,US,3565
-Uruguay,UY,76
-Uzbekistan,UZ,362
-Vanuatu,NH,14
-Venezuela,VE,284
-Vietnam,VM,88
-West Bank,WE,157
-Western Sahara,WI,6
-Yap Island,YP,4
-Yemen,YM,61
-Zambia,ZA,148
-Zimbabwe,ZI,399
+country;code;species;syrphid;syrphid_complete;buterflies
+Afghanistan;AF;223;NA;NA;NA
+Albania;AL;150;NA;NA;NA
+Aldabra Atoll;AB;7;NA;NA;NA
+Algeria;AG;763;NA;NA;NA
+Andorra;AN;17;40;NA;NA
+Angola;AO;127;NA;NA;NA
+Anguilla;AV;6;NA;NA;NA
+Antigua and Barbuda;AC;2;NA;NA;NA
+Argentina;AR;1128;NA;NA;NA
+Armenia;AM;396;NA;NA;NA
+Australia;AS;1624;NA;NA;NA
+Austria;AU;673;215;NA;197
+Azerbaijan;AJ;390;NA;NA;NA
+Azores;AZ;18;NA;NA;NA
+Bahamas;BF;34;NA;NA;NA
+Bahrain;BA;2;NA;NA;NA
+Baker Island;FQ;1;NA;NA;NA
+Balearic Islands;BZ;201;NA;NA;NA
+Bangladesh;BG;15;NA;NA;NA
+Barbados;BB;7;NA;NA;NA
+Belarus;BO;110;NA;NA;NA
+Belgium;BE;381;317;NA;88
+Belize;BH;136;NA;NA;NA
+Benin;BN;27;NA;NA;NA
+Bermuda;BD;1;NA;NA;NA
+Bhutan;BT;39;NA;NA;NA
+Bioko;OK;2;NA;NA;NA
+Bolivia;BL;569;NA;NA;NA
+Bonin Islands;OF;12;NA;NA;NA
+Borneo;BI;3;NA;NA;NA
+Bosnia and Herzegovina;BK;139;60;incomplete;NA
+Botswana;BC;127;NA;NA;NA
+Brazil;BR;1859;NA;NA;NA
+British Virgin Islands;VI;17;NA;NA;NA
+Brunei;BX;26;NA;NA;NA
+Bulgaria;BU;579;45;incomplete;211
+Burkina Faso;UV;57;NA;NA;NA
+Burma;BM;193;NA;NA;NA
+Burundi;BY;53;NA;NA;NA
+Cambodia;CB;63;NA;NA;NA
+Cameroon;CM;217;NA;NA;NA
+Canada;CA;748;NA;NA;NA
+Canary Islands;CL;119;NA;NA;NA
+Cape Verde;CV;20;NA;NA;NA
+Caroline Island;LD;5;NA;NA;NA
+Caucasus;UC;66;NA;NA;NA
+Cayman Islands;CJ;2;NA;NA;NA
+Central Africa;XC;1;NA;NA;NA
+Central African Republic;CT;54;NA;NA;NA
+Chad;CD;39;NA;NA;NA
+Chile;CI;439;NA;NA;NA
+China;CH;1187;NA;NA;NA
+Christmas Island;KT;5;NA;NA;NA
+Colombia;CO;567;NA;NA;NA
+Comoros;CN;22;NA;NA;NA
+Congo;CF;77;NA;NA;NA
+Congo Democratic Republic of the;CG;606;NA;NA
+Cook Islands;CW;3;NA;NA;NA
+Costa Rica;CS;519;NA;NA;NA
+Cote D'ivoire;IV;64;NA;NA;NA
+Crete;EE;282;NA;NA;NA
+Croatia;HR;587;53;incomplete;NA
+Cuba;CU;93;NA;NA;NA
+Curacao;QC;2;NA;NA;NA
+Cyprus;CY;340;NA;NA;48
+Czech Republic;EZ;559;393;NA;140
+Denmark;DA;286;269;NA;63
+Djibouti;DJ;16;NA;NA;NA
+Dominica;DO;24;NA;NA;NA
+Dominican Republic;DR;47;NA;NA;NA
+Ecuador;EC;462;NA;NA;NA
+Egypt;EG;426;NA;NA;NA
+Egypt (excluding Sinai Peninsula);EX;1;NA;NA;NA
+El Salvador;ES;90;NA;NA;NA
+Equatorial Guinea;EK;84;NA;NA;NA
+Eritrea;ER;66;NA;NA;NA
+Estonia;EN;237;219;NA;98
+Ethiopia;ET;203;NA;NA;NA
+Europa Island;EU;2;NA;NA;NA
+Faroe Islands;FO;4;NA;NA;NA
+Fiji;FJ;10;NA;NA;NA
+Finland;FI;241;342;NA;110
+Former Yugoslavia;FY;21;NA;NA;NA
+France;FR;893;504;NA;244
+French Guiana;FG;187;NA;NA;NA
+French Polynesia;FP;6;NA;NA;NA
+French West Africa;XW;1;NA;NA;NA
+Gabon;GB;167;NA;NA;NA
+Gambia;GA;46;NA;NA;NA
+Georgia;GG;419;NA;NA;NA
+Germany;GM;560;447;NA;178
+Ghana;GH;93;NA;NA;NA
+Greece;GR;1062;40;incomplete;230
+Grenada;GJ;11;NA;NA;NA
+Guadeloupe;GP;12;NA;NA;NA
+Guam;GU;9;NA;NA;NA
+Guatemala;GT;274;NA;NA;NA
+Guinea;GV;44;NA;NA;NA
+Guinea-Bissau;PU;1;NA;NA;NA
+Guyana;GY;237;NA;NA;NA
+Haiti;HA;31;NA;NA;NA
+Hispaniola;HS;13;NA;NA;NA
+Honduras;HO;201;NA;NA;NA
+Howland Island;HI;2;NA;NA;NA
+Hungary;HU;674;235;NA;152
+Iceland;IC;5;17;incomplete;NA
+India;IN;717;NA;NA;NA
+Indonesia;ID;464;NA;NA;NA
+Iran;IR;820;NA;NA;NA
+Iraq;IZ;75;NA;NA;NA
+Ireland;EI;104;178;NA;30
+Isle of Man;IM;65;NA;NA;NA
+Israel;IS;830;NA;NA;NA
+Italy;IT;978;501;NA;264
+Jamaica;JM;53;NA;NA;NA
+Japan;JA;382;NA;NA;NA
+Jordan;JO;265;NA;NA;NA
+Kashmir;KX;2;NA;NA;NA
+Kazakhstan;KZ;574;NA;NA;NA
+Kenya;KE;342;NA;NA;NA
+Kermadec Islands;KM;1;NA;NA;NA
+Korea;AK;8;NA;NA;NA
+Kuwait;KU;1;NA;NA;NA
+Kyrgyzstan;KG;284;NA;NA;NA
+Laos;LA;94;NA;NA;NA
+Latvia;LG;278;297;NA;105
+Lebanon;LE;187;NA;NA;NA
+Lesotho;LT;63;NA;NA;NA
+Liberia;LI;101;NA;NA;NA
+Libya;LY;233;NA;NA;NA
+Liechtenstein;LS;42;NA;NA;NA
+Line Islands;YZ;1;NA;NA;NA
+Lithuania;LH;328;266;NA;114
+Loyalty Islands;OY;2;NA;NA;NA
+Luxembourg;LU;300;NA;NA;78
+Macau;MC;1;NA;NA;NA
+Macedonia;MK;374;36 ;incomplete;NA
+Madagascar;MA;220;NA;NA;NA
+Madeira;DE;14;NA;NA;NA
+Malawi;MI;211;NA;NA;NA
+Malaysia;MY;265;NA;NA;NA
+Maldives;MV;7;NA;NA;NA
+Mali;ML;50;NA;NA;NA
+Malta;MT;99;NA;NA;18
+Marianas Islands;RN;1;NA;NA;NA
+Marshall Islands;RM;2;NA;NA;NA
+Martinique;MB;7;NA;NA;NA
+Mauritania;MR;27;NA;NA;NA
+Mauritius;MP;11;NA;NA;NA
+Mayotte;MF;3;NA;NA;NA
+Mexico;MX;1850;NA;NA;NA
+Micronesia;FM;2;NA;NA;NA
+Moldova;MD;61;NA;NA;NA
+Monaco;MN;1;NA;NA;NA
+Mongolia;MG;321;NA;NA;NA
+Montenegro;OG;121;NA;NA;NA
+Montserrat;MH;10;NA;NA;NA
+Morocco;MO;813;NA;NA;NA
+Mozambique;MZ;184;NA;NA;NA
+Namibia;WA;351;NA;NA;NA
+Nepal;NP;173;NA;NA;NA
+Netherlands;NL;366;325;NA;55
+Netherlands Antilles;NT;6;NA;NA;NA
+New Caledonia;NC;31;NA;NA;NA
+New Guinea (whole);UI;8;NA;NA;NA
+New Zealand;NZ;39;NA;NA;NA
+Nicaragua;NU;138;NA;NA;NA
+Niger;NG;56;NA;NA;NA
+Nigeria;NI;156;NA;NA;NA
+North Africa;FC;3;NA;NA;NA
+North Korea;KN;76;NA;NA;NA
+Northern Mariana Islands;CQ;5;NA;NA;NA
+Norway;NO;139;322;NA;99
+Oman;MU;74;NA;NA;NA
+Pakistan;PK;281;NA;NA;NA
+Palau;PS;11;NA;NA;NA
+Pamir;PD;3;NA;NA;NA
+Panama;PM;428;NA;NA;NA
+Papua New Guinea;PP;232;NA;NA;NA
+Paraguay;PA;485;NA;NA;NA
+Peru;PE;725;NA;NA;NA
+Philippines;RP;215;NA;NA;NA
+Poland;PL;522;418;NA;147
+Portugal;PO;525;179;NA;147
+Puerto Rico;PR;35;NA;NA;NA
+Punjab;PJ;5;NA;NA;NA
+Qatar;QA;4;NA;NA;NA
+Reunion;RE;6;NA;NA;NA
+Rodrigues;OO;3;NA;NA;NA
+Romania;RO;647;486;NA;180
+Rota Island;RL;5;NA;NA;NA
+Russia;RS;955;NA;NA;NA
+Rwanda;RW;49;NA;NA;NA
+Saint Kitts and Nevis;SC;3;NA;NA;NA
+Saint Lucia;ST;4;NA;NA;NA
+Saint Vincent and Grenadines;VC;32;NA;NA;NA
+Samoa;WS;14;NA;NA;NA
+San Marino;SM;2;NA;NA;NA
+Sao Tome and Principe;TP;5;NA;NA;NA
+Saudi Arabia;SA;103;NA;NA;NA
+Senegal;SG;124;NA;NA;NA
+Serbia;YA;241;75;incomplete;NA
+Seychelles;SE;16;NA;NA;NA
+Sierra Leone;SL;78;NA;NA;NA
+Singapore;SN;104;NA;NA;NA
+Slovakia;LO;611;396;NA;164
+Slovenia;SI;568;274;incomplete;172
+Socotra;QT;19;NA;NA;NA
+Solomon Islands;BP;41;NA;NA;NA
+Somalia;SO;69;NA;NA;NA
+South Africa;SF;1152;NA;NA;NA
+South Korea;KS;174;NA;NA;NA
+Spain;SP;984;351;NA;243
+Sri Lanka;CE;134;NA;NA;NA
+St. Bartholomew;OW;1;NA;NA;NA
+St. Croix;RX;6;NA;NA;NA
+St. John;JS;3;NA;NA;NA
+St. Thomas;DD;8;NA;NA;NA
+Sudan;SU;140;NA;NA;NA
+Suriname;NS;116;NA;NA;NA
+Swaziland;WZ;15;NA;NA;NA
+Sweden;SW;290;341;NA;108
+Switzerland;SZ;615;458;NA;NA
+Syria;SY;344;NA;NA;NA
+Taiwan;TW;161;NA;NA;NA
+Tajikistan;TI;386;NA;NA;NA
+Tanzania;TZ;353;NA;NA;NA
+Thailand;TH;225;NA;NA;NA
+Timor;OT;18;NA;NA;NA
+Tinian Island;DI;1;NA;NA;NA
+Togo;TO;71;NA;NA;NA
+Tonga;TN;4;NA;NA;NA
+Torres Strait Islands;RR;1;NA;NA;NA
+Trinidad and Tobago;TD;109;NA;NA;NA
+Tunisia;TS;591;NA;NA;NA
+Turkestan;UR;70;NA;NA;NA
+Turkey;TU;1579;NA;NA;NA
+Turkmenistan;TX;413;NA;NA;NA
+Tuvalu;TV;1;NA;NA;NA
+Uganda;UG;209;NA;NA;NA
+Ukraine;UP;598;NA;NA;NA
+United Arab Emirates;AE;86;NA;NA;NA
+United Kingdom;UK;269;266;NA;55
+United States;US;3565;NA;NA;NA
+Uruguay;UY;76;NA;NA;NA
+Uzbekistan;UZ;362;NA;NA;NA
+Vanuatu;NH;14;NA;NA;NA
+Venezuela;VE;284;NA;NA;NA
+Vietnam;VM;88;NA;NA;NA
+West Bank;WE;157;NA;NA;NA
+Western Sahara;WI;6;NA;NA;NA
+Yap Island;YP;4;NA;NA;NA
+Yemen;YM;61;NA;NA;NA
+Zambia;ZA;148;NA;NA;NA
+Zimbabwe;ZI;399;NA;NA;NA
