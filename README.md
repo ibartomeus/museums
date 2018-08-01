@@ -5,9 +5,9 @@ This repo hosts all data, analysis and text of the paper "Historic collections a
 
 The published paper is accepted and the link will be here soon: Phil Trans B
 
-A knitted version of the paper can be found in 'revision/ms.html', and the file that generates all text and figures is at '/revision/ms.Rmd'
+A knitted version of the paper can be found in 'revision/ms.html' [previsualization](http://htmlpreview.github.io/?https://github.com/ibartomeus/museums/blob/master/revision/ms.html), and the file that generates all text, analysis and figures is at '/revision/ms.Rmd'
 
-Data is not too tidy and can be found in '/data' and '/rawdata'. 
+Data is not too tidy, but can be found in '/data' and '/rawdata'. 
 
 The folders '/figures' and '/graphs' can be depreciated. '/scripts' has preliminar or exploratory analysis.
 
