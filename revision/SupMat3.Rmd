@@ -50,10 +50,69 @@ Although studies of local native pollinator communities often detect richness de
 Reported declines for bumblebees are the most severe of all pollinator taxa. For example, declines of up to 18% in local bumblebee richness have been reported for Belgium and the Netherlands [@Carvalheiro2013]. In other parts of Europe, local richness declines range from 5% in Great Britain [@Carvalheiro2013] to 42% in Denmark [@Dupont2011] and 70 % of bumblebee species are clasified as threatened or with declining population trends by IUCN [@Nieto2014]. In the USA, reported bumble declines are also severe with estimates ranging between 25% [@Grixti2009] and 30% [@Bartomeus2013a]. However, studies on species richness changes for other pollinator taxa are both scarce and geographically restricted. For butterflies, the only evidence of richness declines comes from Europe. Butterfly species richness has declined substantially in the Netherlands and Belgium since the 1950’s, although declines in Great Britain have been less severe [@Carvalheiro2013]. In Belgium, another study [@Maes2001] found that butterfly richness declines have been severe (approximately 30%), although this study assessed richness changes over a longer time period (early 1900’s to 2000) compared to [@Carvalheiro2013] (1950-69 vs. 1970-80 and 1970-89 vs. 1990-2009). In parts of Germany, up to 70% declines in local butterfly richness have been reported [@Wenzel2006]. Compared with other insect pollinator taxa, there are very few studies on hoverfly species richness changes, of which are all restricted to Europe. Specifically, in Belgium, Great Britain and the Netherlands, hoverfly richness changes have been modest [@Carvalheiro2013]. In the Netherlands, moderate increases in hoverfly species richness have been shown, whereas in Great Britain no significant directional changes were detected [@Biesmeijer2006]. Furthermore, directionality (richness increase or decrease) varies depending on the time period assessed. For example, hoverfly richness decreased in Belgium by approximately 6% from 1950-69 to 1970-80, but increased by approximately 10% between 1970-89 and 1990-2009 [@Carvalheiro2013].
 
 For illustrative purposes, we mapped the findings of these studies (Figure 1) to show the large differences in bee species richness worldwide, with bee diversity hotspots in mediterranean countries, against the paucity of countries for which we have any local or regional data on bee, syrphid or butterfly declines (raw data: Sup Mat 1). Except for outside of Europe and the US and for non-insect taxa, there are very few or no studies on pollinator declines using historical records. However, there are species-specific examples of historical losses from different parts of the world (e.g., *Bombus dalbhomi*; @Morales2013).
+```{r, include=FALSE}
+#update joinCountryData2Map to avoid printing results
+
+joinCountryData2Map <- function (dF, joinCode = "ISO3", nameJoinColumn = "ISO3V10", 
+    nameCountryColumn = "Country", suggestForFailedCodes = FALSE, 
+    mapResolution = "coarse", projection = NA, verbose = FALSE) 
+{
+    mapWithData <- getMap(resolution = mapResolution)
+    if (!is.na(projection)) 
+        warning("the projection argument has been deprecated, returning Lat Lon, use spTransform from package rgdal as shown in help details or the FAQ")
+    listJoinCodesNew <- c("ISO_A2", "ISO_A3", "FIPS_10_", "ADMIN", 
+        "ISO_N3")
+    listJoinCodesOld <- c("ISO2", "ISO3", "FIPS", "NAME", "UN")
+    listJoinCodes <- c(listJoinCodesOld, listJoinCodesNew)
+    if (joinCode %in% listJoinCodes == FALSE) {
+        stop("your joinCode (", joinCode, ") in joinCountryData2Map() is not one of those supported. Options are :", 
+            paste(listJoinCodes, ""), "\\n")
+        return(FALSE)
+    }
+    joinCodeOld <- joinCode
+    if (joinCode %in% listJoinCodesOld) {
+        joinCode <- listJoinCodesNew[match(joinCode, listJoinCodesOld)]
+    }
+    if (is.na(match(nameJoinColumn, names(dF)))) {
+        stop("your chosen nameJoinColumn :'", nameJoinColumn, 
+            "' seems not to exist in your data, columns = ", 
+            paste(names(dF), ""))
+        return(FALSE)
+    }
+    dF[[joinCode]] <- as.character(dF[[nameJoinColumn]])
+    dF[[joinCode]] <- gsub("[[:space:]]*$", "", dF[[joinCode]])
+    if (joinCode == "ADMIN") {
+        dF$ISO3 <- NA
+        for (i in 1:nrow(dF)) dF$ISO3[i] = rwmGetISO3(dF[[joinCode]][i])
+        joinCode = "ISO3"
+        nameCountryColumn = nameJoinColumn
+    }
+    matchPosnsInLookup <- match(as.character(dF[[joinCode]]), 
+        as.character(mapWithData@data[[joinCode]]))
+    failedCodes <- dF[[joinCode]][is.na(matchPosnsInLookup)]
+    numFailedCodes <- length(failedCodes)
+    numMatchedCountries <- nrow(dF) - numFailedCodes
+    #cat(numMatchedCountries, "codes from your data successfully matched countries in the map\\n")
+    failedCountries <- dF[[nameCountryColumn]][is.na(matchPosnsInLookup)]
+    failedCountries <- cbind(failedCodes, failedCountries = as.character(failedCountries))
+    #cat(numFailedCodes, "codes from your data failed to match with a country code in the map\\n")
+    if (verbose) 
+        print(failedCountries)
+    matchPosnsInUserData <- match(as.character(mapWithData@data[[joinCode]]), 
+        as.character(dF[[joinCode]]))
+    codesMissingFromUserData <- as.character(mapWithData@data[[joinCode]][is.na(matchPosnsInUserData)])
+    countriesMissingFromUserData <- as.character(mapWithData@data[["NAME"]][is.na(matchPosnsInUserData)])
+    numMissingCodes <- length(codesMissingFromUserData)
+    #cat(numMissingCodes, "codes from the map weren't represented in your data\\n")
+    mapWithData@data <- cbind(mapWithData@data, dF[matchPosnsInUserData, 
+        ])
+    invisible(mapWithData)
+}
+```
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(rworldmap)
-map <- read.csv("../data/bee_richness.csv")
+map <- read.csv("../data/bee_richness.csv", sep = ";")
 size <- read.csv("../data/country_area.csv")
 colnames(size) <- c("country", "size")
 map0 <- merge(map, size, all.x = TRUE)
@@ -65,15 +124,16 @@ m <- lm(log(map0$species) ~ log(map0$size+1), na.action = na.exclude)
 map0$res <- residuals(m)
 #subset(map0, res < -2)
 map2 <- joinCountryData2Map(map0, joinCode="NAME", nameJoinColumn = "country",
-                            nameCountryColumn = "distribution")
+                            nameCountryColumn = "distribution", verbose = FALSE)
 #need to use ISO's to make sure we don't carry over NA's due to country misspellings
 #have plotted countries with missing values as grey (shows we have richness for pretty much everywhere)
-par(mfrow = c(2,2))
+par(mfrow = c(3,2), mar = c(2.1, 3.1, 3.1, 2.1))
 map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "white",
                mapTitle = "Bee species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE)
 #add a modified legend using the same initial parameters as mapCountryData
-do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5))
-
+do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("a)", side = 3, adj = 0.05, 
+    line = -1.3)
 #need to add all the pannels.
 library(plyr)
 library(dplyr)
@@ -104,13 +164,32 @@ declines.bee.2 <- declines.bee %>%
               min = min(min))
 
 map.bee <- joinCountryData2Map(declines.bee.2, joinCode="NAME", nameJoinColumn = "country",
-                                   nameCountryColumn = "distribution")
+                                   nameCountryColumn = "distribution", verbose = FALSE)
 
 #average richness change
 colorss <- c(heat.colors(9))
 map.bee.ave <- mapCountryData(map.bee, nameColumnToPlot = "average", colourPalette= colorss,
                                   mapTitle = "Average bee richness change", catMethod = "pretty", addLegend = F)
-do.call(addMapLegend, c(map.bee.ave, legendLabels="all", legendWidth=0.5))
+do.call(addMapLegend, c(map.bee.ave, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("b)", side = 3, adj = 0.05, 
+    line = -1.3)
+
+#syrphid richness map
+map_s <- subset(map0, is.na(syrphid_complete))
+#scatter.smooth(log(map_s$syrphid) ~ log(map_s$size+1))
+m <- lm(log(map_s$syrphid) ~ log(map_s$size+1), na.action = na.exclude) 
+map_s$res <- residuals(m)
+#subset(map0, res < -2)
+map2 <- joinCountryData2Map(map_s, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution", verbose = FALSE)
+#need to use ISO's to make sure we don't carry over NA's due to country misspellings
+#have plotted countries with missing values as grey (shows we have richness for pretty much everywhere)
+map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "white",
+               mapTitle = "Syrphid species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE, mapRegion = "Europe")
+#add a modified legend using the same initial parameters as mapCountryData
+do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("c)", side = 3, adj = 0.05, 
+    line = -1.3)
 
 #make syrphid map
 declines.syrphid <- as.data.frame(filter(declines.ave, taxa == "syrphid")) %>% droplevels()
@@ -122,14 +201,31 @@ declines.syrphid.2 <- declines.syrphid %>%
               min = min(min))
 
 map.syrphid <- joinCountryData2Map(declines.syrphid.2, joinCode="NAME", nameJoinColumn = "country",
-                            nameCountryColumn = "distribution")
+                            nameCountryColumn = "distribution", verbose = FALSE)
 
 #average richness change
 colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
 map.syrphid.ave <- mapCountryData(map.syrphid, nameColumnToPlot = "average", colourPalette= colorss,
-                       mapTitle = "Average syrphid richness change", catMethod = "pretty", addLegend = F)
-do.call(addMapLegend, c(map.syrphid.ave, legendLabels="all", legendWidth=0.5))
+                       mapTitle = "Average syrphid richness change", catMethod = "pretty", addLegend = F, mapRegion = "Europe")
+do.call(addMapLegend, c(map.syrphid.ave, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("d)", side = 3, adj = 0.05, 
+    line = -1.3)
 
+#butterfly richness
+#scatter.smooth(log(map0$buterflies) ~ log(map0$size+1))
+m <- lm(log(map0$syrphid) ~ log(map0$size+1), na.action = na.exclude) 
+map0$res <- residuals(m)
+#subset(map0, res < -2)
+map2 <- joinCountryData2Map(map0, joinCode="NAME", nameJoinColumn = "country",
+                            nameCountryColumn = "distribution", verbose = FALSE)
+#need to use ISO's to make sure we don't carry over NA's due to country misspellings
+#have plotted countries with missing values as grey (shows we have richness for pretty much everywhere)
+map3 <- mapCountryData(map2, nameColumnToPlot = "res", missingCountryCol = "white",
+               mapTitle = "Butterfly species richness", numCats = 25, catMethod = "pretty", addLegend = FALSE, mapRegion = "Europe")
+#add a modified legend using the same initial parameters as mapCountryData
+do.call(addMapLegend, c(map3, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("e)", side = 3, adj = 0.05, 
+    line = -1.3)
 
 #make butterfly map
 declines.butterfly <- as.data.frame(filter(declines.ave, taxa == "butterfly")) %>% droplevels()
@@ -142,18 +238,19 @@ declines.butterfly.2 <- declines.butterfly %>%
 
 
 map.butterfly <- joinCountryData2Map(declines.butterfly.2, joinCode="NAME", nameJoinColumn = "country",
-                                     nameCountryColumn = "distribution")
+                                     nameCountryColumn = "distribution", verbose = FALSE)
 
 #average richness change
 colorss <- c(heat.colors(6))
 map.butterfly.ave <- mapCountryData(map.butterfly, nameColumnToPlot = "average", colourPalette=colorss,
-                                    mapTitle = "Average butterfly richness change", catMethod = "pretty", addLegend = F)
-do.call(addMapLegend, c(map.butterfly.ave, legendLabels="all", legendWidth=0.5))
-
+                                    mapTitle = "Average butterfly richness change", catMethod = "pretty", addLegend = F, mapRegion = "Europe")
+do.call(addMapLegend, c(map.butterfly.ave, legendLabels="all", legendWidth=0.5, labelFontSize=0.8, legendMar = 4))
+mtext("f)", side = 3, adj = 0.05, 
+    line = -1.3)
 par(mfrow = c(1,1))
 ```
 
-**Figure 1:** Global map showing a) bee species richness per area (Data from www.discoverlife.org) calculated as the residuals of the log-log regression between bee species richness per country and country size. This correction accounts for the species-area relationship. Warmer colours indicate higher bee diversity. Note that some African countries may have incomplete listed faunas and that Alaska is included with US values. Countries with available historical changes in (b) bee, (c) syrphid and (d) butterfly richness within the last 100 years. Warmer colours indicate steeper average declines. Countries without data are coloured in white. 
+**Figure 1:** Global map showing a), c) and e) bee, syrphid and butterfly species richness per area (Data from http://www.discoverlife.org, IUCN and http://www.syrphidae.com/). ALl richness levels are calculated as the residuals of the log-log regression between bee species richness per country and country size. This correction accounts for the species-area relationship. Warmer colours indicate higher bee diversity. Note that some African countries may have incomplete listed faunas and that Alaska is included with US values. Countries with available historical changes in (b) bee, (d) syrphid and (f) butterfly richness within the last 100 years. Warmer colours indicate steeper average declines. Countries without data are coloured in white. 
 
 #Using historical collection specimen records to fill knowledge gaps
 
@@ -242,10 +339,11 @@ lhf$log_post1980 <- log(lhf$post1980)
 col <- ifelse(lhf$country == "ES" | lhf$country == "NZ", "red", "black")
 col <- ifelse(log(lhf$post1980) > 7.5 & log(lhf$pre1980) > 7.5, col, "grey")
 pchs <- ifelse(lhf$country == "ES" | lhf$country == "NZ", 19, 1)
-plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs, las = 1)
-temp <- subset(lhf, country %in% c("ES", "NZ"))
-text(x = temp$log_post1980, y = temp$log_pre1980+2 , labels = temp$country, col = "red")
-abline(h = 7.5, v = 7.5)
+#par(mfrow = c(2,2))
+#plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs, las = 1)
+#temp <- subset(lhf, country %in% c("ES", "NZ"))
+#text(x = temp$log_post1980, y = temp$log_pre1980+2 , labels = temp$country, col = "red")
+#abline(h = 7.5, v = 7.5)
 #36 countries!
 #exp(7.5) #> 1800 records in both axes!
 ```
@@ -324,6 +422,14 @@ data2 <- subset(data, n > 500) #28 countries with enought data.
 
 #t.test(data2$pre1980, data2$post1980, paired = TRUE)
 
+#plot all
+par(mfrow = c(2,2),  mar = c(2.1, 3.1, 3.1, 2.1))
+plot(log(lhf$post1980+1), log(lhf$pre1980+1), xlab = "post1980", ylab = "pre1980", col = col, pch = pchs, las = 1)
+temp <- subset(lhf, country %in% c("ES", "NZ"))
+text(x = temp$log_post1980, y = temp$log_pre1980+2 , labels = temp$country, col = "red")
+abline(h = 7.5, v = 7.5)
+mtext("a)", side = 3, adj = 0.05, 
+    line = -1.3)
 boxplot(log(data2$pre1980), log(data2$post1980), names = c("pre1980", "post1980"), ylab = "log rarefied species richness", 
             las = 1, border = "light grey")
 points(x = c(rep(1,nrow(data2)), rep (2,nrow(data2))), y = c(log(data2$pre1980), log(data2$post1980)), pch = 1)
@@ -331,12 +437,13 @@ for(i in 1:nrow(data2)){
     lines(x = 1:2, y = c(log(data2$pre1980[i]), log(data2$post1980[i])), 
           col = ifelse((data2$pre1980[i] - data2$post1980[i]) > 1, "red", "blue"))
 }
-
+mtext("b)", side = 3, adj = 0.05, 
+    line = -1.3)
 #map
 data2$change <- ((data2$post1980 - data2$pre1980)*100 / data2$pre1980)
 #mean(data2$change)
 map.gbif <- joinCountryData2Map(data2, joinCode="ISO2", nameJoinColumn = "countries",
-                            nameCountryColumn = "countries")
+                            nameCountryColumn = "countries", verbose = FALSE)
 
 #average richness change
 #colorss <- c("firebrick", "red", "orangered", "orange", "yellow", "wheat", "green", "blue", "darkblue")
@@ -344,6 +451,9 @@ colorss <- c(heat.colors(5), c("#5e977c", "#3d88a5", "#1c79cf"))
 map.gbif.plot <- mapCountryData(map.gbif, nameColumnToPlot = "change", colourPalette= colorss,
                        mapTitle = "Average bee richness change (%)", catMethod = "pretty", addLegend = F)
 do.call(addMapLegend, c(map.gbif.plot, legendLabels="all", legendWidth=0.5))
+mtext("c)", side = 3, adj = 0.05, 
+    line = -1.3)
+par(mfrow = c(1,1))
 
 ```
 
@@ -445,7 +555,7 @@ for(i in c(1,2,3,5,6,7)){
 
 #Case study two: New Zealand
 
-In contrast to Spain, New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of New Zealand’s pollinator fauna is also relatively depauperate. For example, New Zealand has only 28 native bee species [@Donovan2007], which is a fraction of nearby Australia’s c. 1600 species [@Ascher2015]. However, New Zealand has a surprisingly high diversity of flies (Diptera), which are important pollinators in many ecosystems [@Newstrom2005]. Thus, New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.
+In contrast to Spain, New Zealand is an isolated oceanic archipelago, with a distinctive pollinator biota and a unique history of human occupation. Much of New Zealand’s pollinator fauna is also relatively depauperate. For example, New Zealand has only 28 native bee species [@Donovan2007], which is a fraction of nearby Australia’s c. 1600 species [@Ascher2018]. However, New Zealand has a surprisingly high diversity of flies (Diptera), which are important pollinators in many ecosystems [@Newstrom2005]. Thus, New Zealand provides a unique system to study long-term changes in pollinator communities, and is unlike continental Europe and the US, which have been the focus of an overwhelming majority of pollinator decline studies.
 
 In global terms, human colonisation of New Zealand was relatively recent (c. 740 y) [@Wilmshurst2008]. Before human arrival, New Zealand was predominately forested, but has since been dramatically altered by people. Therefore, we can use museum records to identify trends in pollinator communities during New Zealand’s more recent history. We used New Zealand bee collection records gathered from multiple sources, including university, research institute, museum and private collections. Collection records from the New Zealand Arthropod Collection (NZAC) are freely available online (https://scd.landcareresearch.co.nz/). Fly pollinator data were obtained from three participating New Zealand museums and covers two families (Calliphoridae and Syrphidae) that contain important fly pollinators. Collections for the bee and fly datasets span over 100 years (early 1900s to late 2000s).
 
@@ -453,7 +563,7 @@ We followed protocols outlined in [@Bartomeus2013a] to analyse the New Zealand d
 
 Second, to determine if the probability of finding a species in the collection changed over time, we used a general linear model with a binomial distribution and a logit link. For species that showed overdispersion, we used a quasi-binomial distribution. Further, we only included species in this analysis for which we had 30 or more independent records [@Bartomeus2013a]. Preliminary analysis using random subsampling of specimens from species with large sample size indicated that below 30 records the trends become too variable. To account for differences in sampling effort between years, we weighted each year by the total number of samples collected that year.
 
-We found that rarefied richness for native bees was stable through time. Exotic bees showed an increase in rarefied richness, but this trend was non-significant (P-value for both natives and exotic bees > 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups > 0.05). Note that rarefied richness is sensitive to species evenness, so increases in rarefied richness over time may actually indicate increased species evenness and vice-versa for decreased richness [Gotelli].
+We found that rarefied richness for native bees was stable through time. Exotic bees showed an increase in rarefied richness, but this trend was non-significant (P-value for both natives and exotic bees > 0.05). In contrast, native fly richness declined, whereas exotic fly richness increased, although results for these groups were also non-significant (P-values for both groups > 0.05). Note that rarefied richness is sensitive to species evenness, so increases in rarefied richness over time may actually indicate increased species evenness and vice-versa for decreased richness [@Gotelli2001].
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -575,7 +685,8 @@ for (i in 10){
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
     abline(m, lty = 2)
-
+mtext("a)", side = 3, adj = 0.05, 
+    line = -1.3)
 #############################################
 #Resampling Analysis for exotic species 
 #############################################
@@ -633,7 +744,8 @@ for (i in 9){ #error saying break are not unique - how to fix?
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
     abline(m, lty = 2)
-
+mtext("b)", side = 3, adj = 0.05, 
+    line = -1.3)
 ############################################
 #resampling analysis for flies
 ############################################
@@ -732,7 +844,8 @@ for (i in 9){ #error saying break are not unique - how to fix?
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
     abline(m, lty = 2)
-    
+mtext("c)", side = 3, adj = 0.05, 
+    line = -1.3)    
     ##########################################################################
     #Resampling Analysis for exotic flies
     ##########################################################################
@@ -797,7 +910,8 @@ for (i in 9){ #error saying break are not unique - how to fix?
     axis(1, at = time ,labels = lab, las = 2, cex.axis = 0.7)
     arrows(time,as.numeric(xx2)+as.numeric(se), time, as.numeric(xx2)-as.numeric(se), angle=90, length = 0)
     abline(m, lty = 2)
-    
+mtext("d)", side = 3, adj = 0.05, 
+    line = -1.3)    
     ##########################################################################
     #END
     ##########################################################################
@@ -1092,18 +1206,22 @@ est.all$Var1 <- factor(est.all$Var1, levels = est.all$Var1[order(est.all$exotic_
 #plot frequency estimates
 ####################################################
 
+#dirty trick
+est.all$taxa <- ifelse(est.all$taxa == "Fly", "b)     Fly", 
+                                              "a)     Bee")
+
 p <- ggplot(est.all, aes(Var1, estimate_frq, group=taxa))
 p <- p + xlab(NULL) + ylab("Change in relative occurance")
 p <- p + facet_wrap(~taxa,nrow=2,ncol=1,scales = "free_x")
 p <- p + geom_point(aes(colour=change_in_occurance), size = 2)
 p <- p + geom_errorbar(aes(ymin=estimate_frq-SE_frq, ymax=estimate_frq+SE_frq, colour=change_in_occurance), width = 0)
 p <- p + geom_hline(aes(yintercept=0), linetype="dashed")
-p <- p + geom_vline(data=filter(est.all, taxa=="Bee"), aes(xintercept=5.5), colour="grey")
-p <- p + geom_vline(data=filter(est.all, taxa=="Fly"), aes(xintercept=7.5), colour="grey")
-p <- p + geom_text(data=data.frame(Var1=3,estimate_frq=0.145,taxa="Bee",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
-p <- p + geom_text(data=data.frame(Var1=4,estimate_frq=0.145,taxa="Fly",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
-p <- p + geom_text(data=data.frame(Var1=16.5,estimate_frq=0.145,taxa="Bee",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
-p <- p + geom_text(data=data.frame(Var1=11,estimate_frq=0.145,taxa="Fly",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_vline(data=filter(est.all, taxa=="a)     Bee"), aes(xintercept=5.5), colour="grey")
+p <- p + geom_vline(data=filter(est.all, taxa=="b)     Fly"), aes(xintercept=7.5), colour="grey")
+p <- p + geom_text(data=data.frame(Var1=3,estimate_frq=0.145,taxa="a)     Bee",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=4,estimate_frq=0.145,taxa="b)     Fly",lab='Exotic'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=16.5,estimate_frq=0.145,taxa="a)     Bee",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
+p <- p + geom_text(data=data.frame(Var1=11,estimate_frq=0.145,taxa="b)     Fly",lab='Native'), aes(label=lab), parse=TRUE,colour="grey70", size=3)
 p <- p + theme(panel.grid.minor = element_blank(),
                panel.background = element_blank(),
                axis.line = element_line(colour = "black")) +
@@ -1134,7 +1252,7 @@ p
  
 A recent study found that more than 90% of the papers investigating pollinator responses to land-use change focused solely on richness and abundance descriptors [@Winfree2011]. However, in addition to local (alpha) diversity and regional (gamma) diversity, researchers need to assess changes in turnover between sites (beta diversity). Environmental changes often result in a few “winner” species and many “loser” species [@Bartomeus2013a]. Identifying winners and losers is critical as the few winners are often exotic and represent a subset of traits that facilitate survival in highly modified environments [@Stavert2017]. These changes can have important effects for pollination of native plant species and crops [@Stavert2018]. 
 
-In addition, digitalized museum specimen collections can provide much more information besides species occurrence records, given that such information is recorded when digitizing collections. This is particularly important for identifying mechanisms of decline and adaptation. For example, recording the date of collection is particularly important for tracking of phenological advances congruent with contemporary climate change [@Bartomeus2011]. In addition, pollinator specimen labels often include information about the host plant on which the specimen was collected. This information critical for understanding past and present species interactions [@Tylianakis2008]. Aside from this information, bee specimens often contain pollen loads trapped on hairs, from which past visitation events can be identified [@Kleijn2008]. Finally, museum specimens can be measured to track evolutionary changes by measuring the traits of specimens. This approach has already been used to investigate tongue length [@Miller-Struttmann2015] and body size [@Oliveira2016, @Renauld2016] in response to climate and land-use change. Finally, plant specimens stored in plant herbaria may contain indirect evidence of pollination declines [Pauw], thus linking pollinator declines with consequences for ecosystem functioning.
+In addition, digitalized museum specimen collections can provide much more information besides species occurrence records, given that such information is recorded when digitizing collections. This is particularly important for identifying mechanisms of decline and adaptation. For example, recording the date of collection is particularly important for tracking of phenological advances congruent with contemporary climate change [@Bartomeus2011]. In addition, pollinator specimen labels often include information about the host plant on which the specimen was collected. This information critical for understanding past and present species interactions [@Tylianakis2008]. Aside from this information, bee specimens often contain pollen loads trapped on hairs, from which past visitation events can be identified [@Kleijn2008]. Finally, museum specimens can be measured to track evolutionary changes by measuring the traits of specimens. This approach has already been used to investigate tongue length [@Miller-Struttmann2015] and body size [@Oliveira2016; @Renauld2016] in response to climate and land-use change. Finally, plant specimens stored in plant herbaria may contain indirect evidence of pollination declines [@Pauw2011], thus linking pollinator declines with consequences for ecosystem functioning.
 
 #Conclusions
 
