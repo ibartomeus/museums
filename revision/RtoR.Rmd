@@ -9,7 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Find included the revision of the manuscript "Historic collections as a tool for assessing the global pollination crisis". We want to thank the Editors and both reviewers for the encouraging words and the comments provided which have helped clarify the message. See a detailed response below.
+Find included the revision of the manuscript "Historic collections as a tool for assessing the global pollination crisis". We want to thank the Editors and both reviewers for the encouraging words and the comments provided which have helped clarify the message. See a detailed response below. test!
 
 ## Editor
 
